@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.2",
+    "nodemon": "^2.0.20"
+  },
+  "name": "fpvp",
+  "description": "This README would normally document whatever steps are necessary to get your application up and running.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Purimpat@bitbucket.org/purimpat/fpvp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/purimpat/fpvp/issues"
+  },
+  "homepage": "https://bitbucket.org/purimpat/fpvp#readme"
+}
