@@ -17,9 +17,10 @@ export const updateHotel = async (req, res, next) => {
       { $set: req.body },
       { new: true }
     );
-    res.status(200).json(thisupdateHotel);
+    res.status(300).json(thisupdateHotel);
   } catch (err) {
     next(err);
+
   }
 };
 //Delete
