@@ -1,0 +1,32 @@
+.navbar{
+  height: 50px;
+  background-color: #2f132f;
+  display: flex;
+  justify-content: center;
+}
+.aqwr{
+  background-image:url("../../photo/BGFBcover.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.navContainer{
+  width: 100%;
+  max-width: 1024px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo{
+  font-weight: 500;
+}
+
+.navButton{
+  margin-left: 20px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: #003580;
+}
