@@ -12,41 +12,91 @@ const HotelSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  address: {
-    type: String,
-    required: true,
-  },
-  distance: {
+  location: {
     type: String,
     required: true,
   },
   photos: {
     type: [String],
   },
-  title: {
-    type: String,
-    required: true,
-  },
-  desc: {
-    type: String,
-    required: true,
-  },
-  rating: {
-    type: Number,
-    min: 0,
-    max: 5,
-  },
-  rooms: {
+  date: {
     type: [String],
   },
   cheapestPrice: {
     type: Number,
     required: true,
   },
-  featured: {
+  persons: {
+    type: Number,
+    required: true,
+  },
+  maxpersons: {
+    type: Number,
+    required: true,
+  },
+  addonBed: {
+    type: Number,
+    required: true,
+  },
+  bed: {
+    type: String,
+    required: true,
+  },
+  insurance: {
+    type: Number,
+    required: true,
+  },
+  checkIn: {
+    type: String,
+    required: true,
+  },
+  checkOut: {
+    type: String,
+    required: true,
+  },
+  distanceSea: {
+    type: Number,
+  },
+  parkinglot: {
+    type: String,
+    required: true,
+  },
+  animal: {
     type: Boolean,
-    default: false,
+  },
+  animalDes: {
+    type: String,
+  },
+  swimmingPool: {
+    type: Boolean,
+  },
+  swimmingPoolDes: {
+    type: String,
+  },
+  slider: {
+    type: Boolean,
+  },
+  karaoke: {
+    type: Boolean,
+  },
+  rubberRing: {
+    type: Boolean,
+  },
+  snooker : {
+    type: Boolean,
+  },
+  discoLight: {
+    type: Boolean,
+  },
+  kitchenEquipment: {
+    type: Boolean,
+  },
+  wifi: {
+    type: Boolean,
+  },
+  elseDes: {
+    type: String,
   },
 });
 
-export default mongoose.model("Hotel", HotelSchema)
+export default mongoose.model("Hotel", HotelSchema);

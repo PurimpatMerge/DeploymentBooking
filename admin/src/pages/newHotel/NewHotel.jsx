@@ -10,7 +10,6 @@ import axios from "axios";
 const NewHotel = () => {
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
-  const [rooms, setRooms] = useState([]);
 
   const { data, loading, error } = useFetch("/rooms");
 
@@ -18,15 +17,7 @@ const NewHotel = () => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const handleSelect = (e) => {
-    const value = Array.from(
-      e.target.selectedOptions,
-      (option) => option.value
-    );
-    setRooms(value);
-  };
-  
-  console.log(files)
+  console.log(files);
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -48,12 +39,13 @@ const NewHotel = () => {
 
       const newhotel = {
         ...info,
-        rooms,
         photos: list,
       };
 
       await axios.post("/hotels", newhotel);
-    } catch (err) {console.log(err)}
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className="new">
@@ -73,6 +65,7 @@ const NewHotel = () => {
               }
               alt=""
             />
+            <p>upload picture : {files.length} / 10</p>
           </div>
           <div className="right">
             <form>
@@ -88,11 +81,19 @@ const NewHotel = () => {
                   style={{ display: "none" }}
                 />
               </div>
-
+              <div className="formInput">
+    
+                  </div>
+              <div className="formInput">
+                  <h2>Poolvilla requriments</h2>
+                  </div>
+                  <div className="formInput">
+    
+                  </div>
               {hotelInputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  <input
+                  <input contenteditable="true"
                     id={input.id}
                     onChange={handleChange}
                     type={input.type}
@@ -100,26 +101,76 @@ const NewHotel = () => {
                   />
                 </div>
               ))}
+              <div className="formInput" >
+                
+              </div>
               <div className="formInput">
-                <label>Featured</label>
-                <select id="featured" onChange={handleChange}>
+                <h2> Option</h2>
+              </div>
+              <div className="formInput" >
+                <h2> </h2>
+              </div>
+              <div className="formInput">
+                <label>Swimming Pool</label>
+                <select  id="swimmingPool" onChange={handleChange}>
+                  <option value={false}>No</option>
+                  <option value={true}>Yes</option>
+                </select>
+                <label>Slider</label>
+                <select id="slider" onChange={handleChange}>
                   <option value={false}>No</option>
                   <option value={true}>Yes</option>
                 </select>
               </div>
-              <div className="selectRooms">
-                <label>Rooms</label>
-                <select id="rooms" multiple onChange={handleSelect}>
-                  {loading
-                    ? "loading"
-                    : data &&
-                      data.map((room) => (
-                        <option key={room._id} value={room._id}>
-                          {room.title}
-                        </option>
-                      ))}
+              <div className="formInput">
+                <label>Rubber Ring</label>
+                <select id="rubberRing" onChange={handleChange}>
+                  <option value={false}>No</option>
+                  <option value={true}>Yes</option>
+                </select>
+                <label>Karaoke</label>
+                <select id="karaoke" onChange={handleChange}>
+                  <option value={false}>No</option>
+                  <option value={true}>Yes</option>
                 </select>
               </div>
+              <div className="formInput">
+                <label>Allowed Animal</label>
+                <select id="animal" onChange={handleChange}>
+                  <option value={false}>No</option>
+                  <option value={true}>Yes</option>
+                </select>
+                <div className="formInput">
+                <label>Snooker</label>
+                <select id="snooker" onChange={handleChange}>
+                  <option value={false}>No</option>
+                  <option value={true}>Yes</option>
+                </select>
+                </div>
+              </div>
+              <div className="formInput">
+                <label>Disco Light</label>
+                <select id="discoLight" onChange={handleChange}>
+                  <option value={false}>No</option>
+                  <option value={true}>Yes</option>
+                </select>
+                <label>Kitchen Equipment</label>
+                <select id="kitchenEquipment" onChange={handleChange}>
+                  <option value={false}>No</option>
+                  <option value={true}>Yes</option>
+                </select>
+              </div>
+              <div className="formInput">
+                <label>Free wifi</label>
+                <select id="wifi" onChange={handleChange}>
+                  <option value={false}>No</option>
+                  <option value={true}>Yes</option>
+                </select>
+              </div>
+              <div className="formInput" >
+                <h2> </h2>
+              </div>
+
               <button onClick={handleClick}>Send</button>
             </form>
           </div>

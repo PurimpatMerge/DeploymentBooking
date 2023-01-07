@@ -7,6 +7,16 @@ import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
 import useFetch from "../../hooks/useFetch";
+import { makeStyles } from "@material-ui/core/styles";
+import { Pagination } from "@material-ui/lab";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
 
 const List = () => {
   const location = useLocation();
@@ -18,8 +28,18 @@ const List = () => {
   const [max, setMax] = useState(undefined);
 
   const { data, loading, error, reFetch } = useFetch(
-    `/hotels?city=${destination}&min=${min || 0 }&max=${max || 99999}`
+    `/hotels?city=${destination}&min=${min || 0}&max=${max || 99999}`
   );
+
+  const classes = useStyles();
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(2);
+  const totalPages = Math.ceil(data.length / perPage);
+  const paginatedData = data.slice((page - 1) * perPage, page * perPage);
+
+  function handlePageChange(event, value) {
+    setPage(value);
+  }
 
   const handleClick = () => {
     reFetch();
@@ -35,7 +55,11 @@ const List = () => {
             <h1 className="lsTitle">Search</h1>
             <div className="lsItem">
               <label>Destination</label>
-              <input placeholder={destination} type="text"  onChange={(e) => setDestination(e.target.value)}/>
+              <input
+                placeholder={destination}
+                type="text"
+                onChange={(e) => setDestination(e.target.value)}
+              />
             </div>
             <div className="lsItem">
               <label>Check-in Date</label>
@@ -105,18 +129,27 @@ const List = () => {
             </div>
             <button onClick={handleClick}>Search</button>
           </div>
-          <div className="listResult">
-            {loading ? (
-              "loading"
-            ) : (
-              <>
-              <div class="displayGrid">
-                {data.map((item) => (
-                  <SearchItem item={item} key={item._id} />
-                  ))}
-              </div>
-              </>
-            )}
+          <div className={classes.root}>
+            <div className="listResult">
+              {loading ? (
+                "loading"
+              ) : (
+                <>
+                  <div class="displayGrid">
+                    {paginatedData.map((item) => (
+                      <SearchItem item={item} key={item._id} />
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+            <Pagination
+              count={totalPages}
+              page={page}
+              onChange={handlePageChange}
+              showFirstButton
+              showLastButton
+            />
           </div>
         </div>
       </div>

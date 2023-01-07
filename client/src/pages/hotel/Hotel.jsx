@@ -1,7 +1,7 @@
 import "./hotel.css";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
+// import Footer from "../../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleArrowLeft,
@@ -12,7 +12,7 @@ import {
 import { useContext, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import { useLocation, useNavigate } from "react-router-dom";
-import { SearchContext } from "../../context/SearchContext";
+// import { SearchContext } from "../../context/SearchContext";
 import { AuthContext } from "../../context/AuthContext";
 import Reserve from "../../components/reserve/Reserve";
 
@@ -26,8 +26,10 @@ const Hotel = () => {
   const { data, loading, error } = useFetch(`/hotels/find/${id}`);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
-
+  const infoBed = data.bed?.split(",");
+  const infoSwimmingPoole = data.swimmingPoolDes?.split(",");
+  const infoElse = data.elseDes?.split(",");
+  const toKM = data.distanceSea * 0.0001;
 
   const handleOpen = (i) => {
     setSlideNumber(i);
@@ -38,9 +40,9 @@ const Hotel = () => {
     let newSlideNumber;
 
     if (direction === "l") {
-      newSlideNumber = slideNumber === 0 ? 5 : slideNumber - 1;
+      newSlideNumber = slideNumber === 0 ? data.photos.length : slideNumber - 1;
     } else {
-      newSlideNumber = slideNumber === 5 ? 0 : slideNumber + 1;
+      newSlideNumber = slideNumber === data.photos.length ? 0 : slideNumber + 1;
     }
 
     setSlideNumber(newSlideNumber);
@@ -88,18 +90,24 @@ const Hotel = () => {
             </div>
           )}
           <div className="hotelWrapper">
-            <button className="bookNow">Reserve or Book Now!</button>
+            <button className="bookNow" onClick={handleClick}>
+              Reserve or Book Now!
+            </button>
             <h1 className="hotelTitle">{data.name}</h1>
-            <div className="hotelAddress">
-              <FontAwesomeIcon icon={faLocationDot} />
-              <span>{data.address}</span>
-            </div>
             <span className="hotelDistance">
-              Excellent location – {data.distance}m from center
+              <FontAwesomeIcon icon={faLocationDot} />
+              {data.city}
+            </span>
+            <div className="hotelAddress">
+              <a href={data.location}>Google map : {data.location}</a>
+            </div>
+            <span className="hotelDistance">{toKM}กม. จากทะเล</span>
+            <span className="hotelPriceHighlight">
+              ราคาเริ่มต้น {data.cheapestPrice}฿ พักได้ {data.persons} สูงสุด{" "}
+              {data.maxpersons}
             </span>
             <span className="hotelPriceHighlight">
-              Book a stay over ${data.cheapestPrice} at this property and get a
-              free airport taxi
+              เงินประกันความเสียหาย {data.insurance}
             </span>
             <div className="hotelImages">
               {data.photos?.map((photo, i) => (
@@ -115,20 +123,64 @@ const Hotel = () => {
             </div>
             <div className="hotelDetails">
               <div className="hotelDetailsTexts">
-                <h1 className="hotelTitle">{data.title}</h1>
-                <p className="hotelDesc">{data.desc}</p>
+                <h1 className="hotelTitle">Options</h1>
+                <div>
+                  <label>
+                    {data.swimmingPool === true ? "Swimming Pool" : ""}
+                  </label>
+                </div>
+                <div>{data.slider === true ? "Slider" : ""}</div>
+                <div>{data.rubberRing === true ? "Rubber Ring" : ""}</div>
+                <div>{data.karaoke === true ? "Karaoke" : ""}</div>
+                <div>{data.animal === true ? "Allowed Animal" : ""}</div>
+                <div>{data.snooker === true ? "Snooker" : ""}</div>
+                <div>{data.discoLight === true ? "Disco Light" : ""}</div>
+                <div>
+                  {data.kitchenEquipment === true ? "Kitchen Equipment" : ""}
+                </div>
+                <div>{data.wifi === true ? "Free wifi" : ""}</div>
+                <div className="hotelDetailsTexts">
+                  <h1 className="hotelTitle">ขนาดสระว่ายน้ำ</h1>
+                  <span>
+                    {infoSwimmingPoole?.map((item) => (
+                      <p>{item}</p>
+                    ))}
+                  </span>
+                </div>
+                <div className="hotelDetailsTexts">
+                  <h1 className="hotelTitle">ที่จอดรถ</h1>
+                  <span>{data.parkinglot}</span>
+                </div>
+                <div className="hotelDetailsTexts">
+                  <h1 className="hotelTitle">เพิ่มเติม</h1>
+                  <span>
+                  {infoElse?.map((item) => (
+                    <p>{item}</p>
+                  ))}
+                </span>
+                </div>
               </div>
-              <div className="hotelDetailsPrice">
-             
-                
-                <button onClick={handleClick}>Reserve or Book Now!</button>
+              <div className="hotelDetailsTexts">
+                <h1 className="hotelTitle">เวลาเข้าพัก</h1>
+                <span>
+                  Check-in : {data.checkIn} - Check-out : {data.checkOut}
+                </span>
+                <h1 className="hotelTitle">เตียง</h1>
+                <span>
+                  {infoBed?.map((item) => (
+                    <p>{item}</p>
+                  ))}
+                </span>
+                <h1 className="hotelTitle">เตียงเสริม</h1>
+                <span>{data.addonBed}฿</span>
+                <h1 className="hotelTitle">สัตว์เลียง</h1>
+                <span>- {data.animalDes}</span>
               </div>
             </div>
           </div>
-          <Footer />
         </div>
       )}
-      {openModal && <Reserve setOpen={setOpenModal} hotelId={id}/>}
+      {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}
     </div>
   );
 };
