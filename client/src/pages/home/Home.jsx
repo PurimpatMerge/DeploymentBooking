@@ -4,6 +4,7 @@ import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
 import "./home.css";
+import "../../input.css";
 
 const Home = () => {
   return (
@@ -16,6 +17,9 @@ const Home = () => {
         <h1 className="homeTitle">Homes guests love</h1>
         <FeaturedProperties/>
       </div>
+      <div>  <h1 class="text-lime-300">
+    Hello world!
+  </h1></div>
     </div>
   );
 };
