@@ -39,19 +39,44 @@ export const getHotel = async (req, res, next) => {
     next(err);
   }
 };
+
 export const getHotels = async (req, res, next) => {
-  const { min, max, city,...others } = req.query;
   try {
+    const min = req.query?.min || 1 ;
+    const max = req.query?.max || 99999 ;
+    const city = req.query?.city ||"a";
+    const maxpersons = req.query?.maxpersons || 1;
+    const toM = req.query?.sea / 0.0001 || 90;
     const hotels = await Hotel.find({
-      city: { $regex: city || "a"},
-      cheapestPrice: { $gt: min | 1, $lt: max || 99999 },
-      ...others
+      $or: [
+        { city: { $regex: `${city}`, $options: "i" || "a" } },
+        { name: { $regex: `${city}`, $options: "i" } },
+      ],
+      cheapestPrice: { $gte: min || 1, $lte: max || 99999 },
+
+      maxpersons: { $gte: maxpersons || 1 },
+      distanceSea: { $lte: toM || 90 },
     }).limit(req.query.limit);
+    console.log(min, max, city, maxpersons, toM);
     res.status(200).json(hotels);
   } catch (err) {
     next(err);
   }
 };
+
+export const getAllHotel = async (req, res, next) => {
+  const { min, max, ...other } = req.query;
+  try {
+    const getAllHotel = await Hotel.find({
+      ...other,
+      cheapestPrice: { $gt: min | 1, $lt: max || 99999 },
+    }).limit(req.query.limit);
+    res.status(200).json(getAllHotel);
+  } catch (err) {
+    next(err);
+  }
+};
+
 export const countByCity = async (req, res, next) => {
   const cities = req.query.cities.split(",");
   try {
@@ -85,6 +110,21 @@ export const countByCity = async (req, res, next) => {
 //   }
 // };
 
+//count hotel that in the city
+// export const countByType = async (req, res, next) => {
+//   const typeCountPoolvilla = await Hotel.countDocuments({ type: "PoolVilla" });
+//   const typeCountHotel = await Hotel.countDocuments({ type: "Hotel" });
+//   try {
+//     //find how many item in PoolVilla
+//     res.status(200).json([
+//       { type: "Poolvilla", count: typeCountPoolvilla },
+//       { type: "Hotel", count: typeCountHotel },
+//     ]);
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
 export const getHotelRooms = async (req, res, next) => {
   try {
     const hotel = await Hotel.findById(req.params.id);
@@ -93,7 +133,7 @@ export const getHotelRooms = async (req, res, next) => {
         return Room.findById(room);
       })
     );
-    res.status(200).json(list)
+    res.status(200).json(list);
   } catch (err) {
     next(err);
   }

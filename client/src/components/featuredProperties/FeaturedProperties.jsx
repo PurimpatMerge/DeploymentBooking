@@ -2,8 +2,7 @@ import useFetch from "../../hooks/useFetch";
 import "./featuredProperties.css";
 
 const FeaturedProperties = () => {
-  const { data, loading, error } = useFetch("/hotels?limit=4");
-
+  const { data, loading, error } = useFetch( `/hotels?city=${"a"}&min=${0}&max=${99999}&maxpersons=${1}&sea=${90}`);
   return (
     <div className="fp">
       {loading ? (
@@ -21,7 +20,7 @@ const FeaturedProperties = () => {
               <span className="fpCity">{item.city}</span>
               <span className="fpPrice">Starting from ${item.cheapestPrice}</span>
               {item.rating && <div className="fpRating">
-                <button>{item.rating}</button>
+               
                 <span>Excellent</span>
               </div>}
             </div>

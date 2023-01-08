@@ -23,12 +23,13 @@ const List = () => {
   const [destination, setDestination] = useState(location.state.destination);
   const [dates, setDates] = useState(location.state.dates);
   const [openDate, setOpenDate] = useState(false);
-  const [options, setOptions] = useState(location.state.options);
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
+  const [person, setperson] = useState(location.state.person);
+  const [sea, setSea] = useState(undefined);
 
   const { data, loading, error, reFetch } = useFetch(
-    `/hotels?city=${destination}&min=${min || 0}&max=${max || 99999}`
+    `/hotels?city=${destination || "a"}&min=${min || 0}&max=${max || 99999}&maxpersons=${person || 1}&sea=${sea || 90}`
   );
 
   const classes = useStyles();
@@ -99,30 +100,20 @@ const List = () => {
                   />
                 </div>
                 <div className="lsOptionItem">
-                  <span className="lsOptionText">Adult</span>
+                  <span className="lsOptionText">person</span>
                   <input
                     type="number"
-                    min={1}
+                    placeholder={person}
+                    onChange={(e) => setperson(e.target.value)}
                     className="lsOptionInput"
-                    placeholder={options.adult}
                   />
                 </div>
                 <div className="lsOptionItem">
-                  <span className="lsOptionText">Children</span>
+                  <span className="lsOptionText">from Sea</span>
                   <input
                     type="number"
-                    min={0}
+                    onChange={(e) => setSea(e.target.value)}
                     className="lsOptionInput"
-                    placeholder={options.children}
-                  />
-                </div>
-                <div className="lsOptionItem">
-                  <span className="lsOptionText">Room</span>
-                  <input
-                    type="number"
-                    min={1}
-                    className="lsOptionInput"
-                    placeholder={options.room}
                   />
                 </div>
               </div>
