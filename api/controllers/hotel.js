@@ -62,10 +62,10 @@ export const getHotels = async (req, res, next) => {
         { city: { $regex: `${city}`, $options: "i" } },
         { name: { $regex: `${city}`, $options: "i" } },
       ],
-      cheapestPrice: { $gte: min, $lte: max }, // removed the `||` operator
-      maxpersons: { $gte: maxpersons }, // removed the `||` operator
-      distanceSea: { $lte: toM }, // removed the `||` operator
-    }).limit(req.query.limit);
+      cheapestPrice: { $gte: min, $lte: max }, 
+      maxpersons: { $gte: maxpersons }, 
+      distanceSea: { $lte: toM },
+    }).limit(req.query?.limit);
     res.status(200).json(hotels);
   } catch (err) {
     next(err);
