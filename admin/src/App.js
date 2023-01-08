@@ -11,6 +11,7 @@ import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
 import { hotelColumns, roomColumns, userColumns } from "./datatablesource";
 import NewHotel from "./pages/newHotel/NewHotel";
+import EditHotel from "./pages/editHotel/EditHotel";
 import NewRoom from "./pages/newRoom/NewRoom";
 
 function App() {
@@ -88,6 +89,14 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <NewHotel  />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="edit/:id"
+                element={
+                  <ProtectedRoute>
+                    <EditHotel  />
                   </ProtectedRoute>
                 }
               />
