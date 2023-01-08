@@ -40,6 +40,16 @@ export const getHotel = async (req, res, next) => {
   }
 };
 
+export const getAllHotel = async (req, res, next) => {
+  try {
+    const getAllHotel = await Hotel.find();
+    res.status(200).json(getAllHotel);
+  } catch (err) {
+    next(err);
+  }
+};
+
+
 export const getHotels = async (req, res, next) => {
   try {
     const min = req.query?.min || 1 ;
@@ -49,33 +59,19 @@ export const getHotels = async (req, res, next) => {
     const toM = req.query?.sea / 0.0001 || 90;
     const hotels = await Hotel.find({
       $or: [
-        { city: { $regex: `${city}`, $options: "i" || "a" } },
+        { city: { $regex: `${city}`, $options: "i" } },
         { name: { $regex: `${city}`, $options: "i" } },
       ],
-      cheapestPrice: { $gte: min || 1, $lte: max || 99999 },
-
-      maxpersons: { $gte: maxpersons || 1 },
-      distanceSea: { $lte: toM || 90 },
+      cheapestPrice: { $gte: min, $lte: max }, // removed the `||` operator
+      maxpersons: { $gte: maxpersons }, // removed the `||` operator
+      distanceSea: { $lte: toM }, // removed the `||` operator
     }).limit(req.query.limit);
-    console.log(min, max, city, maxpersons, toM);
     res.status(200).json(hotels);
   } catch (err) {
     next(err);
   }
 };
 
-export const getAllHotel = async (req, res, next) => {
-  const { min, max, ...other } = req.query;
-  try {
-    const getAllHotel = await Hotel.find({
-      ...other,
-      cheapestPrice: { $gt: min | 1, $lt: max || 99999 },
-    }).limit(req.query.limit);
-    res.status(200).json(getAllHotel);
-  } catch (err) {
-    next(err);
-  }
-};
 
 export const countByCity = async (req, res, next) => {
   const cities = req.query.cities.split(",");
