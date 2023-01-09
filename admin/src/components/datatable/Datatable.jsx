@@ -6,12 +6,11 @@ import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 
-const Datatable = ({columns}) => {
+const Datatable = ({ columns }) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   const [list, setList] = useState();
   const { data, loading, error } = useFetch(`/${path}/admin`);
-console.log(`/admin/${path}`);
   useEffect(() => {
     setList(data);
   }, [data]);
@@ -31,8 +30,14 @@ console.log(`/admin/${path}`);
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+            <Link
+              to={{
+                pathname: `/${path}/edit/${params.row._id}`,
+                state: { id: params.row._id },
+              }}
+              style={{ textDecoration: "none" }}
+            >
+              <div className="viewButton">edit</div>
             </Link>
             <div
               className="deleteButton"
