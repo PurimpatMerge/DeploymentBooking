@@ -3,23 +3,29 @@ import FeaturedProperties from "../../components/featuredProperties/FeaturedProp
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
-import "./home.css";
+
 import "../../input.css";
 
 const Home = () => {
   return (
-    <div>
-      <Navbar />
-        <Footer/>
-      <Header/>
-      <div className="homeContainer">
-        <Featured/>
-        <h1 className="homeTitle">Homes guests love</h1>
-        <FeaturedProperties/>
+    <div className="flex ">
+      <div className="">
+        <Navbar />
+        <Footer />
+        <div className="mt-4 "><Header /></div>
+        <div className="">
+          <Featured />
+          <div className="flex-col bg-gradient-to-tr  from-zinc-100 via-slate-200 to-neutral-300  ">
+
+            <h1 className="tracking-tight text-center  font-semibold text-4xl  text-zinc-900 ">Homes guests love</h1>
+
+            <div className="mx-auto">
+              <FeaturedProperties />
+            </div>
+          </div>
+
+        </div>
       </div>
-      <div>  <h1 class="text-lime-300">
-    Hello world!
-  </h1></div>
     </div>
   );
 };
