@@ -14,12 +14,12 @@ const NewHotel = () => {
   const { data, loading, error } = useFetch(`/hotels/find/${id}`);
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
+
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
   console.log(files);
-
   const handleClick = async (e) => {
     e.preventDefault();
     try {
@@ -41,13 +41,29 @@ const NewHotel = () => {
       const updatehotel = {
         ...data,
         ...info,
-        photos: data.photos.concat(list),
+        photos: data?.photos.concat(list) || list,
       };
 
       await axios.put(`/hotels/${id}`, updatehotel);
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      // if (data.photos.length > 0) {
+      //   for (const image of data.photos) {
+      //     // Extract the public ID from the image URL
+      //     const publicId = image.split('/').pop().split('.')[0];
+ 
+      //     // Delete the image from Cloudinary using the DELETE method
+      //     await axios.delete(`https://api.cloudinary.com/v1_1/dwwfqdl79/image/upload/${publicId}`);
+          
+      //   }
+      // }
+      await axios.delete(`/hotels/photos/${id}`);
+    } catch (err) {}
   };
   return (
     <div className="new">
@@ -59,8 +75,12 @@ const NewHotel = () => {
         </div>
         <div className="bottom">
           <div className="left">
-            {/* <img src={pic} alt=""/> */}
-            {/* <p>upload picture : {data.photos?.length} / 10</p> */}
+            <div>
+              {data && data.photos && data.photos.length > 0 && (
+                <img src={data.photos[0]} alt="" />
+              )}
+            </div>
+            <p>upload picture : {data.photos?.length} / 10</p>
           </div>
           <div className="right">
             <form>
@@ -75,6 +95,9 @@ const NewHotel = () => {
                   onChange={(e) => setFiles(e.target.files)}
                   style={{ display: "none" }}
                 />
+                <div className="deleteButton" onClick={() => handleDelete(id)}>
+                  Delete
+                </div>
               </div>
               <div className="formInput"></div>
               <div className="formInput">
@@ -154,13 +177,13 @@ const NewHotel = () => {
                 <div className="formInput">
                   <label>Snooker</label>
                   <select id="snooker" onChange={handleChange}>
-                  <option value="No" selected={data.snooker === false}>
-                    No
-                  </option>
-                  <option value="Yes" selected={data.snooker === true}>
-                    Yes
-                  </option>
-                </select>
+                    <option value="No" selected={data.snooker === false}>
+                      No
+                    </option>
+                    <option value="Yes" selected={data.snooker === true}>
+                      Yes
+                    </option>
+                  </select>
                 </div>
               </div>
               <div className="formInput">

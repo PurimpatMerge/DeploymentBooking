@@ -3,6 +3,7 @@ import {
   countByCity,
   createHotel,
   deleteHotel,
+  deleteHotelphoto,
   getHotel,
   getHotelRooms,
   getHotels,
@@ -20,6 +21,7 @@ router.post("/", verifyAdmin, createHotel);
 router.put("/:id", verifyAdmin, updateHotel);
 //DELETE
 router.delete("/:id", verifyAdmin, deleteHotel);
+router.delete("/photos/:id", verifyAdmin, deleteHotelphoto);
 //GET
 
 router.get("/find/:id", getHotel);

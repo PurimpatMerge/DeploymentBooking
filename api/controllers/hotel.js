@@ -31,6 +31,19 @@ export const deleteHotel = async (req, res, next) => {
     next(err);
   }
 };
+
+export const deleteHotelphoto = async (req, res, next) => {
+  try {
+    await Hotel.findByIdAndUpdate(req.params.id, {
+      $set: {
+        photos: []
+      }
+    });
+    res.status(200).json("Hotel photos have been deleted.");
+  } catch (err) {
+    next(err);
+  }
+};
 export const getHotel = async (req, res, next) => {
   try {
     const hotel = await Hotel.findById(req.params.id);
