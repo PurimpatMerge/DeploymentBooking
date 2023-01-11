@@ -103,11 +103,11 @@ const Hotel = () => {
             </div>
             <span className="hotelDistance">{toKM}กม. จากทะเล</span>
             <span className="hotelPriceHighlight">
-              ราคาเริ่มต้น {data.cheapestPrice}฿ พักได้ {data.persons} สูงสุด{" "}
+              ราคาเริ่มต้น {data.cheapestPrice}฿ พักได้{data.persons} สูงสุด{" "}
               {data.maxpersons}
             </span>
             <span className="hotelPriceHighlight">
-              เงินประกันความเสียหาย {data.insurance}
+              เงินประกันความเสียหาย{data.insurance}
             </span>
             <div className="hotelImages">
               {data.photos?.map((photo, i) => (
