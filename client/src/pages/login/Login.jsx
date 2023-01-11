@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "./login.css";
 
@@ -51,6 +51,9 @@ const Login = () => {
         <button disabled={loading} onClick={handleClick} className="lButton">
           Login
         </button>
+        <Link to="/forgotPassword" style={{ color: "inherit", textDecoration: "none" }}>
+        <button >forgotpass</button>
+        </Link>
         {error && <span>{error.message}</span>}
       </div>
     </div>

@@ -2,6 +2,10 @@ import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import { createError } from "../utils/error.js";
 import jwt from "jsonwebtoken";
+import * as nodemailer from 'nodemailer';
+import express from "express";
+const app = express();
+app.set("View engine", "ejs");
 
 export const register = async (req, res, next) => {
   try {
@@ -43,6 +47,99 @@ export const login = async (req, res, next) => {
       })
       .status(200)
       .json({ details: { ...otherDetails }, isAdmin });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const forgetPassword = async (req, res, next) => {
+  try {
+    const emailCheck = await User.findOne({ email: req.body.email });
+    if (!emailCheck) {
+      return res.send("This Email doesn't Exists");
+    }
+    const secret = process.env.JWT + emailCheck.password;
+    const token = jwt.sign(
+      { email: emailCheck.email, id: emailCheck._id },
+      secret,
+      { expiresIn: "5m" }
+    );
+    const link = `http://localhost:8000/api/auth/reset-Password/${emailCheck._id}/${token}`;
+    var transporter = nodemailer.createTransport({
+      service: "hotmail",
+      auth: {
+        user: "mergeofficial@hotmail.com",
+        pass: "qgsfqivlbbsovqhu",
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
+
+    var mailOptions = {
+      from: "mergeofficial@hotmail.com",
+      to: req.body.email,
+      subject: "Password reset Merge pool villa",
+      text: link,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
+    console.log(link);
+    res.status(200).send(link);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const resetPassword = async (req, res, next) => {
+  const { id, token } = req.params;
+  const oldUser = await User.findOne({ _id: id });
+  if (!oldUser) {
+    return res.status(403).send("undefind");
+  }
+  const secret = process.env.JWT + oldUser.password;
+  try {
+    const verify = jwt.verify(token, secret);
+    if (!verify) {
+      return res.status(403).send("Not verfied");
+    }
+    res.render("reset.ejs", { email: verify.email });
+  } catch (err) {
+    next(err);
+  }
+};
+export const resetPasswordafter = async (req, res, next) => {
+  const { id, token } = req.params;
+  const oldUser = await User.findOne({ _id: id });
+  if (!oldUser) {
+    return res.status(403).send("undefind");
+  }
+  const secret = process.env.JWT + oldUser.password;
+  try {
+    const verify = jwt.verify(token, secret);
+    if (!verify) {
+      return res.status(403).send("Not verfied");
+    }
+    console.log(req.body.password);
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(req.body.password, salt);
+    await User.updateOne(
+      {
+        _id: id,
+      },
+      {
+        $set: {
+          password: hash,
+        },
+      }
+    );
+    res.status(200).send("Password change.");
   } catch (err) {
     next(err);
   }

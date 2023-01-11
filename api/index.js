@@ -10,7 +10,8 @@ import cors from "cors";
 
 const app = express();
 dotenv.config();
-
+app.set("View engine","ejs");
+app.use(express.urlencoded({extended:false}));
 const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGO);

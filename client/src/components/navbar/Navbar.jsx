@@ -18,7 +18,9 @@ const Navbar = () => {
         </div>
         {user ? user.username : (
           <div className="float-right">
+              <Link to="/register" style={{ color: "inherit", textDecoration: "none" }}>
             <button className="inline-block  text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent duration-500 hover:text-indigo-500 hover:scale-125 hover:bg-white mt-4 lg:mt-0">Register</button>
+              </Link>
             <Link to="/login" style={{ color: "inherit", textDecoration: "none" }}>
               <button className="inline-block  text-sm px-4 ml-5 py-2 leading-none border rounded text-white border-white hover:border-transparent duration-500 hover:scale-125  hover:text-indigo-500 hover:bg-white mt-4 lg:mt-0">Login</button>
             </Link>
