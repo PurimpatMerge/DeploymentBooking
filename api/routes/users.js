@@ -22,7 +22,7 @@ const router = express.Router();
 // })
 
 //UPDATE
-router.put("/:id", verifyUser, updateUser);
+router.put("/:id", updateUser);
 
 //DELETE
 router.delete("/:id", verifyUser, deleteUser);
@@ -32,6 +32,6 @@ router.get("/:id", getUser);
 
 //GET ALL
 router.get("/", verifyAdmin, getUsers);
-router.get("/", getUsers);
+
 
 export default router;
