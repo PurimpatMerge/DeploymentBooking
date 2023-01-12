@@ -1,14 +1,16 @@
-import "./new.scss";
-import Sidebar from "../../components/sidebar/Sidebar";
-import Navbar from "../../components/navbar/Navbar";
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
+import useFetch from "../../hooks/useFetch";
+import { userInputs } from "../../formSource";
 import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
-const New = ({ inputs, title }) => {
-  const [file, setFile] = useState("");
+const EditProfile = () => {
+  const { user } = useContext(AuthContext);
+  const { data, loading, error } = useFetch(`/users/${user}`);
   const [info, setInfo] = useState({});
-
+  
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
@@ -16,38 +18,43 @@ const New = ({ inputs, title }) => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      const newUser = {
+      const updatehotel = {
+        ...data,
         ...info,
-      }
-      await axios.post("/auth/register", newUser);
+      };
+
+      await axios.put(`/users/${data._id}`, updatehotel);
     } catch (err) {
       console.log(err);
     }
   };
 
-  console.log(info);
+  
   return (
     <div className="new">
-      <Sidebar />
+     
       <div className="newContainer">
-        <Navbar />
+      
         <div className="top">
-          <h1>{title}</h1>
+          <h1>edit profile {data.id}</h1>
         </div>
         <div className="bottom">
-          <div className="left">
-          </div>
           <div className="right">
             <form>
+              <div className="formInput">
+                <h2>Merge your profile</h2>
+              </div>
+              <div className="formInput"></div>
 
-              {inputs.map((input) => (
+              {userInputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
                   <input
+                    contenteditable="true"
+                    id={input.id}
                     onChange={handleChange}
                     type={input.type}
-                    placeholder={input.placeholder}
-                    id={input.id}
+                    placeholder={`${data[input.id]}`}
                   />
                 </div>
               ))}
@@ -60,4 +67,4 @@ const New = ({ inputs, title }) => {
   );
 };
 
-export default New;
+export default EditProfile;

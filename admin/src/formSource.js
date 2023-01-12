@@ -3,37 +3,32 @@ export const userInputs = [
     id: "username",
     label: "Username",
     type: "text",
-    placeholder: "john_doe",
+    placeholder: "Merge",
   },
   {
     id: "email",
     label: "Email",
     type: "email",
-    placeholder: "john_doe@gmail.com",
+    placeholder: "Merge@gmail.com",
+  },
+  {
+    id: "lineId",
+    label: "line",
+    type: "email",
+    placeholder: "line-Id",
   },
   {
     id: "phone",
     label: "Phone",
     type: "text",
-    placeholder: "+1 234 567 89",
+    placeholder: "096999***",
   },
   {
     id: "password",
     label: "Password",
     type: "password",
   },
-  {
-    id: "country",
-    label: "Country",
-    type: "text",
-    placeholder: "USA",
-  },
-  {
-    id: "city",
-    label: "City",
-    type: "text",
-    placeholder: "USA",
-  },
+
 ];
 
 export const productInputs = [

@@ -9,6 +9,7 @@ import List from "./pages/list/List";
 import Login from "./pages/login/Login";
 import Register from "./pages/login/register";
 import ForgotPassword from "./pages/login/forgotPassword";
+import EditProfile from "./pages/Profile/editProfile";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/forgotPassword" element={<ForgotPassword/>}/>
+        <Route path="/profile" element={<EditProfile/>}/>
       </Routes>
     </BrowserRouter>
   );

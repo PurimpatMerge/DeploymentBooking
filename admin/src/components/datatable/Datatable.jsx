@@ -10,7 +10,22 @@ const Datatable = ({ columns }) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   const [list, setList] = useState();
-  const { data, loading, error } = useFetch(`/${path}/admin`);
+
+  let fetchUrl;
+  switch (path) {
+    case "users":
+      fetchUrl = `/${path}`;
+      break;
+    case "hotels":
+      fetchUrl = `/${path}/admin`;
+      break;
+    case "booking":
+      fetchUrl = `/${path}/booking`;
+      break;
+    default:
+      fetchUrl = `/`;
+  }
+  const { data, loading, error } = useFetch(fetchUrl);
   useEffect(() => {
     setList(data);
   }, [data]);
@@ -30,15 +45,17 @@ const Datatable = ({ columns }) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link
-              to={{
-                pathname: `/${path}/edit/${params.row._id}`,
-                state: { id: params.row._id },
-              }}
-              style={{ textDecoration: "none" }}
-            >
-              <div className="viewButton">edit</div>
-            </Link>
+            {path === "hotels" ? (
+              <Link
+                to={{
+                  pathname: `/${path}/edit/${params.row._id}`,
+                  state: { id: params.row._id },
+                }}
+                style={{ textDecoration: "none" }}
+              >
+                <div className="viewButton">edit</div>
+              </Link>
+            ) : null}
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row._id)}
