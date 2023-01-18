@@ -6,6 +6,11 @@ import { useState } from "react";
 import { hotelInputs } from "../../formSource";
 import axios from "axios";
 
+import {showAlertFillter} from "../../components/alertMessage.js";
+
+import { ReactNotifications } from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
+
 const NewHotel = () => {
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
@@ -41,13 +46,17 @@ const NewHotel = () => {
       };
 
       await axios.post("/hotels", newhotel);
+      const res = "pass";
+      showAlertFillter(res);
     } catch (err) {
       console.log(err);
+      showAlertFillter("Fill in the box");
     }
   };
   return (
     <div className="new">
       <Sidebar />
+      <ReactNotifications/>
       <div className="newContainer">
         <Navbar />
         <div className="top">
@@ -91,7 +100,7 @@ const NewHotel = () => {
               {hotelInputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  <input contenteditable="true"
+                  <input contentEditable="true"
                     id={input.id}
                     onChange={handleChange}
                     type={input.type}

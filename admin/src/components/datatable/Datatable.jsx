@@ -6,10 +6,12 @@ import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 
-const Datatable = ({ columns }) => {
+import {showAlertDelete} from "../../components/alertMessage.js";
+
+const Datatable = ({  columns = []}) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
-  const [list, setList] = useState();
+  const [list, setList] = useState([]);
 
   let fetchUrl;
   switch (path) {
@@ -34,6 +36,7 @@ const Datatable = ({ columns }) => {
     try {
       await axios.delete(`/${path}/${id}`);
       setList(list.filter((item) => item._id !== id));
+      showAlertDelete()
     } catch (err) {}
   };
 
@@ -77,15 +80,18 @@ const Datatable = ({ columns }) => {
       </div>
       <DataGrid
         className="datagrid"
-        rows={list}
+        rows={list ? list : []}
         columns={columns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
-        checkboxSelection
         getRowId={(row) => row._id}
       />
     </div>
   );
+};
+
+Datatable.defaultProps = {
+  rows: []
 };
 
 export default Datatable;

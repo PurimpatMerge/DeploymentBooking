@@ -1,10 +1,15 @@
 
 import { useState, useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
-import { userInputs } from "../../formSource";
+import { profile } from "../../formSource";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+
+import {showAlertFillter} from "../../components/alertMessage.js";
+
+import { ReactNotifications } from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
 
 const EditProfile = () => {
   const { user } = useContext(AuthContext);
@@ -24,6 +29,8 @@ const EditProfile = () => {
       };
 
       await axios.put(`/users/${user._id}`, updatehotel);
+      const res ="pass";
+      showAlertFillter(res);
     } catch (err) {
       console.log(err);
     }
@@ -32,7 +39,7 @@ const EditProfile = () => {
   
   return (
     <div className="new">
-     
+     <ReactNotifications/>
       <div className="newContainer">
       
         <div className="top">
@@ -46,7 +53,7 @@ const EditProfile = () => {
               </div>
               <div className="formInput"></div>
 
-              {userInputs.map((input) => (
+              {profile.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
                   <input

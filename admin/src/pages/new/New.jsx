@@ -1,9 +1,15 @@
 import "./new.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
+// import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
 import axios from "axios";
+import { ReactNotifications } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import {
+  showAlertFillter,
+  showAlertUserDuplicate,
+} from "../../components/alertMessage.js";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
@@ -12,22 +18,29 @@ const New = ({ inputs, title }) => {
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
-
   const handleClick = async (e) => {
     e.preventDefault();
     try {
+      const emptyString =
+        info === undefined || Object.values(info).some((val) => val === "");
+      if (emptyString) {
+        const fillter = "Fill all the box";
+        return showAlertFillter(fillter);
+      }
       const newUser = {
         ...info,
-      }
-      await axios.post("/auth/register", newUser);
+      };
+      await axios.post("/auth/registeradmin", newUser);
+      const res = "pass";
+      showAlertFillter(res);
     } catch (err) {
-      console.log(err);
+      showAlertUserDuplicate(err.message);
     }
   };
 
-  console.log(info);
   return (
     <div className="new">
+      <ReactNotifications />
       <Sidebar />
       <div className="newContainer">
         <Navbar />
@@ -35,11 +48,9 @@ const New = ({ inputs, title }) => {
           <h1>{title}</h1>
         </div>
         <div className="bottom">
-          <div className="left">
-          </div>
+          <div className="left"></div>
           <div className="right">
             <form>
-
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>

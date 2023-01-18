@@ -10,7 +10,7 @@ const SearchItem = ({ item }) => {
       <div className="siDesc">
         <h1 className="siTitle">{item.name}</h1>
         <span className="siTaxiOp">จำนวนคน {item.persons} สูงสุดถึง {item.maxpersons}</span>
-        <span className="siDistance">{toKM}กม จากทะเล</span>
+        <span className="siDistance">{toKM.toFixed(2)}กม จากทะเล</span>
         <span className="siCancelOp">{item.city} </span>
       </div>
       <div className="siDetails">

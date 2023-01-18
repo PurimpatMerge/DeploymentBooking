@@ -4,6 +4,7 @@ import { createError } from "../utils/error.js";
 import jwt from "jsonwebtoken";
 import * as nodemailer from 'nodemailer';
 import express from "express";
+
 const app = express();
 app.set("View engine", "ejs");
 
@@ -14,6 +15,23 @@ export const register = async (req, res, next) => {
 
     const newUser = new User({
       ...req.body,
+      password: hash,
+    });
+
+    await newUser.save();
+    res.status(200).send("User has been created.");
+  } catch (err) {
+    next(err);
+  }
+};
+export const registerAdmin = async (req, res, next) => {
+  try {
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(req.body.password, salt);
+
+    const newUser = new User({
+      ...req.body,
+      isAdmin: true,
       password: hash,
     });
 
@@ -90,7 +108,7 @@ export const forgetPassword = async (req, res, next) => {
         console.log("Email sent: " + info.response);
       }
     });
-    console.log(link);
+    // console.log(link);
     res.status(200).send(link);
   } catch (err) {
     next(err);
@@ -126,7 +144,7 @@ export const resetPasswordafter = async (req, res, next) => {
     if (!verify) {
       return res.status(403).send("Not verfied");
     }
-    console.log(req.body.password);
+    // console.log(req.body.password);
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
     await User.updateOne(

@@ -28,6 +28,7 @@ const Hotel = () => {
   const navigate = useNavigate();
   const infoBed = data.bed?.split(",");
   const infoSwimmingPoole = data.swimmingPoolDes?.split(",");
+  const infoAnimal= data.animalDes?.split(",");
   const infoElse = data.elseDes?.split(",");
   const toKM = data.distanceSea * 0.0001;
 
@@ -174,7 +175,11 @@ const Hotel = () => {
                 <h1 className="hotelTitle">เตียงเสริม</h1>
                 <span>{data.addonBed}฿</span>
                 <h1 className="hotelTitle">สัตว์เลียง</h1>
-                <span>- {data.animalDes}</span>
+                <span>
+                    {infoAnimal?.map((item) => (
+                      <p>{item}</p>
+                    ))}
+                  </span>
               </div>
             </div>
           </div>
