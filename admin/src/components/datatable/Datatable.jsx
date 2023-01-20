@@ -12,7 +12,8 @@ const Datatable = ({  columns = []}) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
   const [list, setList] = useState([]);
-
+  const [open, setOpen] = useState(false);
+  const [idToDelete, setIdToDelete] = useState(null);
   let fetchUrl;
   switch (path) {
     case "users":
@@ -33,13 +34,16 @@ const Datatable = ({  columns = []}) => {
   }, [data]);
 
   const handleDelete = async (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this item?");
+    if(confirmDelete) {
     try {
-      await axios.delete(`/${path}/${id}`);
-      setList(list.filter((item) => item._id !== id));
-      showAlertDelete()
+    await axios.delete(`/${path}/${id}`);
+    setList(list.filter((item) => item._id !== id));
+    showAlertDelete()
     } catch (err) {}
-  };
-
+    }
+    };
+  
   const actionColumn = [
     {
       field: "action",

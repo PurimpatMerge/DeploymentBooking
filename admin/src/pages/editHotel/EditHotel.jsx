@@ -57,22 +57,32 @@ const NewHotel = () => {
     showAlertFillter(res);
   };
 
-  const handleDelete = async (id) => {
-    try {
-      // if (data.photos.length > 0) {
-      //   for (const image of data.photos) {
-      //     // Extract the public ID from the image URL
-      //     const publicId = image.split('/').pop().split('.')[0];
+  // const handleDelete = async (id) => {
+  //   try {
+  //     // if (data.photos.length > 0) {
+  //     //   for (const image of data.photos) {
+  //     //     // Extract the public ID from the image URL
+  //     //     const publicId = image.split('/').pop().split('.')[0];
  
-      //     // Delete the image from Cloudinary using the DELETE method
-      //     await axios.delete(`https://api.cloudinary.com/v1_1/dwwfqdl79/image/upload/${publicId}`);
+  //     //     // Delete the image from Cloudinary using the DELETE method
+  //     //     await axios.delete(`https://api.cloudinary.com/v1_1/dwwfqdl79/image/upload/${publicId}`);
           
-      //   }
-      // }
-      await axios.delete(`/hotels/photos/${id}`);
-      showAlertDelete();
-    } catch (err) {}
+  //     //   }
+  //     // }
+  //     await axios.delete(`/hotels/photos/${id}`);
+  //     showAlertDelete();
+  //   } catch (err) {}
+  // };
+
+  const handleDelete = async (id) => {
+    if(window.confirm("Are you sure you want to delete this photo?")) {
+      try {
+        await axios.delete(`/hotels/photos/${id}`);
+        showAlertDelete();
+      } catch (err) {}
+    }
   };
+  
   return (
     <div className="new">
       <ReactNotifications />
@@ -105,7 +115,7 @@ const NewHotel = () => {
                   style={{ display: "none" }}
                 />
                 <div className="deleteButton" onClick={() => handleDelete(id)}>
-                  Delete
+                  Delete photos
                 </div>
               </div>
               <div className="formInput"></div>

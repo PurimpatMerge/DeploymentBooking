@@ -6,6 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 import { ReactNotifications } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
+import { TextField } from "@material-ui/core";
 import {
   showAlertFillter,
   showAlertUserDuplicate,
@@ -14,6 +15,7 @@ import {
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [info, setInfo] = useState({});
+  const [inputError, setInputError] = useState({});
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -54,11 +56,21 @@ const New = ({ inputs, title }) => {
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  <input
-                    onChange={handleChange}
+                  <TextField
+                    error={inputError[input.id]}
+                    helperText={
+                      inputError[input.id] ? "This field is required" : null
+                    }
+                    id={input.id}
                     type={input.type}
                     placeholder={input.placeholder}
-                    id={input.id}
+                    onBlur={(event) => {
+                      setInputError({
+                        ...inputError,
+                        [input.id]: event.target.value === "",
+                      });
+                    }}
+                    onChange={handleChange}
                   />
                 </div>
               ))}

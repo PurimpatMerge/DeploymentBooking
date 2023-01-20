@@ -5,17 +5,16 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import { useState } from "react";
 import { hotelInputs } from "../../formSource";
 import axios from "axios";
+import TextField from "@material-ui/core/TextField";
+import { showAlertFillter } from "../../components/alertMessage.js";
 
-import {showAlertFillter} from "../../components/alertMessage.js";
-
-import { ReactNotifications } from 'react-notifications-component'
-import 'react-notifications-component/dist/theme.css'
+import { ReactNotifications } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 
 const NewHotel = () => {
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
-
-
+  const [inputError, setInputError] = useState({});
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
@@ -56,7 +55,7 @@ const NewHotel = () => {
   return (
     <div className="new">
       <Sidebar />
-      <ReactNotifications/>
+      <ReactNotifications />
       <div className="newContainer">
         <Navbar />
         <div className="top">
@@ -88,38 +87,42 @@ const NewHotel = () => {
                   style={{ display: "none" }}
                 />
               </div>
+              <div className="formInput"></div>
               <div className="formInput">
-    
-                  </div>
-              <div className="formInput">
-                  <h2>Poolvilla requriments</h2>
-                  </div>
-                  <div className="formInput">
-    
-                  </div>
+                <h2>Poolvilla requriments</h2>
+              </div>
+              <div className="formInput"></div>
               {hotelInputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  <input contentEditable="true"
+                  <TextField
+                    error={inputError[input.id]}
+                    helperText={
+                      inputError[input.id] ? "This field is required" : null
+                    }
                     id={input.id}
-                    onChange={handleChange}
                     type={input.type}
                     placeholder={input.placeholder}
+                    onBlur={(event) => {
+                      setInputError({
+                        ...inputError,
+                        [input.id]: event.target.value === "",
+                      });
+                    }}
+                    onChange={handleChange}
                   />
                 </div>
               ))}
-              <div className="formInput" >
-                
-              </div>
+              <div className="formInput"></div>
               <div className="formInput">
                 <h2> Option</h2>
               </div>
-              <div className="formInput" >
+              <div className="formInput">
                 <h2> </h2>
               </div>
               <div className="formInput">
                 <label>Swimming Pool</label>
-                <select  id="swimmingPool" onChange={handleChange}>
+                <select id="swimmingPool" onChange={handleChange}>
                   <option value={false}>No</option>
                   <option value={true}>Yes</option>
                 </select>
@@ -148,11 +151,11 @@ const NewHotel = () => {
                   <option value={true}>Yes</option>
                 </select>
                 <div className="formInput">
-                <label>Snooker</label>
-                <select id="snooker" onChange={handleChange}>
-                  <option value={false}>No</option>
-                  <option value={true}>Yes</option>
-                </select>
+                  <label>Snooker</label>
+                  <select id="snooker" onChange={handleChange}>
+                    <option value={false}>No</option>
+                    <option value={true}>Yes</option>
+                  </select>
                 </div>
               </div>
               <div className="formInput">
@@ -174,7 +177,7 @@ const NewHotel = () => {
                   <option value={true}>Yes</option>
                 </select>
               </div>
-              <div className="formInput" >
+              <div className="formInput">
                 <h2> </h2>
               </div>
 
