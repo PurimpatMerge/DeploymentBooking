@@ -19,8 +19,18 @@ const Featured = () => {
               className="rounded-lg w-11/12  "
             />
             <div className="absolute bottom-10 left-10 text-lg ">
-              <h1>Pattaya</h1>
-              <h2>{data[0]} properties</h2>
+            <h1 className="mb-1 font-mono text-base text-gray-100 md:text-base">
+                Location: <br className="block md:hidden" />
+                <span
+                  className="inline-flex h-20 pt-2 overflow-x-hidden animate-type group-hover:animate-type-reverse whitespace-nowrap text-brand-accent will-change-transform"
+                >
+                  ChiangMai
+                </span>
+                <span
+                  className="box-border inline-block w-1 h-7 ml-2 -mb-2 bg-white md:-mb-2 md:h-7 animate-cursor will-change-transform"
+                ></span>
+              </h1>
+              <h2 className="text-white text-sm">{data[0]} properties</h2>
             </div>
           </div>
 
@@ -31,8 +41,20 @@ const Featured = () => {
               className="rounded-lg w-11/12 opacity-80"
             />
             <div className="absolute bottom-10 left-10 text-lg">
-              <h1>Bangsean</h1>
-              <h2>{data[1]} properties</h2>
+
+              <h1 className="mb-1 font-mono text-base text-gray-100 md:text-base">
+                Location: <br className="block md:hidden" />
+                <span
+                  className="inline-flex h-20 pt-2 overflow-x-hidden animate-type group-hover:animate-type-reverse whitespace-nowrap text-brand-accent will-change-transform"
+                >
+                  Bangsean
+                </span>
+                <span
+                  className="box-border inline-block w-1 h-7 ml-2 -mb-2 bg-white md:-mb-2 md:h-7 animate-cursor will-change-transform"
+                ></span>
+              </h1>
+
+              <h2 className="text-white text-sm">{data[1]} properties</h2>
             </div>
           </div>
           <div className="relative">
@@ -42,8 +64,18 @@ const Featured = () => {
               className="rounded-lg w-11/12 opacity-80"
             />
             <div className="absolute bottom-10 left-10 text-lg">
-              <h1>Changmai</h1>
-              <h2>{data[2]} properties</h2>
+            <h1 className="mb-1 font-mono text-base text-gray-100 md:text-base">
+                Location: <br className="block md:hidden" />
+                <span
+                  className="inline-flex h-20 pt-2 overflow-x-hidden animate-type group-hover:animate-type-reverse whitespace-nowrap text-brand-accent will-change-transform"
+                >
+                  ChiangMai
+                </span>
+                <span
+                  className="box-border inline-block w-1 h-7 ml-2 -mb-2 bg-white md:-mb-2 md:h-7 animate-cursor will-change-transform"
+                ></span>
+              </h1>
+              <h2 className="text-white text-sm">{data[2]} properties</h2>
             </div>
           </div>
         </div>

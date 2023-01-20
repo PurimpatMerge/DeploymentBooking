@@ -34,7 +34,7 @@ const List = () => {
 
   const classes = useStyles();
   const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(2);
+  const [perPage, setPerPage] = useState(8);
   const totalPages = Math.ceil(data.length / perPage);
   const paginatedData = data.slice((page - 1) * perPage, page * perPage);
 
@@ -47,7 +47,7 @@ const List = () => {
   };
 
   return (
-    <div>
+    <div className=" min-h-screen bg-gradient-to-bl from-indigo-300 to-purple-400">
       <Navbar />
       <Header type="list" />
       <div className="listContainer">
@@ -121,6 +121,7 @@ const List = () => {
             <button onClick={handleClick}>Search</button>
           </div>
           <div className={classes.root}>
+            
             <div className="listResult">
               {loading ? (
                 "loading"
@@ -134,13 +135,17 @@ const List = () => {
                 </>
               )}
             </div>
-            <Pagination
-              count={totalPages}
-              page={page}
-              onChange={handlePageChange}
-              showFirstButton
-              showLastButton
-            />
+          
+            <div className="flex justify-center">
+              <Pagination
+                count={totalPages}
+                page={page}
+                onChange={handlePageChange}
+                showFirstButton
+                showLastButton
+              />
+            </div>
+
           </div>
         </div>
       </div>

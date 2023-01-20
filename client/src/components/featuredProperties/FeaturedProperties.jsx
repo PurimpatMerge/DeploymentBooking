@@ -6,18 +6,18 @@ const FeaturedProperties = () => {
     `/hotels?city=${"a"}&min=${0}&max=${99999}&maxpersons=${1}&sea=${90}&limit=4`
   );
   return (
-    <div className="container mx-auto">
+    <div className="container  ">
       {loading ? (
         "Loading"
       ) : (
-        <div className=" sm:flex ">
+        <div className="flex flex-wrap">
           {data.map((item) => (
             <div class="p-10">
               <div
-                class="max-w-sm rounded-lg overflow-hidden shadow-lg duration-200  hover:scale-110"
+                class="w-[400px] lg:w-[300px] bg-white bg-opacity-80 h-[400px] rounded-lg overflow-hidden shadow-lg duration-200  hover:scale-110"
                 key={item._id}
               >
-                <img class="w-full" src={item.photos[0]} alt="" />
+                <img class="w-[100%] h-[200px]" src={item.photos[0]} alt="" />
                 <div class="px-6 py-4">
                   <div class="font-bold text-xl mb-2">{item.name}</div>
                   <p class="text-gray-700 text-base">{item.city}</p>

@@ -28,7 +28,7 @@ const Header = ({ type }) => {
       key: "selection",
     },
   ]);
-  
+
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
@@ -40,7 +40,7 @@ const Header = ({ type }) => {
   };
 
   return (
-    <div className="header">
+    <div className="container mx-auto relative flex justify-center ">
       <div
         className={
           type === "list" ? "headerContainer listMode" : "headerContainer"
@@ -48,56 +48,54 @@ const Header = ({ type }) => {
       >
         {type !== "list" && (
           <>
-          
-            <div className="headerSearch">
-              <div className="headerSearchItem">
-                <FontAwesomeIcon icon={faBed} className="headerIcon" />
+            <div className="flex max-h-14 absolute sm:ml-20 shadow-md bottom-[-7px] justify-between bg-opacity-80 bg-slate-100 rounded-full p-1">
+              <div className="flex">
+                <FontAwesomeIcon icon={faBed} className="my-auto mx-2" />
                 <input
                   type="text"
                   placeholder="Where are you going?"
-                  className="headerSearchInput"
+                  className="appearance-none text-xs sm:text-base bg-opacity-80  border-b border-gray-400  w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                   onChange={(e) => setDestination(e.target.value)}
                 />
               </div>
-                 <div className="headerSearchItem">
-                <FontAwesomeIcon icon={faPerson} className="headerIcon" />
+              <div className="flex">
+                <FontAwesomeIcon icon={faPerson} className="my-auto mx-2" />
                 <input
                   type="text"
                   placeholder="How many person"
-                  className="headerSearchInput"
+                  className="appearance-none  text-xs sm:text-base border-b border-gray-400   w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                   onChange={(e) => setperson(e.target.value)}
                 />
               </div>
-              <div className="headerSearchItem">
-                <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
+              <div className="flex">
+                <FontAwesomeIcon icon={faCalendarDays} className="my-auto mx-2" />
                 <span
                   onClick={() => setOpenDate(!openDate)}
-                  className="headerSearchText"
+                  className="bg-white my-auto text-xs sm:text-base overflow-hidden border-b border-gray-400   w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                 >{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(
                   dates[0].endDate,
                   "MM/dd/yyyy"
                 )}`}</span>
                 {openDate && (
                   <DateRange
+                    className="date"
                     editableDateInputs={true}
                     onChange={(item) => setDates([item.selection])}
                     moveRangeOnFirstSelection={false}
                     ranges={dates}
-                    className="date"
                     minDate={new Date()}
                   />
                 )}
               </div>
+
               
-              <div className="headerSearchItem">
-                <button className="headerBtn" onClick={handleSearch}>
-                  Search
-                </button>
-              </div>
+              <button type="button" onClick={handleSearch} class="inline-block px-6 py-2.5 bg-white text-gray-700 font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out">Search</button>
             </div>
+
           </>
         )}
       </div>
+
     </div>
   );
 };

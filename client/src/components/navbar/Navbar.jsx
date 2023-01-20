@@ -45,7 +45,7 @@ const Navbar = () => {
           {user ? (
             <div>
                <button
-               className="deleteButton"
+               className="inline-block  text-sm px-4 ml-5 py-2 leading-none border rounded text-white border-white hover:border-transparent duration-500 hover:scale-125  hover:text-indigo-500 hover:bg-white mt-4 lg:mt-0"
                onClick={() => handlelogout()}
              >
                logout
@@ -54,7 +54,7 @@ const Navbar = () => {
               to="/profile"
               style={{ color: "inherit", textDecoration: "none" }}
             >
-              <button>{user.username}</button>
+              <button className="ml-5 text-white font-semibold text-xl tracking-tight duration-300 hover:scale-125">{user.username}</button>
             </Link>
             </div>
           ) : (

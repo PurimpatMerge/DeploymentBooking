@@ -7,8 +7,9 @@ import { useLocation } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { hotelInputs } from "../../formSource";
 import axios from "axios";
-
-import {showAlertFillter,showAlertDelete} from "../../components/alertMessage.js";
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { showAlertFillter, showAlertDelete } from "../../components/alertMessage.js";
 
 import { ReactNotifications } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
