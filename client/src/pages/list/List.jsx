@@ -9,6 +9,11 @@ import SearchItem from "../../components/searchItem/SearchItem";
 import useFetch from "../../hooks/useFetch";
 import { makeStyles } from "@material-ui/core/styles";
 import { Pagination } from "@material-ui/lab";
+import { TbListSearch } from "react-icons/tb";
+
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,13 +51,23 @@ const List = () => {
     reFetch();
   };
 
-  return (
-    <div className=" min-h-screen bg-gradient-to-bl from-indigo-300 to-purple-400">
+
+  const [isVisible, setIsVisible] = useState(true);
+
+  const handleToggle = () => {
+    setIsVisible(!isVisible);
+  }
+
+  return (<>
+    <div className="min-w-max min-h-screen bg-gradient-to-br from-purple-100 to-blue-100">
       <Navbar />
+      {/* <button onClick={handleToggle}><TbListSearch className="lg:hidden text-3xl fixed text-yellow-400  "/></button> */}
+      
       <Header type="list" />
-      <div className="listContainer">
-        <div className="listWrapper">
-          <div className="listSearch">
+      <div className="listContainer justify-center">
+        <div className="gap-[20px] lg:flex">
+          {/* when hidden i want some button to show this component again */}
+          <div className='listSearch block lg:sticky' >
             <h1 className="lsTitle">Search</h1>
             <div className="lsItem">
               <label>Destination</label>
@@ -118,25 +133,27 @@ const List = () => {
                 </div>
               </div>
             </div>
-            <button onClick={handleClick}>Search</button>
+            <button className="rounded-md" onClick={handleClick}>Search</button>
           </div>
           <div className={classes.root}>
-            
+
             <div className="listResult">
               {loading ? (
                 "loading"
               ) : (
                 <>
-                  <div class="displayGrid">
+
+                  <div className="grid gap-10   2xl:grid-cols-2" >
                     {paginatedData.map((item) => (
                       <SearchItem item={item} key={item._id} />
                     ))}
                   </div>
+
                 </>
               )}
             </div>
-          
-            <div className="flex justify-center">
+
+            <div className="flex justify-center ">
               <Pagination
                 count={totalPages}
                 page={page}
@@ -150,6 +167,7 @@ const List = () => {
         </div>
       </div>
     </div>
+  </>
   );
 };
 

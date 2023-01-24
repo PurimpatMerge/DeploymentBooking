@@ -15,11 +15,11 @@
 }
 
 .listSearch {
- margin-left: 100px;
+ margin-left: 10px;
   background-color: #febb02;
   padding: 10px;
   border-radius: 10px;
-  position: sticky;
+
   top: 10px;
   height: max-content;
  

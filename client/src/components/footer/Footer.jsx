@@ -1,18 +1,29 @@
 import "./footer.css";
-import picturefooter from "../../photo/BGFBcover5.jpg";
-import bg from '../../photo/BG1.jpg'
-import bg2 from '../../photo/BG2.png'
+
+import bg from '../../photo/bg5'
+import '../animation/text.css'
 
 
 
 const Footer = () => {
   return (
+<div className="relative">
+<div>
+<div className="div2 absolute inset-y-16 inset-x-10 sm:inset-y-24 sm:inset-x-16 lg:inset-y-36 lg:inset-x-28 " title="Merge Pool Villa">Merge Pool Villa</div>
+</div>
 
+
+
+
+
+
+<img src={bg} alt='' className=" min-w-screen lg:w-screen lg:h-1/3 object-cover "/>
+</div>
     
 
 
 
-   <img src={bg2} alt=''/>
+  
 
 
 

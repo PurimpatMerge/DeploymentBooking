@@ -4,15 +4,17 @@ import "./searchItem.css";
 const SearchItem = ({ item }) => {
   const toKM = item?.distanceSea * 0.0001;
 
+ 
   return (
     <div className="container mt-5 sm:mt-0">
-      <div className=" bg-white bg-opacity-60 sm:w-[650px] sm:h-[250px] shadow-lg flex overflow-hidden rounded-lg">
-        <div className="  w-6/12">
-          <div className="my-5 mx-5 ">
-            <img src={item.photos[0]} alt="" className="w-full rounded-sm h-[200px]" />
+      <div className=" bg-white bg-opacity-60 w-[350px] sm:w-[650px] sm:h-[260px] shadow-lg sm:flex  overflow-hidden rounded-lg duration-300 hover:scale-105">
+      
+        <div className="  sm:w-6/12">
+          <div className="sm:my-5 sm:mx-5 ">
+            <img src={item.photos[0]} alt="" className="w-full rounded-sm object-cover h-[200px]" />
           </div>
         </div>
-        <div className=" w-6/12">
+        <div className=" sm:w-6/12">
           <div className="mx-5 my-5 border-b border-slate-400">
             <div className="flex justify-between mb-1">
               <h1 className="font-semibold text-xl text-fuchsia-800">{item.name}</h1>

@@ -10,7 +10,7 @@ const FeaturedProperties = () => {
       {loading ? (
         "Loading"
       ) : (
-        <div className="flex flex-wrap">
+        <div className="flex justify-center flex-wrap">
           {data.map((item) => (
             <div class="p-10">
               <div

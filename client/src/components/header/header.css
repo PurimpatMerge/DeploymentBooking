@@ -127,3 +127,14 @@
 .optionCounterButton:disabled {
   cursor: not-allowed;
 }
+
+
+@media screen and (max-width: 500px){
+  .date {
+    position: absolute !important;
+    top: 50px !important;
+    right: 50px !important;
+    z-index: 2 !important;
+  }
+
+}
