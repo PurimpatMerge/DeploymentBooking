@@ -35,3 +35,21 @@ export function showAlertUserDuplicate(res) {
     }),
   ];
 }
+export function showAlertEmail(res) {
+  return [
+    Store.addNotification({
+      title: res === "pass" ? "Success form sent" : "Failed",
+      message:
+        res === "pass" ? "check your email" : `Wrong email`,
+      type: res === "pass" ? "success" : "danger",
+      insert: "top",
+      container: "top-right",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 5000,
+        onScreen: true,
+      },
+    }),
+  ];
+}

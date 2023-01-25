@@ -92,31 +92,31 @@ export const hotelInputs = [
   {
     id: "cheapestPrice",
     label: "Start Price",
-    type: "text",
+    type: "number",
     placeholder: "4900 ฿ (number only)",
   },
   {
     id: "persons",
     label: "Persons",
-    type: "text",
+    type: "number",
     placeholder: "15 people (number only)",
   },
   {
     id: "maxpersons",
     label: "Maximum people",
-    type: "text",
+    type: "number",
     placeholder: "19 people (number only)",
   },
   {
     id: "addonBed",
     label: "Addon Bed price/per bed",
-    type: "text",
+    type: "number",
     placeholder: "300 ฿ (number only)",
   },
   {
     id: "insurance",
     label: "Insurance price",
-    type: "text",
+    type: "number",
     placeholder: "3000 ฿ (number only)",
   },
   {
@@ -134,13 +134,13 @@ export const hotelInputs = [
   {
     id: "distanceSea",
     label: "Distance from the sea",
-    type: "text",
+    type: "number",
     placeholder: "500 m (number only)",
   },  
   {
     id: "parkinglot",
     label: "Parking lot",
-    type: "text",
+    type: "number",
     placeholder: "3 (number only)",
   },
   {

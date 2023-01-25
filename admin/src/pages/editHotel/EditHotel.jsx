@@ -56,6 +56,9 @@ const NewHotel = () => {
     }
     const res = "pass";
     showAlertFillter(res);
+    setTimeout(() => {
+      window.location.href = '/';
+    }, 3000);
   };
 
   // const handleDelete = async (id) => {

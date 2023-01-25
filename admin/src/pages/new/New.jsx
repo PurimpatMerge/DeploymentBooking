@@ -35,6 +35,9 @@ const New = ({ inputs, title }) => {
       await axios.post("/auth/registeradmin", newUser);
       const res = "pass";
       showAlertFillter(res);
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 3000);
     } catch (err) {
       showAlertUserDuplicate(err.message);
     }

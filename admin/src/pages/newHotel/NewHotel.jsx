@@ -15,8 +15,16 @@ const NewHotel = () => {
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
   const [inputError, setInputError] = useState({});
+
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    if (e.type === "number") {
+      if (isNaN(parseFloat(e.target.value))) {
+          setInputError({ ...inputError, [e.id + "_number"]: true });
+      } else {
+          setInputError({ ...inputError, [e.id + "_number"]: false });
+      }
+  }
   };
 
   console.log(files);
@@ -47,6 +55,9 @@ const NewHotel = () => {
       await axios.post("/hotels", newhotel);
       const res = "pass";
       showAlertFillter(res);
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 3000);
     } catch (err) {
       console.log(err);
       showAlertFillter("Fill in the box");
@@ -98,17 +109,22 @@ const NewHotel = () => {
                   <TextField
                     error={inputError[input.id]}
                     helperText={
-                      inputError[input.id] ? "This field is required" : null
+                      inputError[input.id + "_number"]
+                        ? "Number only"
+                        : inputError[input.id]
+                        ? "This field is required"
+                        : null
                     }
                     id={input.id}
                     type={input.type}
                     placeholder={input.placeholder}
                     onBlur={(event) => {
                       setInputError({
-                        ...inputError,
-                        [input.id]: event.target.value === "",
+                          ...inputError,
+                          [event.target.id]: event.target.value === "",
+                          [event.target.id + "_number"]: input.type === "number" && isNaN(parseFloat(event.target.value)),
                       });
-                    }}
+                  }}
                     onChange={handleChange}
                   />
                 </div>

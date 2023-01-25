@@ -2,6 +2,9 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { ReactNotifications } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import { showAlertEmail} from "../../components/alertMessage.js";
 import "./login.css";
 
 const Login = () => {
@@ -19,16 +22,27 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      console.log(1);
-      await axios.post("/auth/forgetPassword", password);
+      const a= await axios.post("/auth/forgetPassword", password);
+      if(a.data === "This Email doesn't Exists"){
+        console.log(1);
+       return showAlertEmail("Fail");
+      }
+      console.log(a.data);
+      const res = "pass";
+      showAlertEmail(res);
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 3000);
     } catch (err) {
-      return (err);
+      console.log(1);
+      showAlertEmail("Fail");
     }
   };
 
 
   return (
     <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-violet-500 h-screen py-10 sm:py-20">
+      <ReactNotifications />
       <div className="container justify-items-center mx-auto p-4 sm:w-5/12 bg-white bg-opacity-50  rounded-lg">
         <div className="w-full  mx-auto my-12">
           <div className="flex ">
