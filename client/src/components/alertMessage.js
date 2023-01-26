@@ -17,6 +17,33 @@ export function showAlertFillter(res) {
     }),
   ];
 }
+export function showErrorAlertFillter(res) {
+  const a = res.includes("duplicate");
+  let message;
+  console.log(res);
+  if (res === "valid phone") {
+    message = "invalid phone number.";
+  } else if (a) {
+    message = "username or email been used";
+  } else {
+    message = "Fill all input";
+  }
+  return [
+    Store.addNotification({
+      title: "Failed",
+      message: message,
+      type: "danger",
+      insert: "top",
+      container: "top-right",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 5000,
+        onScreen: true,
+      },
+    }),
+  ];
+}
 export function showAlertUserDuplicate(res) {
   return [
     Store.addNotification({

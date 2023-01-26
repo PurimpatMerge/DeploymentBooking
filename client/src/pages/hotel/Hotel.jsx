@@ -144,7 +144,7 @@ const events = [
               <div className="duration-300 text-sm text-gray-600 hover:text-blue-600">
                 <a href={data.location}>Google map : {data.location}</a>
               </div>
-              <span className="text-sm">ห่าง {toKM} กม. จากทะเล</span>
+              <span className="text-sm">ห่าง {toKM.toFixed(2)} กม. จากทะเล</span>
               <p className="text-base text-blue-600">
                 ราคาเริ่มต้น {data.cheapestPrice}฿ พักได้ {data.persons} คน สูงสุด{" "}{data.maxpersons} คน
               </p>

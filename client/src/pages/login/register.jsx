@@ -2,11 +2,12 @@ import axios from "axios";
 import { useState } from "react";
 import { ReactNotifications } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
-import { showAlertFillter} from "../../components/alertMessage.js";
+import { showAlertFillter,showErrorAlertFillter} from "../../components/alertMessage.js";
 import { TextField } from "@material-ui/core";
 import { userInputs } from "../../formSource";
 
 const Register = () => {
+  
   const [info, setInfo] = useState({});
   const [inputError, setInputError] = useState({});
   const handleChange = (e) => {
@@ -15,6 +16,11 @@ const Register = () => {
 
   const handleClick = async (e) => {
     try{
+      const phoneRegex = /^\d{9,11}$/;
+      if (!phoneRegex.test(info.phone)) {
+        showErrorAlertFillter("valid phone");
+        return;
+      }
 
       const newUser = {
         ...info,
@@ -27,7 +33,7 @@ const Register = () => {
         window.location.href = '/';
       }, 3000);
     }catch(err){
-      showAlertFillter("Failed input");
+      showErrorAlertFillter(err.response.data.message);
     }
   };
 
