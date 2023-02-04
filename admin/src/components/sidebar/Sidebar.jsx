@@ -17,6 +17,29 @@ import { useContext } from "react";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
+  const handlelogout = async () => {
+    try {
+      logout();
+    } catch (err) { }
+  };
+
+  async function logout() {
+    try {
+      localStorage.clear();
+      sessionStorage.clear();
+      indexedDB.deleteDatabase('firebaseLocalStorageDb');
+      indexedDB.deleteDatabase('firebaseLocalStorageDb-shm');
+      indexedDB.deleteDatabase('firebaseLocalStorageDb-wal');
+      caches.keys().then(function (cacheNames) {
+        cacheNames.forEach(function (cacheName) {
+          caches.delete(cacheName);
+        });
+      });
+      window.location.href = '/';
+    } catch (err) {
+      console.log(err);
+    }
+  }
   return (
     <div className="sidebar">
       <div className="top">
@@ -84,7 +107,7 @@ const Sidebar = () => {
           </li>
           <li>
             <ExitToAppIcon className="icon" />
-            <span>Logout</span>
+            <span    onClick={() => handlelogout()} >Logout</span>
           </li>
         </ul>
       </div>
