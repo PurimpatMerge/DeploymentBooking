@@ -11,8 +11,10 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { showAlertFillter, showAlertDelete } from "../../components/alertMessage.js";
 
-import { ReactNotifications } from 'react-notifications-component'
-import 'react-notifications-component/dist/theme.css'
+import { ReactNotifications } from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
+
+import MyCalendar from './calendar.jsx';
 
 const NewHotel = () => {
   const location = useLocation();
@@ -246,6 +248,7 @@ const NewHotel = () => {
 
               <button onClick={handleClick}>Send</button>
             </form>
+            <MyCalendar  startPrice={data.cheapestPrice} poolvilla ={id} />
           </div>
         </div>
       </div>
