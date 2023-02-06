@@ -9,14 +9,15 @@ import {
 } from "antd";
 import moment from "moment";
 import useFetch from "../../hooks/useFetch";
+import axios from "axios";
 
 const { Option } = Select;
 
 const EventDetails = ({ event }) => (
   <div>
     <h3>{event.title}</h3>
-    <p>Start: {moment(event.start).format("LLLL")}</p>
-    <p>End: {moment(event.end).format("LLLL")}</p>
+    <p>Start: {moment(event.start).format("MM/DD/YYYY")}</p>
+    <p>End: {moment(event.end).format("MM/DD/YYYY")}</p>
     <p>Price : {event.price}</p>
   </div>
 );
@@ -39,7 +40,6 @@ const MyCalendar = (props, id) => {
       ...prev,
       [e.target.id]: e.target.value,
     }));
-    console.log(info);
   };
   const handleEditEvent = () => {
     // setInfo({ start: formattedDate, end: formattedDate });
@@ -68,21 +68,25 @@ const MyCalendar = (props, id) => {
     });
     setSelectedEvent(event);
   };
-  const handleModalOk = () => {
+  const handleModalOk = async () => {
     if (!info.title || !info.price || !info.start || !info.end) {
       return alert("Make sure your edit and all fill have change");
     }
-    console.log(info);
-    // update event here
-    // ...
+    // console.log(info);
+    await axios.put(`/datesBook/update/${poolvilla}`, info);
+
     setIsEditing(false);
     setEditingEvent(null);
     setInfo({});
+    setTimeout(() => {
+      window.location.href = `/hotels/edit/${poolvilla}`;
+    }, 3000);
   };
 
   const handleModalCancel = () => {
     setIsEditing(false);
     setEditingEvent(null);
+    // setInfo({});
   };
 
   const monthCellRender = (value) => {
@@ -95,13 +99,38 @@ const MyCalendar = (props, id) => {
     if (!value.isSame(month, "month")) {
       return <div />;
     }
+  
     if (data && data.events) {
       for (let i = 0; i < events.length; i++) {
         let event = events[i];
         const start = moment(event.start);
         const end = moment(event.end) || start;
         const selectedDate = moment(value.toDate());
-
+  
+        if (event.title === "จอง" && selectedDate.isBetween(start, end, "day", "[]")) {
+          return (
+            <Popover
+              content={
+                <div>
+                  <EventDetails event={event} />
+                  <button onClick={handleEditEvent}>Edit</button>
+                </div>
+              }
+            >
+              <div style={{ background: `#${event.color}` }}>
+                {event.title}
+              </div>
+            </Popover>
+          );
+        }
+      }
+  
+      for (let i = 0; i < events.length; i++) {
+        let event = events[i];
+        const start = moment(event.start);
+        const end = moment(event.end) || start;
+        const selectedDate = moment(value.toDate());
+  
         if (selectedDate.isBetween(start, end, "day", "[]")) {
           return (
             <Popover
@@ -117,7 +146,9 @@ const MyCalendar = (props, id) => {
                   {event.title}
                 </div>
               ) : (
-                event.price
+                <div style={{ background: `#${event?.color}` }}>
+                  {event.price}
+                </div>
               )}
             </Popover>
           );
@@ -126,9 +157,9 @@ const MyCalendar = (props, id) => {
     }
     return (
       <div className="ant-calendar-date">
-        {/* {value.format("MM/DD/YYYY")} */}
+        {startPrice}
         <button onClick={() => handleNewEvent(value.format("MM/DD/YYYY"))}>
-          Edit
+          New
         </button>
       </div>
     );
@@ -157,10 +188,13 @@ const MyCalendar = (props, id) => {
               onChange={handleChange}
               defaultValue={editingEvent ? editingEvent.color : ""}
             >
+              <option value="ffffff" disabled>
+                select please
+              </option>
               <option value="ffffff">ว่าง </option>
-              <option value="ff0000">จอง </option>
-              <option value="FFFF00">ราคาวันห</option>
+              <option value="ffff00">ราคาวันหุด</option>
               <option value="A020F0">ลดพิเศษ </option>
+              <option value="ff0000">จอง </option>
             </select>
             <label>Tiltle</label>
             <Input

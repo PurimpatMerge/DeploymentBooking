@@ -1,0 +1,35 @@
+{
+  "_id": {
+    "$oid": "63de482228f40033cba589fc"
+  },
+  "pvid": "63b861256a0f8404c4081af5",
+  "events": [
+    {
+      "title": "จอง",
+      "start": "02/04/2023",
+      "end": "02/04/2023",
+      "price": {
+        "$numberInt": "4900"
+      },
+      "color": "ff0000"
+    },
+    {
+      "title": "จอง",
+      "start": "02/09/2023",
+      "end": "02/12/2023",
+      "price": {
+        "$numberInt": "4900"
+      },
+      "color": "ff0000"
+    },
+    {
+      "title": "ว่าง",
+      "start": "02/14/2023",
+      "end": "02/14/2023",
+      "price": {
+        "$numberInt": "6900"
+      },
+      "color": "ffffff"
+    }
+  ]
+}

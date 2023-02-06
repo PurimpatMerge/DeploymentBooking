@@ -6,8 +6,8 @@ import useFetch from "../../hooks/useFetch";
 const EventDetails = ({ event }) => (
   <div>
     <h3>{event.title}</h3>
-    <p>Start: {moment(event.start).format("LLLL")}</p>
-    <p>End: {moment(event.end).format("LLLL")}</p>
+    <p>Start: {moment(event.start).format("MM/DD/YYYY")}</p>
+    <p>End: {moment(event.end).format("MM/DD/YYYY")}</p>
     <p>Price : {event.price}</p>
   </div>
 );
@@ -40,33 +40,36 @@ const MyCalendar = (props, id) => {
     if (!value.isSame(month, "month")) {
       return <div />;
     }
-  if (data && data.events) {
-    for (let i = 0; i < events.length; i++) {
-      let event = events[i];
-      const start = moment(event.start);
-      const end = moment(event.end) || start;
-      const selectedDate = moment(value.toDate());
-
-      if (selectedDate.isBetween(start, end, "day", "[]")) {
-        return (
-          <Popover
-            content={<EventDetails event={event} />}
-            trigger="click"
-            onOpenChange
-          >
-            {event.title === "จอง" ? (
-              <div style={{ background: `#${event.color}` }}>{event.title}</div>
-            ) : (
-              event.price
-            )}
-          </Popover>
-        );
-      } 
+  
+    let eventToShow = {};
+  
+    if (data && data.events) {
+      for (let i = 0; i < events.length; i++) {
+        let event = events[i];
+        const start = moment(event.start);
+        const end = moment(event.end) || start;
+        const selectedDate = moment(value.toDate());
+  
+        if (selectedDate.isBetween(start, end, "day", "[]")) {
+          if (event.title === "จอง" || !eventToShow.title) {
+            eventToShow = event;
+          }
+        }
+      }
     }
-}
-    return <div> {startPrice} </div>;
- 
- };
+  
+    if (eventToShow.title) {
+      return (
+        <Popover content={<EventDetails event={eventToShow} />} trigger="click" onOpenChange>
+          <div style={{ background: `#${eventToShow.color}` }}>{eventToShow.title}</div>
+        </Popover>
+      );
+    }
+  
+    return <div>{startPrice}</div>;
+  };
+  
+  
   return (
     <AntCalendar
       style={{ width: "450px", height: "350px" }}
