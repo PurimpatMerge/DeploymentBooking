@@ -22,8 +22,8 @@ const EventDetails = ({ event }) => (
   </div>
 );
 
-const MyCalendar = (props, id) => {
-  const { startPrice, poolvilla } = props;
+const MyCalendar = (props) => {
+  const { startPrice, friPrice, satPrice, sunPrice, poolvilla } = props;
   const { data, loading, error } = useFetch(`/datesBook/${poolvilla}`);
 
   const events = loading || error || !data ? [] : data.events;
@@ -99,15 +99,18 @@ const MyCalendar = (props, id) => {
     if (!value.isSame(month, "month")) {
       return <div />;
     }
-  
+
     if (data && data.events) {
       for (let i = 0; i < events.length; i++) {
         let event = events[i];
         const start = moment(event.start);
         const end = moment(event.end) || start;
         const selectedDate = moment(value.toDate());
-  
-        if (event.title === "จอง" && selectedDate.isBetween(start, end, "day", "[]")) {
+
+        if (
+          event.title === "จอง" &&
+          selectedDate.isBetween(start, end, "day", "[]")
+        ) {
           return (
             <Popover
               content={
@@ -117,20 +120,18 @@ const MyCalendar = (props, id) => {
                 </div>
               }
             >
-              <div style={{ background: `#${event.color}` }}>
-                {event.title}
-              </div>
+              <div style={{ background: `#${event.color}` }}>{event.title}</div>
             </Popover>
           );
         }
       }
-  
+
       for (let i = 0; i < events.length; i++) {
         let event = events[i];
         const start = moment(event.start);
         const end = moment(event.end) || start;
         const selectedDate = moment(value.toDate());
-  
+
         if (selectedDate.isBetween(start, end, "day", "[]")) {
           return (
             <Popover
@@ -157,7 +158,13 @@ const MyCalendar = (props, id) => {
     }
     return (
       <div className="ant-calendar-date">
-        {startPrice}
+        {moment(value.toDate()).format("dddd") === "Friday" && friPrice
+          ? friPrice
+          : moment(value.toDate()).format("dddd") === "Saturday" && satPrice
+          ? satPrice
+          : moment(value.toDate()).format("dddd") === "Sunday"  && sunPrice
+          ? sunPrice
+          : startPrice}
         <button onClick={() => handleNewEvent(value.format("MM/DD/YYYY"))}>
           New
         </button>

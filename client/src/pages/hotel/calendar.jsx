@@ -13,7 +13,7 @@ const EventDetails = ({ event }) => (
 );
 
 const MyCalendar = (props, id) => {
-  const { startPrice, poolvilla } = props;
+  const { startPrice, friPrice, satPrice, sunPrice, poolvilla } = props;
   const { data, loading, error } = useFetch(`/datesBook/${poolvilla}`);
 
   const events = loading || error || !data ? [] : data.events;
@@ -29,7 +29,7 @@ const MyCalendar = (props, id) => {
       return selectedDate.isBetween(start, end, "day", "[]");
     });
     setSelectedEvent(event);
-  }; 
+  };
   const monthCellRender = (value) => {
     if (value.month() !== month.month()) {
       return <div />;
@@ -40,16 +40,16 @@ const MyCalendar = (props, id) => {
     if (!value.isSame(month, "month")) {
       return <div />;
     }
-  
+
     let eventToShow = {};
-  
+
     if (data && data.events) {
       for (let i = 0; i < events.length; i++) {
         let event = events[i];
         const start = moment(event.start);
         const end = moment(event.end) || start;
         const selectedDate = moment(value.toDate());
-  
+
         if (selectedDate.isBetween(start, end, "day", "[]")) {
           if (event.title === "จอง" || !eventToShow.title) {
             eventToShow = event;
@@ -57,19 +57,36 @@ const MyCalendar = (props, id) => {
         }
       }
     }
-  
+
     if (eventToShow.title) {
       return (
-        <Popover content={<EventDetails event={eventToShow} />} trigger="click" onOpenChange>
-          <div style={{ background: `#${eventToShow.color}` }}>{eventToShow.title}</div>
+        <Popover
+          content={<EventDetails event={eventToShow} />}
+          trigger="click"
+          onOpenChange
+        >
+          <div style={{ background: `#${eventToShow.color}` }}>
+            {eventToShow.title === "จอง"
+              ? eventToShow.title
+              : eventToShow.price}
+          </div>
         </Popover>
       );
     }
-  
-    return <div>{startPrice}</div>;
+
+    return (
+      <div className="ant-calendar-date">
+        {moment(value.toDate()).format("dddd") === "Friday" && friPrice
+          ? friPrice
+          : moment(value.toDate()).format("dddd") === "Saturday" && satPrice
+          ? satPrice
+          : moment(value.toDate()).format("dddd") === "Sunday" && sunPrice
+          ? sunPrice
+          : startPrice}
+      </div>
+    );
   };
-  
-  
+
   return (
     <AntCalendar
       style={{ width: "450px", height: "350px" }}

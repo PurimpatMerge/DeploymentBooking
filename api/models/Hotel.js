@@ -26,6 +26,18 @@ const HotelSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  friPrice: {
+    type: Number,
+    required: true,
+  },
+  satPrice: {
+    type: Number,
+    required: true,
+  },
+  sunPrice: {
+    type: Number,
+    required: true,
+  },
   persons: {
     type: Number,
     required: true,

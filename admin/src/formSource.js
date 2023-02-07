@@ -91,9 +91,27 @@ export const hotelInputs = [
   },
   {
     id: "cheapestPrice",
-    label: "Start Price",
+    label: "Price on Monday to Thursday",
     type: "number",
     placeholder: "4900 ฿ (number only)",
+  },
+  {
+    id: "friPrice",
+    label: "Price on Friday",
+    type: "number",
+    placeholder: "5900 ฿ (number only)",
+  },
+  {
+    id: "satPrice",
+    label: "Price on Saturday",
+    type: "number",
+    placeholder: "6900 ฿ (number only)",
+  },
+  {
+    id: "sunPrice",
+    label: "Price on Sunday",
+    type: "number",
+    placeholder: "5900 ฿ (number only)",
   },
   {
     id: "persons",

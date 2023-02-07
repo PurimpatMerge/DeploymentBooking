@@ -122,7 +122,7 @@ const Hotel = () => {
                     <div className="bg-white rounded-lg w-fit  sm:w-[500px] shadow-md bg-opacity-40 my-10">
                       <div className="mx-5 py-5">
                         <h1 className="text-violet-800 text-3xl ">Calendar</h1>
-                        <MyCalendar  startPrice={data.cheapestPrice} poolvilla ={id} />
+                        <MyCalendar  startPrice={data.cheapestPrice} friPrice={data.friPrice} satPrice={data.satPrice}  sunPrice={data.sunPrice} poolvilla ={id} />
                         <div style={{ width: '80%', height: '450px' }}>
                         </div>
 
