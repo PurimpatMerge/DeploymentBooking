@@ -13,20 +13,20 @@ import Secondstep from "./steps/Secondstep";
 import { Button, message, Steps, theme } from 'antd';
 
 
-const steps = [
-  {
-    title: 'First',
-    content: <Firststep/>,
-  },
-  {
-    title: 'Second',
-    content: <Secondstep/>,
-  },
-];
 
 
-const Reserve = ({ setOpen, hotelId }) => {
-
+const Reserve = ( props ) => {
+  const { startPrice, friPrice, satPrice, sunPrice, poolvilla, setOpen } = props;
+  const steps = [
+    {
+      title: 'First',
+      content: <Firststep startPrice={startPrice} friPrice={friPrice} satPrice={satPrice}  sunPrice={sunPrice} poolvilla ={poolvilla} />,
+    },
+    {
+      title: 'Second',
+      content: <Secondstep/>,
+    },
+  ];
   const { token } = theme.useToken();
   const [current, setCurrent] = useState(0);
 
@@ -43,7 +43,7 @@ const Reserve = ({ setOpen, hotelId }) => {
 
  
   return (
-    <div className="reserve ">
+    <div className="reserve z-20 ">
       <div className="rContainer">
         <FontAwesomeIcon
           icon={faCircleXmark}
