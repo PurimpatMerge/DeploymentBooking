@@ -1,23 +1,16 @@
 import "./footer.css";
 
-import bg from '../../photo/bg5'
+
 import '../animation/text.css'
 
 
 
 const Footer = () => {
   return (
-<div className="relative">
-<div>
-<div className="div2 absolute inset-y-16 inset-x-10 sm:inset-y-24 sm:inset-x-16 lg:inset-y-36 lg:inset-x-28 " title="Merge Pool Villa">Merge Pool Villa</div>
+<div className="bgma h-[500px] bg-cover bg-center object-scale-down relative bg-fixed" >
+<div className="absolute left-20 md:left-32 top-1/4">
+  <p className="text-5xl md:text-7xl font-bold tracking-wider text-white">Merge Pool Villa</p>   
 </div>
-
-
-
-
-
-
-<img src={bg} alt='' className=" min-w-screen lg:w-screen lg:h-1/3 object-cover "/>
 </div>
     
 

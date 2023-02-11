@@ -1,16 +1,16 @@
 import useFetch from "../../hooks/useFetch";
 import "./featuredProperties.css";
-
+import bg from '../../photo/beautibg.jpg'
 const FeaturedProperties = () => {
   const { data, loading, error } = useFetch(
     `/hotels?city=${"a"}&min=${0}&max=${99999}&maxpersons=${1}&sea=${90}&limit=4`
   );
   return (
-    <div className="container  ">
+    <div className="container mx-auto ">
       {loading ? (
         "Loading"
       ) : (
-        <div className="flex justify-center flex-wrap">
+        <div className="flex justify-center flex-wrap ">
           {data.map((item) => (
             <div class="p-10">
               <div

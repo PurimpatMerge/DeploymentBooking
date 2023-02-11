@@ -43,6 +43,10 @@
   will-change: opacity;
 }
 
+.corimg1{
+  background-image: url("../../photo/pattayaimg");
+}
+
 @keyframes cursor {
   0%,
   40% {
