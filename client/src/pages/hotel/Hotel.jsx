@@ -16,8 +16,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import Reserve from "../../components/reserve/Reserve";
 import MyCalendar from './calendar.jsx'
-
-
+import { useEffect } from 'react';
+import { Space, Spin } from 'antd';
 const Hotel = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
@@ -58,15 +58,27 @@ const Hotel = () => {
       navigate("/login");
     }
   };
-
+  const [loadingscreen, setLoadingscreen] = useState(false);
+  useEffect(() => {
+    setLoadingscreen(true)
+    setTimeout(() => {
+      setLoadingscreen(false)
+    }, 1000)
+  }, [])
   
   return (
     <div className="min-h-screen bg-purple-100 shadow-lg">
-
       <Navbar />
       <Header type="list" />
-      {loading ? (
-        "loading"
+      {loading&&loadingscreen ? (
+        <div className='fixed h-screen z-20 top-1/2  left-1/2 -translate-x-6 -translate-y-6'>
+        <Space size="middle">
+        <Spin size="large" 
+          color={"#fd912c"}
+          loadingscreen={loadingscreen}
+        />
+        </Space>
+      </div>
       ) : (
         <div className="hotelContainer">
           {open && (
@@ -128,29 +140,8 @@ const Hotel = () => {
 
                       </div>
                     </div>
-                    <div className="bg-white text-center lg:text-left rounded-lg shadow-md bg-opacity-40 my-10">
-                      <div className="mx-5 py-5 divide-stone-400 divide-y">
-                        <div>
-                          <h1 className="text-violet-800 text-3xl ">เวลาเข้าพัก</h1>
-                        </div>
-                        <div>
-                          Check-in : {data.checkIn} - Check-out : {data.checkOut}
-                        </div>
-                      </div>
-
-                    </div>
-                    <div className="bg-white text-center lg:text-left rounded-lg shadow-md bg-opacity-40 my-10">
-                      <div className="mx-5 py-5 divide-stone-400 divide-y ">
-                        <div>
-                          <h1 className="text-violet-800 text-3xl">สัตว์เลียง</h1>
-                        </div>
-                        <div>
-                          {infoAnimal?.map((item) => (
-                            <p>{item}</p>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
+                    
+                   
                   </div>
                   <div className=" lg:w-[450px]">
                     <div className="bg-white text-center lg:text-left rounded-lg shadow-md bg-opacity-40 my-10 ">
@@ -193,6 +184,17 @@ const Hotel = () => {
                         <div>จอดได้ {data.parkinglot} คัน</div>
                       </div>
                     </div>
+                    <div className="bg-white text-center lg:text-left rounded-lg shadow-md bg-opacity-40 my-10">
+                      <div className="mx-5 py-5 divide-stone-400 divide-y">
+                        <div>
+                          <h1 className="text-violet-800 text-3xl ">เวลาเข้าพัก</h1>
+                        </div>
+                        <div>
+                          Check-in : {data.checkIn} - Check-out : {data.checkOut}
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
                   <div className="lg:w-[450px]">
                     <div className="bg-white text-center lg:text-left rounded-lg shadow-md bg-opacity-40 my-10 ">
@@ -215,6 +217,18 @@ const Hotel = () => {
                           <h1 className="text-violet-800 text-3xl">เตียงเสริม</h1>
                         </div>
                         <div>{data.addonBed}฿</div>
+                      </div>
+                    </div>
+                    <div className="bg-white text-center lg:text-left rounded-lg shadow-md bg-opacity-40 my-10">
+                      <div className="mx-5 py-5 divide-stone-400 divide-y ">
+                        <div>
+                          <h1 className="text-violet-800 text-3xl">สัตว์เลียง</h1>
+                        </div>
+                        <div>
+                          {infoAnimal?.map((item) => (
+                            <p>{item}</p>
+                          ))}
+                        </div>
                       </div>
                     </div>
                     <div className="bg-white text-center lg:text-left rounded-lg shadow-md bg-opacity-40 my-10">

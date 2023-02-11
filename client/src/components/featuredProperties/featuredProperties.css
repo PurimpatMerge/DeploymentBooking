@@ -44,3 +44,7 @@
 .fpRating>span{
   font-size: 14px;
 }
+
+.bg{
+  background-image: url("../../photo/beautibg.jpg");
+}
