@@ -5,6 +5,7 @@ import "react-notifications-component/dist/theme.css";
 import { showAlertFillter,showErrorAlertFillter} from "../../components/alertMessage.js";
 import { TextField } from "@material-ui/core";
 import { userInputs } from "../../formSource";
+import "../Profile/editProfile.css"
 
 const Register = () => {
   
@@ -38,9 +39,9 @@ const Register = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-violet-500 h-screen py-10 sm:py-20">
+    <div className="bgedit bg-cover object-cover h-screen py-10 sm:py-20">
        <ReactNotifications />
-      <div className="container mx-auto p-4 sm:w-5/12 bg-white bg-opacity-50  rounded-lg">
+      <div className="container mx-auto py-4 px-10 sm:w-5/12 bg-white bg-opacity-50  rounded-lg">
         <div className="w-full  mx-auto my-12 ">
           <div className="flex ">
             <h1 className="text-2xl font-extrabold text-black mx-auto">Register</h1>
