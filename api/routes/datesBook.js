@@ -8,7 +8,7 @@ router.get("/:id", getDates);
 router.put("/update/:id", updateDates);
 // router.post("/new/:id", addDate);
 router.delete("/:id", deleteDate);
-router.get("/a/:id", findPrice);
+router.get("/bookingPoolvillaDate/:id/:userStartDate/:userEndDate/:startPrice/:friPrice/:satPrice/:sunPrice", findPrice);
 
 
 export default router

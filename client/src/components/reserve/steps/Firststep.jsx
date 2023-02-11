@@ -11,6 +11,7 @@ import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 
 const Firststep = (props) => {
   const { startPrice, friPrice, satPrice, sunPrice, poolvilla } = props;
+  // const [info, setInfo] = useState({});
   const [dates, setDates] = useState([
     {
       startDate: new Date(),
@@ -22,17 +23,21 @@ const Firststep = (props) => {
   let userStartDate = "";
   let userEndDate = "";
 
+  const expireTime = new Date(Date.now() + 2 * 60 * 1000);
+
 dates.map((el)=> {
      userStartDate = moment(el.startDate).format("MM/DD/YYYY");
      userEndDate = moment(el.endDate).format("MM/DD/YYYY");
+     document.cookie = `userStartDate=${userStartDate}; expires=${expireTime};`;
+     document.cookie = `userEndDate=${userEndDate}; expires=${expireTime};`;
 })
 
-if(userStartDate && userEndDate){
-console.log(userStartDate,userEndDate)
-}
+// if(userStartDate && userEndDate){
+// // console.log(userStartDate,userEndDate)
+// }
   const [openDate, setOpenDate] = useState(false);
   return (
-    <div className="bg-white shadow-lg  p-4 rounded-md h-fit flex">
+    <div className="bg-white shadow-lg  p-4 rounded-md flex">
       <div className="w-[300px] sm:w-[400px] md:w-[600px] lg:w-[800px]">
         <MyCalendar
           startPrice={startPrice}

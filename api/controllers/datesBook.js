@@ -168,13 +168,7 @@ export const deleteDate = async (req, res, next) => {
 
 export const findPrice = async (req, res, next) => {
   try {
-    const userStartDate = "02/15/2023";
-    const userEndDate = "02/21/2023";
-    const startPrice = 4900;
-    const friPrice = 5900;
-    const satPrice = 6900;
-    const sunPrice = 4900;
-    // const poolvilla = "63b861256a0f8404c4081af5";
+    const {userStartDate,userEndDate,startPrice, friPrice, satPrice, sunPrice} = req.params;
     const dates = await DatesBook.findOne({ pvid: req.params.id });
     if (!dates) {
       return res
@@ -221,14 +215,10 @@ export const findPrice = async (req, res, next) => {
           priceGeter.push({ day, price });
         }
       }
-      // console.log(price, thisDate);
+
     }
 
     const bookings = dates.events.filter((event) => event.title === "จอง");
-    // console.log(bookings);
-
-    //   console.log(priceGeter);
-
     priceGeter.forEach((priceItem) => {
       bookings.forEach((booking) => {
         if (priceItem.day === booking.start) {
@@ -237,11 +227,10 @@ export const findPrice = async (req, res, next) => {
       });
     });
 
-    console.log(priceGeter);
-    let totalPrice = priceGeter.reduce((sum, { price }) => sum + price, 0);
-    console.log(totalPrice);
-
-    res.json({ totalPrice });
+    // console.log(priceGeter);
+    let totalPrice = priceGeter.reduce((sum, { price }) => sum + parseInt(price, 10), 0);
+    let datesBook = priceGeter.filter(({ price }) => price !== 0);
+    res.json({ totalPrice ,datesBook});
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
