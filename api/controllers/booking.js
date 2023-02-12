@@ -23,7 +23,7 @@ const savedBookingData = await bookingData.save();
 
 export const GetbookingUser = async (req, res, next) => {
   try {
-    console.log(1);
+ 
     const bookingData = await Booking.find();
     if (!bookingData) {
       return res.status(404).json({
@@ -31,10 +31,9 @@ export const GetbookingUser = async (req, res, next) => {
         error: "No booking data found"
       });
     }
-    res.status(200).json({
-      success: true,
-      data: bookingData
-    });
+    res.status(200).json(
+      bookingData
+    );
   } catch (err) {
     return res.status(500).json({
       success: false,

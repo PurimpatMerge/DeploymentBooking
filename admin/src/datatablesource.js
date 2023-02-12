@@ -41,27 +41,12 @@ export const hotelColumns = [
     width: 150,
   },
 ];
-
-export const roomColumns = [
-  { field: "_id", headerName: "ID", width: 70 },
-  {
-    field: "title",
-    headerName: "Title",
-    width: 230,
-  },
-  {
-    field: "desc",
-    headerName: "Description",
-    width: 200,
-  },
-  {
-    field: "price",
-    headerName: "Price",
-    width: 100,
-  },
-  {
-    field: "maxPeople",
-    headerName: "Max People",
-    width: 100,
-  },
+export const bookingColumns = [
+  { field: "_id", headerName: "ID", width: 10 },
+  { field: "username", headerName: "Username", width: 150 },
+  { field: "email", headerName: "Email", width: 150 },
+  { field: "phone", headerName: "Phone", width: 150 },
+  { field: "lineId", headerName: "Line ID", width: 150 },
+  { field: "statusBooking", headerName: "Status", width: 100 },
+  { field: "bookingTotalPrice", headerName: "Total Price", width: 100 },
 ];

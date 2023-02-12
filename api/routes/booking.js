@@ -8,7 +8,7 @@ const router = express.Router();
 router.post("/confirm", bookingUser);
 //UPDATE
 // router.put("/:id", updateUser);
-router.get("/", GetbookingUser);
+router.get("/admin", GetbookingUser);
 
 // //DELETE
 // router.delete("/:id",  deleteUser);
