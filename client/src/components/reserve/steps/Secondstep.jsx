@@ -15,7 +15,7 @@ import { Image } from 'antd';
 
 
 const Secondstep = (props) => {
-  const { bookingTotalPrice, bookingDates,id } = props;
+  const { bookingTotalPrice, bookingDates,id , poolvillaName} = props;
   const [info, setInfo] = useState({});
   const [inputError, setInputError] = useState({});
   const { user } = useContext(AuthContext);
@@ -56,18 +56,19 @@ const Secondstep = (props) => {
           const data = new FormData();
           data.append("file", file);
           data.append("upload_preset", "upload");
-          // const uploadRes = await axios.post(
-          //   "https://api.cloudinary.com/v1_1/dwwfqdl79/image/upload",
-          //   data
-          // );
+          const uploadRes = await axios.post(
+            "https://api.cloudinary.com/v1_1/dwwfqdl79/image/upload",
+            data
+          );
 
-          // const { url } = uploadRes.data;
-          // return url;
+          const { url } = uploadRes.data;
+          return url;
         })
       );
 
 
       const bookingDetail = {
+        poolvillaName:poolvillaName,
         bookingTotalPrice: bookingTotalPrice,
         bookingDates: bookingDatesDone,
         statusBooking: "pending",
@@ -75,7 +76,7 @@ const Secondstep = (props) => {
         slip:list,
         poolvillaId:id
       };
-      console.log(bookingDetail)
+       
         await axios.post("/booking/confirm", bookingDetail);
       const res = "pass";
       showAlertFillter(res);
@@ -94,7 +95,7 @@ const Secondstep = (props) => {
       <ReactNotifications />
       <div className="w-[300px] sm:w-[400px] md:w-[600px] lg:w-[800px]">
         Total: {bookingTotalPrice}<div>
-          Date: {bookingDates}
+          Date: {bookingDates} {poolvillaName}
           {profile.map((input) => (
             <form className="flex flex-col mt-4 ">
               <label>{input.label}</label>

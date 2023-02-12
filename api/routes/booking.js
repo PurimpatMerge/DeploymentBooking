@@ -1,5 +1,5 @@
 import express from "express";
-import {bookingUser,GetbookingUser } from "../controllers/booking.js";
+import {bookingUser,GetbookingUser,Reject } from "../controllers/booking.js";
 // import { verifyAdmin } from "../utils/verifyToken.js";
 const router = express.Router();
 
@@ -11,6 +11,7 @@ router.post("/confirm", bookingUser);
 router.get("/admin", GetbookingUser);
 
 // //DELETE
+router.put("/reject/:id", Reject);
 // router.delete("/:id",  deleteUser);
 
 // //GET

@@ -16,6 +16,10 @@ const BookingSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  poolvillaName: {
+    type: String,
+    required: true,
+  },
   statusBooking: {
     type: String,
     required: true,

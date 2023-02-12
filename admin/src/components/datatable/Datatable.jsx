@@ -47,6 +47,18 @@ const Datatable = ({ columns = [] }) => {
       } catch (err) {}
     }
   };
+  const handleReject = async (id) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this item?"
+    );
+    if (confirmDelete) {
+      try {
+        await axios.put(`/${path}/reject/${id}`);
+        showAlertDelete();
+      } catch (err) {}
+    }
+  };
+  
   const handleApprove = async (id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to Approve booking this item?"
@@ -119,12 +131,12 @@ const Datatable = ({ columns = [] }) => {
         return (
           <div className="cellAction">
             <div className="approveReject">
-              <button className="approveButton" onClick={() => handleApprove()}>
+              <button className="approveButton" onClick={handleApprove}>
                 Approve
               </button>
               <button
                 className="rejectButton"
-                onClick={() => handleDelete(params.row._id)}
+                onClick={() => handleReject(params.row._id)}
               >
                 Reject
               </button>

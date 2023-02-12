@@ -42,11 +42,12 @@ export const hotelColumns = [
   },
 ];
 export const bookingColumns = [
-  { field: "_id", headerName: "ID", width: 10 },
-  { field: "username", headerName: "Username", width: 150 },
+  { field: "_id", headerName: "ID", width: 5},
+  { field: "poolvillaName", headerName: "poolvillaName", width: 150 },
+  { field: "username", headerName: "Username", width: 100 },
   { field: "email", headerName: "Email", width: 150 },
-  { field: "phone", headerName: "Phone", width: 150 },
-  { field: "lineId", headerName: "Line ID", width: 150 },
-  { field: "statusBooking", headerName: "Status", width: 100 },
+  { field: "phone", headerName: "Phone", width: 100 },
+  { field: "lineId", headerName: "Line ID", width: 100 },
+  { field: "statusBooking", headerName: "Status", width: 80},
   { field: "bookingTotalPrice", headerName: "Total Price", width: 100 },
 ];

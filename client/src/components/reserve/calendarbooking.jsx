@@ -12,7 +12,7 @@ const EventDetails = ({ event }) => (
   </div>
 );
 
-const MyCalendar = (props, id) => {
+const MyCalendar = (props) => {
   const { startPrice, friPrice, satPrice, sunPrice, poolvilla } = props;
   const { data, loading, error } = useFetch(`/datesBook/${poolvilla}`);
 

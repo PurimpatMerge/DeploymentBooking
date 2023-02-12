@@ -8,7 +8,7 @@ import Secondstep from "./steps/Secondstep";
 import { Button, message, Steps, theme } from "antd";
 
 const Reserve = (props) => {
-  const { startPrice, friPrice, satPrice, sunPrice, poolvilla, setOpen } =
+  const { startPrice, friPrice, satPrice, sunPrice, poolvilla, setOpen, poolvillaName} =
     props;
 let totalPrice;
 let datesBook;
@@ -95,6 +95,7 @@ if(!friPrice && !satPrice && !sunPrice ){
           satPrice={satPrice}
           sunPrice={sunPrice}
           poolvilla={poolvilla}
+         poolvillaName={poolvillaName}
         />
       ),
     },
@@ -105,6 +106,7 @@ if(!friPrice && !satPrice && !sunPrice ){
           bookingTotalPrice={bookingTotalPrice}
           bookingDates={bookingDates}
           id={poolvilla}
+          poolvillaName={poolvillaName}
         />
       ),
     },

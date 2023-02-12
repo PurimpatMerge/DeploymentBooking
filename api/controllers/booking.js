@@ -1,16 +1,36 @@
 import Booking from "../models/Booking.js";
+import DatesBook from "../models/DatesBook.js";
 
 export const bookingUser = async (req, res) => {
   try {
-
-    const bookingData = new Booking(
-     req.body
-    );
-
-const savedBookingData = await bookingData.save();
+    const bookingData = new Booking(req.body);
+    let dateBook = await DatesBook.findOne({ pvid: req.body.poolvillaId });
+    if (!dateBook) {
+      dateBook = new DatesBook({ pvid: req.body.poolvillaId, events: [] });
+    }
+    for (const date of req.body.bookingDates) {
+      const { day, price } = date;
+      const title = "จอง";
+      const start = day;
+      const end = day;
+      const color = "ff0000";
+      const events = dateBook.events;
+      const index = events.findIndex(
+        (event) => event.start === start && event.end === end
+      );
+      if (index === -1) {
+        dateBook.events.push({ title, start, end, price, color });
+      } else {
+        events[index] = { title, start, end, price, color };
+        dateBook.events = events;
+      }
+    }
+    const savedBookingDataBooked = await dateBook.save();
+    const savedBookingData = await bookingData.save();
     res.status(200).json({
       success: true,
       data: savedBookingData,
+      dataBooked:savedBookingDataBooked,
     });
   } catch (error) {
     res.status(400).json({
@@ -20,24 +40,68 @@ const savedBookingData = await bookingData.save();
   }
 };
 
-
 export const GetbookingUser = async (req, res, next) => {
   try {
- 
     const bookingData = await Booking.find();
     if (!bookingData) {
       return res.status(404).json({
         success: false,
-        error: "No booking data found"
+        error: "No booking data found",
       });
     }
-    res.status(200).json(
-      bookingData
-    );
+    res.status(200).json(bookingData);
   } catch (err) {
     return res.status(500).json({
       success: false,
-      error: err.message
+      error: err.message,
     });
   }
 };
+
+
+
+export const Reject = async (req, res, next) => {
+  try {  
+    const bookingData = await Booking.findByIdAndUpdate(req.params.id, {
+      $set: { statusBooking: "reject" }
+    }, {
+      new: true
+    });
+    console.log(bookingData.poolvillaId);
+    //
+    let dateBook = await DatesBook.findOne({ pvid: bookingData.poolvillaId });
+    if (!dateBook) {
+      dateBook = new DatesBook({ pvid: bookingData.poolvillaId, events: [] });
+    }
+    for (const date of bookingData.bookingDates) {
+      const { day, price } = date;
+      const title = "ว่าง";
+      const start = day;
+      const end = day;
+      const color = "ffffff";
+      const events = dateBook.events;
+      const index = events.findIndex(
+        (event) => event.start === start && event.end === end
+      );
+      if (index === -1) {
+        dateBook.events.push({ title, start, end, price, color });
+      } else {
+        events[index] = { title, start, end, price, color };
+        dateBook.events = events;
+      }
+    }
+    const savedBookingDataBooked = await dateBook.save();
+
+    res.status(200).json({
+      success: true,
+      data: bookingData,
+      dataReject:savedBookingDataBooked,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error: err.message,
+    });
+  }
+};
+
