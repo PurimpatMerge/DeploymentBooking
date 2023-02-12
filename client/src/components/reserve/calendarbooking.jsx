@@ -23,9 +23,9 @@ const MyCalendar = (props, id) => {
 
   const handleSelectEvent = (value) => {
     const selectedDate = moment(value.$d);
-    const event = events.find((event) => {
-      const start = moment(event.start);
-      const end = moment(event.end) || start;
+    const event = events?.find((event) => {
+      const start = moment(event?.start);
+      const end = moment(event?.end) || start;
       return selectedDate.isBetween(start, end, "day", "[]");
     });
     setSelectedEvent(event);
@@ -58,7 +58,7 @@ const MyCalendar = (props, id) => {
       }
     }
 
-    if (eventToShow.title) {
+    if (events && eventToShow.title) {
       return (
         <Popover
           content={<EventDetails event={eventToShow} />}

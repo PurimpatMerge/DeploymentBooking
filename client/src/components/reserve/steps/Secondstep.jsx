@@ -15,18 +15,35 @@ import { Image } from 'antd';
 
 
 const Secondstep = (props) => {
-  const { bookingTotalPrice, bookingDates } = props;
+  const { bookingTotalPrice, bookingDates,id } = props;
   const [info, setInfo] = useState({});
   const [inputError, setInputError] = useState({});
   const { user } = useContext(AuthContext);
   const { data, loading, error } = useFetch(`/users/${user._id}`);
-  const handleChange = (e) => {
-    setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-  };
 
+    // UploadImage
+    const [files, setFiles] = useState("");
+
+  
+    // End UploadImage
+    
+    const handleChange = (e) => {
+      setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    };
 
   const handleClick = async (e) => {
     try {
+      const bookingDatesDone = bookingDates.map((date) => {
+        const match = date.match(/{Day: (.*) Price: (.*)}/);
+        if (!match) {
+          throw new Error(`Invalid booking date format: ${date}`);
+        }
+        return {
+          day: match[1],
+          price: parseInt(match[2]),
+        };
+      });
+
       console.log(1)
       const phoneRegex = /^\d{9,11}$/;
       if (!phoneRegex.test(info.phone)) {
@@ -34,14 +51,32 @@ const Secondstep = (props) => {
         return;
       }
 
-      const newUser = {
+      const list = await Promise.all(
+        Object.values(files).map(async (file) => {
+          const data = new FormData();
+          data.append("file", file);
+          data.append("upload_preset", "upload");
+          // const uploadRes = await axios.post(
+          //   "https://api.cloudinary.com/v1_1/dwwfqdl79/image/upload",
+          //   data
+          // );
+
+          // const { url } = uploadRes.data;
+          // return url;
+        })
+      );
+
+
+      const bookingDetail = {
         bookingTotalPrice: bookingTotalPrice,
-        bookingDates: bookingDates,
-        ...data,
+        bookingDates: bookingDatesDone,
+        statusBooking: "pending",
         ...info,
+        slip:list,
+        poolvillaId:id
       };
-      console.log(newUser)
-      //   await axios.post("/auth/register", newUser);
+      console.log(bookingDetail)
+        await axios.post("/booking/confirm", bookingDetail);
       const res = "pass";
       showAlertFillter(res);
       //   setTimeout(() => {
@@ -52,23 +87,6 @@ const Secondstep = (props) => {
     }
   };
 
-
-
-  // UploadImage
-  const [images, setImages] = useState([]);
-  const [imageURLs, setImageURLs] = useState([]);
-
-  useEffect(() => {
-    if (images.length < 1) return;
-    const newImageUrls = [];
-    images.forEach((image) => newImageUrls.push(URL.createObjectURL(image)));
-    setImageURLs(newImageUrls);
-  }, [images]);
-
-  const onImageChange = (e) => {
-    setImages([...e.target.files]);
-  };
-  // End UploadImage
 
 
   return (
@@ -110,20 +128,25 @@ const Secondstep = (props) => {
 
           <div className="flex my-5 justify-center">
 
-            <label class="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-blue-600">
-              <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <label className="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-blue-600">
+              <svg className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
               </svg>
-              <span class="mt-2 text-base leading-normal">Select a file</span>
-              <input hidden accept="image/*" type="file" onChange={onImageChange} />
+              <span className="mt-2 text-base leading-normal">Select a file</span>
+              <input hidden accept="image/*" type="file" onChange={(e) => setFiles(e.target.files)} />
             </label>
 
   
           </div>
           <div className="flex my-1  justify-center">
-          {imageURLs.map((imageSrc) => (
-              <Image width={250} className="sm:w-36  h-20 sm:h-36 rounded-lg" src={imageSrc} alt="profileimg" />
-            ))}
+        
+              <Image width={250} className="sm:w-36  h-20 sm:h-36 rounded-lg" src={
+                files
+                  ? URL.createObjectURL(files[0])
+                  : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+              }
+              alt="" />
+       
 
           </div>
           

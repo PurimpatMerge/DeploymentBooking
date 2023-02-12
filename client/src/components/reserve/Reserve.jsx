@@ -17,7 +17,7 @@ let datesBook;
   
   const handleClick = async () => {
     try {
-      console.log(2);
+    
       setBookingTotalPrice("");
       setBookingDates([]);
       function getCookie(cname) {
@@ -35,23 +35,42 @@ let datesBook;
         }
         return "";
       }
-
+ 
       const userStartDate = getCookie("userStartDate");
       const userEndDate = getCookie("userEndDate");
       const formattedDate = userStartDate.replace(/\//g, "-");
       const formattedDateend = userEndDate.replace(/\//g, "-");
 
-      const getBookData = await axios.get(
-        `/datesBook/bookingPoolvillaDate/${poolvilla}/${formattedDate}/${formattedDateend}/${startPrice}/${friPrice}/${satPrice}/${sunPrice}`
-      );
-      if (getBookData) {
-        totalPrice = getBookData.data.totalPrice;
-        datesBook = getBookData.data.datesBook;
+     if(friPrice && satPrice && sunPrice){
+       const getBookData = await axios.get(
+         `/datesBook/bookingPoolvillaDate/${poolvilla}/${formattedDate}/${formattedDateend}/${startPrice}/${friPrice}/${satPrice}/${sunPrice}`
+         );
+         if (getBookData) {
+           totalPrice = getBookData.data.totalPrice;
+           datesBook = getBookData.data.datesBook;
+           
+           setBookingTotalPrice(totalPrice, ":totalPrice");
+           setBookingDates(datesBook.map((date) => `{Day: ${date.day} Price: ${date.price}}`));
+         }
+     }
 
-        setBookingTotalPrice(totalPrice, ":totalPrice");
-        setBookingDates(datesBook.map((date) => `Day: ${date.day} Price: ${date.price}`));
-      }
+
+
+if(!friPrice && !satPrice && !sunPrice ){
+  const getBookData = await axios.get(
+    `/datesBook/bookingPoolvillaDate/${poolvilla}/${formattedDate}/${formattedDateend}/${startPrice}`
+    );
+    if (getBookData) {
+  
+      console.log(getBookData);
+      totalPrice = getBookData.data.totalPrice;
+      datesBook = getBookData.data.datesBook;
       
+      setBookingTotalPrice(totalPrice, ":totalPrice");
+      setBookingDates(datesBook.map((date) => `{Day: ${date.day} Price: ${date.price}}`));
+    }
+  }
+  
     } catch (err) {
       console.log(err);
     }
@@ -65,8 +84,6 @@ let datesBook;
     }
   }, [totalPrice, datesBook]);
 
-  console.log(bookingTotalPrice, ": totalPrice");
-  console.log("DataDate:", bookingDates);
 
   const steps = [
     {
@@ -87,6 +104,7 @@ let datesBook;
         <Secondstep
           bookingTotalPrice={bookingTotalPrice}
           bookingDates={bookingDates}
+          id={poolvilla}
         />
       ),
     },
