@@ -5,8 +5,10 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
+import { Image } from "antd";
 
 import { showAlertDelete } from "../../components/alertMessage.js";
+import { height } from "@mui/system";
 
 const Datatable = ({ columns = [] }) => {
   const location = useLocation();
@@ -35,6 +37,8 @@ const Datatable = ({ columns = [] }) => {
     setList(data);
   }, [data]);
 
+  const [query, setQuery] = useState("");
+
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this item?"
@@ -58,16 +62,28 @@ const Datatable = ({ columns = [] }) => {
       } catch (err) {}
     }
   };
-  
+
   const handleApprove = async (id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to Approve booking this item?"
     );
     if (confirmDelete) {
       try {
-        // showAlertDelete();
+        await axios.put(`/${path}/approve/${id}`);
+        showAlertDelete();
       } catch (err) {}
     }
+  };
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const filteredData = data.filter((item) =>
+      Object.values(item)
+        .join("")
+        .toLowerCase()
+        .includes(query.toLowerCase())
+    );
+    setList(filteredData);
   };
 
   const priceColumn = [
@@ -83,6 +99,30 @@ const Datatable = ({ columns = [] }) => {
                 {item.price} {item.day}
               </div>
             ))}
+          </div>
+        );
+      },
+    },
+  ];
+
+  const Picture = [
+    {
+      field: "Picture",
+      headerName: "Picture",
+      width: 150,
+      renderCell: (params) => {
+        return (
+          <div className="cellPrice">
+            <div>
+              <Image
+                src={
+                  params.row.slip[0]
+                    ? params.row.slip[0]
+                    : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                }
+                alt=""
+              />
+            </div>
           </div>
         );
       },
@@ -131,7 +171,10 @@ const Datatable = ({ columns = [] }) => {
         return (
           <div className="cellAction">
             <div className="approveReject">
-              <button className="approveButton" onClick={handleApprove}>
+              <button
+                className="approveButton"
+                onClick={() => handleApprove(params.row._id)}
+              >
                 Approve
               </button>
               <button
@@ -157,17 +200,32 @@ const Datatable = ({ columns = [] }) => {
               Add New
             </Link>
           </div>
+          <div>
+          <form onSubmit={handleSearch}>
+        <input
+          type="text"
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
+          </div>
           <DataGrid
             className="datagrid"
             rows={list ? list : []}
             columns={columns.concat(
               data[0] && data[0].bookingDates && data[0].bookingDates.length > 0
-                ? priceColumn.concat(Booking)
+                ? priceColumn.concat(Picture).concat(Booking)
                 : actionColumn
             )}
             pageSize={9}
             rowsPerPageOptions={[9]}
             getRowId={(row) => row._id}
+            rowHeight={
+              data[0] && data[0].bookingDates && data[0].bookingDates.length > 0
+                ? 150
+                : 50
+            }
           />
         </>
       ) : null}

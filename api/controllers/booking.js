@@ -105,3 +105,66 @@ export const Reject = async (req, res, next) => {
   }
 };
 
+
+export const Approve = async (req, res, next) => {
+  try {  
+    const bookingData = await Booking.findByIdAndUpdate(req.params.id, {
+      $set: { statusBooking: "Approve" }
+    }, {
+      new: true
+    });
+    let dateBook = await DatesBook.findOne({ pvid: bookingData.poolvillaId });
+    if (!dateBook) {
+      dateBook = new DatesBook({ pvid: bookingData.poolvillaId, events: [] });
+    }
+    for (const date of bookingData.bookingDates) {
+      const { day, price } = date;
+      const title = "จอง";
+      const start = day;
+      const end = day;
+      const color = "ff0000";
+      const events = dateBook.events;
+      const index = events.findIndex(
+        (event) => event.start === start && event.end === end
+      );
+      if (index === -1) {
+        dateBook.events.push({ title, start, end, price, color });
+      } else {
+        events[index] = { title, start, end, price, color };
+        dateBook.events = events;
+      }
+    }
+    const savedBookingDataBooked = await dateBook.save();
+
+    res.status(200).json({
+      success: true,
+      data: bookingData,
+      dataReject:savedBookingDataBooked,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error: err.message,
+    });
+  }
+};
+
+export const MyBooking = async (req, res, next) => {
+  try {
+    const bookingDataByUsername = await Booking.find({username: req.params.username});
+
+    let bookingData;
+    if (bookingDataByUsername.length > 0) {
+      bookingData = bookingDataByUsername;
+    } else {
+      bookingData = await Booking.find({email: req.params.email});
+    }
+    console.log(bookingData);
+    res.status(200).json(bookingData);
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error: err.message,
+    });
+  }
+};

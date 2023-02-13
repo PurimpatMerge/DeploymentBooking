@@ -44,7 +44,7 @@ const EditProfile = () => {
 
     <div className="bgedit bg-cover object-cover h-screen flex-col">
       <div className="justify-right mx-10 py-10">
-      <Link to='./Tracking.jsx'>
+      <Link to='/tracking'>
         <Button className="bg-blue-500" type="primary">Tracking</Button>
       </Link>
       </div>

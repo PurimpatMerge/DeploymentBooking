@@ -10,6 +10,7 @@ import { showAlertFillter } from "../../components/alertMessage.js";
 
 import { ReactNotifications } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
+import { Image } from 'antd';
 
 const NewHotel = () => {
   const [files, setFiles] = useState("");
@@ -74,7 +75,7 @@ const NewHotel = () => {
         </div>
         <div className="bottom">
           <div className="left">
-            <img
+            <Image
               src={
                 files
                   ? URL.createObjectURL(files[0])

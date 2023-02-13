@@ -10,6 +10,7 @@ import Login from "./pages/login/Login";
 import Register from "./pages/login/register";
 import ForgotPassword from "./pages/login/forgotPassword";
 import EditProfile from "./pages/Profile/editProfile";
+import Tracking from "./pages/Profile/tracking";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/register" element={<Register/>}/>
         <Route path="/forgotPassword" element={<ForgotPassword/>}/>
         <Route path="/profile" element={<EditProfile/>}/>
+        <Route path="/tracking" element={<Tracking/>}/>
       </Routes>
     </BrowserRouter>
   );
