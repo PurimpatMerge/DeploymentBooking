@@ -1,5 +1,8 @@
 import Booking from "../models/Booking.js";
 import DatesBook from "../models/DatesBook.js";
+import jwt from "jsonwebtoken";
+import * as nodemailer from "nodemailer";
+import express from "express";
 
 export const bookingUser = async (req, res) => {
   try {
@@ -30,7 +33,7 @@ export const bookingUser = async (req, res) => {
     res.status(200).json({
       success: true,
       data: savedBookingData,
-      dataBooked:savedBookingDataBooked,
+      dataBooked: savedBookingDataBooked,
     });
   } catch (error) {
     res.status(400).json({
@@ -58,15 +61,17 @@ export const GetbookingUser = async (req, res, next) => {
   }
 };
 
-
-
 export const Reject = async (req, res, next) => {
-  try {  
-    const bookingData = await Booking.findByIdAndUpdate(req.params.id, {
-      $set: { statusBooking: "reject" }
-    }, {
-      new: true
-    });
+  try {
+    const bookingData = await Booking.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: { statusBooking: "reject" },
+      },
+      {
+        new: true,
+      }
+    );
     console.log(bookingData.poolvillaId);
     //
     let dateBook = await DatesBook.findOne({ pvid: bookingData.poolvillaId });
@@ -95,7 +100,7 @@ export const Reject = async (req, res, next) => {
     res.status(200).json({
       success: true,
       data: bookingData,
-      dataReject:savedBookingDataBooked,
+      dataReject: savedBookingDataBooked,
     });
   } catch (err) {
     return res.status(500).json({
@@ -105,14 +110,17 @@ export const Reject = async (req, res, next) => {
   }
 };
 
-
 export const Approve = async (req, res, next) => {
-  try {  
-    const bookingData = await Booking.findByIdAndUpdate(req.params.id, {
-      $set: { statusBooking: "Approve" }
-    }, {
-      new: true
-    });
+  try {
+    const bookingData = await Booking.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: { statusBooking: "Approve" },
+      },
+      {
+        new: true,
+      }
+    );
     let dateBook = await DatesBook.findOne({ pvid: bookingData.poolvillaId });
     if (!dateBook) {
       dateBook = new DatesBook({ pvid: bookingData.poolvillaId, events: [] });
@@ -135,11 +143,47 @@ export const Approve = async (req, res, next) => {
       }
     }
     const savedBookingDataBooked = await dateBook.save();
+    // send email
 
+    console.log(bookingData.bookingDates);
+    console.log(bookingData.bookingTotalPrice);
+
+    const transporter = nodemailer.createTransport({
+      service: "hotmail",
+      auth: {
+        user: "mergeofficial@hotmail.com",
+        pass: "qgsfqivlbbsovqhu",
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
+
+    const mailOptions = {
+      from: "mergeofficial@hotmail.com",
+      to: bookingData.email,
+      subject: "Booking with Merge Poolvilla ",
+      text: `ยืนยันการจอง ${bookingData.poolvillaName} ในวันที่:
+    
+    ${bookingData.bookingDates.map((event) => `${event.day} : ฿${event.price}`).join("\n")}
+    
+    รวมทั้งหมด: ฿${bookingData.bookingTotalPrice}
+    
+    ขอบคุณที่ทำการจองกับ Merge Poolvilla`,
+    };
+    
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
     res.status(200).json({
       success: true,
       data: bookingData,
-      dataReject:savedBookingDataBooked,
+      dataReject: savedBookingDataBooked,
     });
   } catch (err) {
     return res.status(500).json({
@@ -151,13 +195,15 @@ export const Approve = async (req, res, next) => {
 
 export const MyBooking = async (req, res, next) => {
   try {
-    const bookingDataByUsername = await Booking.find({username: req.params.username});
+    const bookingDataByUsername = await Booking.find({
+      username: req.params.username,
+    });
 
     let bookingData;
     if (bookingDataByUsername.length > 0) {
       bookingData = bookingDataByUsername;
     } else {
-      bookingData = await Booking.find({email: req.params.email});
+      bookingData = await Booking.find({ email: req.params.email });
     }
     console.log(bookingData);
     res.status(200).json(bookingData);
