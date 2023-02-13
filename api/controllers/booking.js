@@ -1,8 +1,7 @@
 import Booking from "../models/Booking.js";
 import DatesBook from "../models/DatesBook.js";
-import jwt from "jsonwebtoken";
 import * as nodemailer from "nodemailer";
-import express from "express";
+
 
 export const bookingUser = async (req, res) => {
   try {
@@ -176,9 +175,7 @@ export const Approve = async (req, res, next) => {
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         console.log(error);
-      } else {
-        console.log("Email sent: " + info.response);
-      }
+      } 
     });
     res.status(200).json({
       success: true,

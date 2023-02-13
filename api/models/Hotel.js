@@ -109,6 +109,9 @@ const HotelSchema = new mongoose.Schema({
   elseDes: {
     type: String,
   },
+  views: {
+    type: Number,
+  },
 });
 
 export default mongoose.model("Hotel", HotelSchema);

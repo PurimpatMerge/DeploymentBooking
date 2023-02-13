@@ -1,6 +1,7 @@
 import express from "express";
 import {bookingUser,GetbookingUser,Reject,Approve,MyBooking } from "../controllers/booking.js";
-// import { verifyAdmin } from "../utils/verifyToken.js";
+
+import { verifyAdmin } from "../utils/verifyToken.js";
 const router = express.Router();
 
 
@@ -9,12 +10,12 @@ router.post("/confirm", bookingUser);
 router.get("/tracking/:username/:email", MyBooking);
 //UPDATE
 // router.put("/:id", updateUser);
-router.get("/admin", GetbookingUser);
+router.get("/admin", verifyAdmin,GetbookingUser);
 
 // //DELETE
-router.put("/reject/:id", Reject);
+router.put("/reject/:id",verifyAdmin, Reject);
 // router.delete("/:id",  deleteUser);
-router.put("/approve/:id", Approve);
+router.put("/approve/:id",verifyAdmin, Approve);
 
 // //GET
 // router.get("/:id", getUser);

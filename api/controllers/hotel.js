@@ -1,6 +1,32 @@
 import Hotel from "../models/Hotel.js";
 import Room from "../models/Room.js";
 
+export const counterView = async (req, res, next) => {
+  try {
+    const hotel = await Hotel.findById(req.params.id);
+    if (!hotel) {
+      return res.status(404).json({
+        success: false,
+        message: "Hotel not found."
+      });
+    }
+    if (!hotel.views) {
+      hotel.views = 1;
+    } else {
+      hotel.views += 1;
+    }
+    await hotel.save();
+    res.status(200).json({
+      success: true,
+      message: `Successfully added a view for hotel with id: ${req.params.id}`,
+      views: hotel.views
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+
 export const createHotel = async (req, res, next) => {
   const newHotel = new Hotel(req.body);
 
@@ -134,16 +160,16 @@ export const countByCity = async (req, res, next) => {
 //   }
 // };
 
-export const getHotelRooms = async (req, res, next) => {
-  try {
-    const hotel = await Hotel.findById(req.params.id);
-    const list = await Promise.all(
-      hotel.rooms.map((room) => {
-        return Room.findById(room);
-      })
-    );
-    res.status(200).json(list);
-  } catch (err) {
-    next(err);
-  }
-};
+// export const getHotelRooms = async (req, res, next) => {
+//   try {
+//     const hotel = await Hotel.findById(req.params.id);
+//     const list = await Promise.all(
+//       hotel.rooms.map((room) => {
+//         return Room.findById(room);
+//       })
+//     );
+//     res.status(200).json(list);
+//   } catch (err) {
+//     next(err);
+//   }
+// };

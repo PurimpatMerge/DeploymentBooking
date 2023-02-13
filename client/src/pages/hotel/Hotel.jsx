@@ -18,6 +18,8 @@ import Reserve from "../../components/reserve/Reserve";
 import MyCalendar from './calendar.jsx'
 import { useEffect } from 'react';
 import { Space, Spin } from 'antd';
+import axios from "axios";
+
 const Hotel = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
@@ -25,6 +27,7 @@ const Hotel = () => {
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
+ 
   const { data, loading, error } = useFetch(`/hotels/find/${id}`);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();

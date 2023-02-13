@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import "./searchItem.css";
-
+import axios from "axios";
 const SearchItem = ({ item }) => {
   const toKM = item?.distanceSea * 0.0001;
 
- 
+  const  handleClick = ()=>{
+   axios.put(`/hotels/view/${item._id}`);
+
+ }
   return (
     <div className="container mt-5 sm:mt-0">
       <div className=" bg-white bg-opacity-60 w-[350px] sm:w-[650px] sm:h-[260px] shadow-lg sm:flex  overflow-hidden rounded-lg duration-300 hover:scale-105">
@@ -32,7 +35,7 @@ const SearchItem = ({ item }) => {
           </div>
           <div className="float-right mx-5 my-5">
           <Link to={`/hotels/${item._id}`}>
-          <button type="button" className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">ดูรายละเอียด</button>
+          <button onClick={handleClick} type="button" className="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">ดูรายละเอียด</button>
           </Link>
           </div>
 

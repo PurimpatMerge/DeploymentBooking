@@ -4,19 +4,21 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
+import useFetch from "../../hooks/useFetch";
 
 const Widget = ({ type }) => {
-  let data;
+  const { data, loading, error } = useFetch(`/dashmerge/count`);
+  let dataMock;
 
   //temporary
-  const amount = 100;
   const diff = 20;
 
   switch (type) {
     case "user":
-      data = {
+      dataMock = {
         title: "USERS",
         isMoney: false,
+        count:data?.countNonAdmin || 0,
         link: "See all users",
         icon: (
           <PersonOutlinedIcon
@@ -29,11 +31,12 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "order":
-      data = {
-        title: "ORDERS",
+    case "Booking":
+      dataMock = {
+        title: "BOOKING ",
         isMoney: false,
-        link: "View all orders",
+        count:data?.approve || 0,
+        link: "View all booking",
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -45,10 +48,11 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "earning":
-      data = {
+    case "Total":
+      dataMock = {
         title: "EARNINGS",
         isMoney: true,
+        count:data?.totalBookingPrice || 0,
         link: "View net earnings",
         icon: (
           <MonetizationOnOutlinedIcon
@@ -58,10 +62,11 @@ const Widget = ({ type }) => {
         ),
       };
       break;
-    case "balance":
-      data = {
-        title: "BALANCE",
-        isMoney: true,
+    case "Pool Villa":
+      dataMock = {
+        title: "POOL VILLA",
+        isMoney: false,
+        count:data?.poolVilla || 0,
         link: "See details",
         icon: (
           <AccountBalanceWalletOutlinedIcon
@@ -81,18 +86,18 @@ const Widget = ({ type }) => {
   return (
     <div className="widget">
       <div className="left">
-        <span className="title">{data.title}</span>
+        <span className="title">{dataMock.title}</span>
         <span className="counter">
-          {data.isMoney && "$"} {amount}
+          {dataMock.isMoney && "฿"} {dataMock.count}
         </span>
-        <span className="link">{data.link}</span>
+        <span className="link">{dataMock.link}</span>
       </div>
       <div className="right">
-        <div className="percentage positive">
+        {/* <div className="percentage positive">
           <KeyboardArrowUpIcon />
           {diff} %
-        </div>
-        {data.icon}
+        </div> */}
+        {dataMock.icon}
       </div>
     </div>
   );

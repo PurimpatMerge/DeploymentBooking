@@ -6,7 +6,7 @@ import usersRoute from "./routes/users.js";
 import hotelsRoute from "./routes/hotels.js";
 import calendarRoute from "./routes/datesBook.js";
 import bookingRoute from "./routes/booking.js";
-// import roomsRoute from "./routes/rooms.js";
+import dashRoute from "./routes/dash.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -37,8 +37,8 @@ app.use("/api/users", usersRoute);
 app.use("/api/hotels", hotelsRoute);
 app.use("/api/datesBook", calendarRoute);
 app.use("/api/booking", bookingRoute);
+app.use("/api/dashmerge", dashRoute);
 
-// app.use("/api/rooms", roomsRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
