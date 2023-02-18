@@ -41,6 +41,7 @@ const MyCalendar = (props) => {
       [e.target.id]: e.target.value,
     }));
   };
+  console.log(info);
   const handleEditEvent = () => {
     // setInfo({ start: formattedDate, end: formattedDate });
     setIsEditing(true);

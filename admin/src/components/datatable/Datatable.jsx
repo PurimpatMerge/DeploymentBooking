@@ -1,14 +1,15 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 // import { userColumns, userRows } from "../../datatablesource";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
-import { Image } from "antd";
+import { Dropdown, Image } from "antd";
 
 import { showAlertDelete } from "../../components/alertMessage.js";
 import { height } from "@mui/system";
+import Home from "../../pages/home/Home";
 
 const Datatable = ({ columns = [] }) => {
   const location = useLocation();
@@ -19,7 +20,7 @@ const Datatable = ({ columns = [] }) => {
   let fetchUrl;
   switch (path) {
     case "users":
-      fetchUrl = `/${path}`;
+      fetchUrl = `/${path}`; 
       break;
     case "hotels":
       fetchUrl = `/${path}/admin`;
@@ -238,3 +239,4 @@ Datatable.defaultProps = {
 };
 
 export default Datatable;
+
