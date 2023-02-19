@@ -85,7 +85,7 @@
 
 .date {
   position: absolute !important;
-  top: 50px !important;
+  top: 70px !important;
   z-index: 2 !important;
 }
 
@@ -129,11 +129,11 @@
 }
 
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 820px){
   .date {
     position: absolute !important;
-    top: 50px !important;
-    right: 50px !important;
+    top: 165px !important;
+    right: 5px !important;
     z-index: 2 !important;
   }
 

@@ -129,14 +129,8 @@ if(!friPrice && !satPrice && !sunPrice ){
   const items = steps.map((item) => ({ key: item.title, title: item.title }));
 
   return (
-    <div className="reserve z-20 ">
-      <div className="rContainer">
-        <FontAwesomeIcon
-          icon={faCircleXmark}
-          className="rClose"
-          onClick={() => setOpen(false)}
-        />
-        <div>
+    <div className=" z-20  ">
+      
           {/* Step */}
           <>
             <Steps current={current} items={items} />
@@ -158,8 +152,8 @@ if(!friPrice && !satPrice && !sunPrice ){
             </div>
           </>
           {/* Step */}
-        </div>
-      </div>
+       
+      
     </div>
   );
 };

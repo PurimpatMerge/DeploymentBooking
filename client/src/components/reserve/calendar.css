@@ -1,0 +1,18 @@
+.ant-picker-cell
+ {
+    height: 10px;
+
+}
+.ant-picker-cell-in-view  {
+    height: 10px;
+    border: 1px solid #d9d9d9;
+  }
+ .ant-picker-cell-today  {
+    height: 10px;
+  }
+ .ant-picker-cell-selected {
+    height: 10px;
+  }
+  .td{
+    height: 10px;
+  }

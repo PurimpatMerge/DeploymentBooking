@@ -10,7 +10,7 @@ import Login from "./pages/login/Login";
 import Register from "./pages/login/register";
 import ForgotPassword from "./pages/login/forgotPassword";
 import EditProfile from "./pages/Profile/editProfile";
-import Tracking from "./pages/Profile/tracking";
+import Tracking from "./pages/Profile/Tracking";
 
 function App() {
   return (

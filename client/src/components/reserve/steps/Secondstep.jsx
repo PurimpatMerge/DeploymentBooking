@@ -15,21 +15,40 @@ import { Image } from 'antd';
 
 
 const Secondstep = (props) => {
-  const { bookingTotalPrice, bookingDates,id , poolvillaName} = props;
+  const { bookingTotalPrice, bookingDates, id, poolvillaName } = props;
   const [info, setInfo] = useState({});
   const [inputError, setInputError] = useState({});
   const { user } = useContext(AuthContext);
   const { data, loading, error } = useFetch(`/users/${user._id}`);
 
-    // UploadImage
-    const [files, setFiles] = useState("");
 
-  
-    // End UploadImage
-    
-    const handleChange = (e) => {
-      setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-    };
+  const formattedDates = bookingDates.map((date) => {
+    const [, dateString, price] = date.match(/{Day: ([^}]+) Price: (\d+)}/);
+    const parsedDate = new Date(dateString);
+    const options = { day: 'numeric', month: 'short', year: 'numeric' };
+    const formattedDate = parsedDate.toLocaleDateString('en-US', options);
+    return `${formattedDate} Price: ${price}`;
+  });
+
+  const BookingDatesList = () => {
+    return (
+      <>
+        {formattedDates.map((date) => (
+          <p>{date}</p>
+        ))}
+      </>
+    );
+  };
+
+  // UploadImage
+  const [files, setFiles] = useState("");
+
+
+  // End UploadImage
+
+  const handleChange = (e) => {
+    setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  };
 
   const handleClick = async (e) => {
     try {
@@ -68,16 +87,16 @@ const Secondstep = (props) => {
 
 
       const bookingDetail = {
-        poolvillaName:poolvillaName,
+        poolvillaName: poolvillaName,
         bookingTotalPrice: bookingTotalPrice,
         bookingDates: bookingDatesDone,
         statusBooking: "pending",
         ...info,
-        slip:list,
-        poolvillaId:id
+        slip: list,
+        poolvillaId: id
       };
-       
-        await axios.post("/booking/confirm", bookingDetail);
+
+      await axios.post("/booking/confirm", bookingDetail);
       const res = "pass";
       showAlertFillter(res);
       //   setTimeout(() => {
@@ -93,9 +112,13 @@ const Secondstep = (props) => {
   return (
     <div className="bg-white shadow-lg  p-4 rounded-md">
       <ReactNotifications />
-      <div className="w-[300px] sm:w-[400px] md:w-[600px] lg:w-[800px]">
-        Total: {bookingTotalPrice}<div>
-          Date: {bookingDates} {poolvillaName}
+      <div className="w-full grid justify-items-center ">
+        <div>
+          {poolvillaName}
+          <div>
+            <BookingDatesList />
+            Total: {bookingTotalPrice}
+          </div>
           {profile.map((input) => (
             <form className="flex flex-col mt-4 ">
               <label>{input.label}</label>
@@ -137,20 +160,20 @@ const Secondstep = (props) => {
               <input hidden accept="image/*" type="file" onChange={(e) => setFiles(e.target.files)} />
             </label>
 
-  
-          </div>
-          <div className="flex my-1  justify-center">
-        
-              <Image width={250} className="sm:w-36  h-20 sm:h-36 rounded-lg" src={
-                files
-                  ? URL.createObjectURL(files[0])
-                  : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-              }
-              alt="" />
-       
 
           </div>
-          
+          <div className="flex my-1  justify-center">
+
+            <Image width={250} className="sm:w-36  h-20 sm:h-36 rounded-lg" src={
+              files
+                ? URL.createObjectURL(files[0])
+                : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+            }
+              alt="" />
+
+
+          </div>
+
 
           <button
             type="submit"

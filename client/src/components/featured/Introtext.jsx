@@ -5,7 +5,7 @@ import callcenter from '../../photo/call-center.png'
 import team from '../../photo/team.png'
 const Introtext = () => {
     return (
-        <div className="container mx-auto mt-32">
+        <div className="container mx-auto mt-32 mb-5 py-20 -z-10">
             <div className="lg:flex justify-between gap-2">
                 <div className="flex my-2 bg-white shadow-lg rounded-md p-5">
                     <img src={poolicon} className="object-scale-down w-32" alt="poolicon" />

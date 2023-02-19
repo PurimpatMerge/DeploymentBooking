@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 import { Image } from "antd";
-
+// import { Button } from 'antd';
 import { showAlertDelete } from "../../components/alertMessage.js";
 import { height } from "@mui/system";
-
+import Button from '@mui/material/Button';
 const Datatable = ({ columns = [] }) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
@@ -171,18 +171,20 @@ const Datatable = ({ columns = [] }) => {
         return (
           <div className="cellAction">
             <div className="approveReject">
-              <button
+              <Button type="primary"
+              
                 className="approveButton"
                 onClick={() => handleApprove(params.row._id)}
               >
                 Approve
-              </button>
-              <button
+              </Button>
+              <Button type="primary"
+              danger
                 className="rejectButton"
                 onClick={() => handleReject(params.row._id)}
               >
                 Reject
-              </button>
+              </Button>
             </div>
           </div>
         );
@@ -201,7 +203,9 @@ const Datatable = ({ columns = [] }) => {
             </Link>
           </div>
           <div>
+            {/* search */}
           <form onSubmit={handleSearch}>
+          <Button variant="outlined">Outlined</Button>
         <input
           type="text"
           value={query}

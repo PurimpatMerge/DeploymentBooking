@@ -16,8 +16,7 @@
 
 .bookNow {
   position: absolute;
-  top: 10px;
-  right: 0;
+  
   border: none;
   padding: 10px 20px;
   background-color: #0071c2;
@@ -117,4 +116,9 @@
   font-size: 50px;
   color: lightgray;
   cursor: pointer;
+}
+
+.woodtable{
+  background-image: url("../../photo/woodtable.jpg");
+
 }

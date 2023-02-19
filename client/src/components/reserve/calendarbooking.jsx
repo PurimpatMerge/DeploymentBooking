@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Calendar as AntCalendar, Popover } from "antd";
 import moment from "moment";
 import useFetch from "../../hooks/useFetch";
-
+import './calendar.css'
 const EventDetails = ({ event }) => (
   <div>
     <h3>{event.title}</h3>
@@ -65,7 +65,7 @@ const MyCalendar = (props) => {
           trigger="click"
           onOpenChange
         >
-          <div style={{ background: `#${eventToShow.color}` }}>
+          <div className="" style={{ background: `#${eventToShow.color}` }}>
             {eventToShow.title === "จอง"
               ? eventToShow.title
               : eventToShow.price}
@@ -75,7 +75,7 @@ const MyCalendar = (props) => {
     }
 
     return (
-      <div className="ant-calendar-date">
+      <div className="ant-calendar-date ">
         {moment(value.toDate()).format("dddd") === "Friday" && friPrice
           ? friPrice
           : moment(value.toDate()).format("dddd") === "Saturday" && satPrice
@@ -89,6 +89,8 @@ const MyCalendar = (props) => {
 
   return (
     <AntCalendar
+   
+    fullscreen={false}
       onChange={(value) => setMonth(value)}
       dateCellRender={dateCellRender}
       monthCellRender={monthCellRender}

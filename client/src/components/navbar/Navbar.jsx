@@ -31,14 +31,16 @@ const Navbar = () => {
     }
   }
   return (
-    <div className="bg-[#2e1c2e] py-5">
+    <div className="bg-[#2C016D] py-5 shadow-lg">
       <div className="container mx-auto  flex justify-between">
+        <div className="border border-white p-2 rounded-md duration-300 hover:scale-125">
         <div className="my-auto">
           <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
-            <button className="font-semibold text-white text-xl tracking-tight duration-300 hover:scale-125 ">
+            <button className="font-semibold text-white text-xl tracking-tight duration-300 hover:scale-105 ">
               PoolVilla
             </button>
           </Link>
+        </div>
         </div>
         <div className="my-auto">
             {user ? (

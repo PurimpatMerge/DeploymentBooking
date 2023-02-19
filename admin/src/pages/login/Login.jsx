@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 // import { AuthContext } from "../../context/AuthContext";
 import "./login.scss";
-
+import { Input } from 'antd';
+import { Button, Space } from 'antd';
 const Login = () => {
   const [credentials, setCredentials] = useState({
     username: undefined,
@@ -40,25 +41,26 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
-      <div className="lContainer">
-        <input
+    <div className="login bg bg-cover">
+      <div className="lContainer ">
+        <h1>Admin System</h1>
+        <Input
           type="text"
           placeholder="username"
           id="username"
           onChange={handleChange}
           className="lInput"
         />
-        <input
+        <Input
           type="password"
           placeholder="password"
           id="password"
           onChange={handleChange}
           className="lInput"
         />
-        <button disabled={loading} onClick={handleClick} className="lButton">
+        <Button disabled={loading} onClick={handleClick} className="lButton">
           Login
-        </button>
+        </Button>
         {error && <span>{error.message}</span>}
       </div>
     </div>
