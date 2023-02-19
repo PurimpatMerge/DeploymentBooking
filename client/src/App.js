@@ -11,6 +11,7 @@ import Register from "./pages/login/register";
 import ForgotPassword from "./pages/login/forgotPassword";
 import EditProfile from "./pages/Profile/editProfile";
 import Tracking from "./pages/Profile/Tracking";
+import MyProfile from "./pages/Profile/myProfile";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/forgotPassword" element={<ForgotPassword/>}/>
         <Route path="/profile" element={<EditProfile/>}/>
         <Route path="/tracking" element={<Tracking/>}/>
+        <Route path="/myProfile" element={<MyProfile/>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -47,7 +47,7 @@ const Navbar = () => {
               <div >
 
                 <Link
-                  to="/profile"
+                  to="/myProfile"
                   style={{ color: "inherit", textDecoration: "none" }}
                 >
                   <button className="ml-5 text-white font-semibold text-xl tracking-tight duration-300 hover:scale-125">{user.username}</button>
