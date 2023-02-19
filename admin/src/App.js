@@ -13,6 +13,8 @@ import { hotelColumns, bookingColumns, userColumns } from "./datatablesource";
 import NewHotel from "./pages/newHotel/NewHotel";
 import EditHotel from "./pages/editHotel/EditHotel";
 import NewRoom from "./pages/newRoom/NewRoom";
+import ProfileAdmin from "./pages/profile/ProfileAdmin";
+import EditProfile from "./pages/profile/editProfile";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -123,6 +125,24 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <NewRoom  />
+                  </ProtectedRoute>
+                }
+              />
+            </Route>
+            <Route path="profile">
+              <Route
+                index
+                element={
+                  <ProtectedRoute>
+                    <ProfileAdmin/>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path=":id"
+                element={
+                  <ProtectedRoute>
+                    <EditProfile />
                   </ProtectedRoute>
                 }
               />
