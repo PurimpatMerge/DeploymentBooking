@@ -111,7 +111,7 @@ const Header = ({ type }) => {
                 </div>
                 {openDate && (
                   <DateRange
-                    className="date"
+                    className="date rounded-lg border border-gray-200 shadow-lg"
                     editableDateInputs={true}
                     onChange={(item) => setDates([item.selection])}
                     moveRangeOnFirstSelection={false}

@@ -139,11 +139,7 @@ if(!friPrice && !satPrice && !sunPrice ){
               {current < steps.length - 1 && (
                 <Button onClick={handleBoth}>Next</Button>
               )}
-              {current === steps.length - 1 && (
-                <Button onClick={() => message.success("Processing complete!")}>
-                  Done
-                </Button>
-              )}
+             
               {current > 0 && (
                 <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
                   Previous

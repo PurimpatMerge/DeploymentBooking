@@ -3,7 +3,9 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import { MenuProps } from 'antd';
+import { Menu } from 'antd';
+import React, { useState } from 'react';
 const Navbar = () => {
   const { user } = useContext(AuthContext);
 
@@ -30,61 +32,86 @@ const Navbar = () => {
       console.log(err);
     }
   }
+
+
+  const items = [
+    {
+      label: `${user?.username}`,
+      key: 'SubMenu',
+      children: [
+        {
+          label: 'Profile',
+          key: 'myProfile',
+        },
+        {
+          label: 'Tracking',
+          key: 'tracking',
+        },
+        {
+          label: 'Logout',
+          key: '3',
+        },
+      ],
+    },
+  ];
+
+
+
+  const onClick = (e) => {
+    console.log(e.key)
+    if (e.key !== '3') {
+      window.location.href = `/${e.key}`;
+    } else {
+      handlelogout()
+    }
+
+
+  };
+
   return (
     <div className="bg-[#2C016D] py-5 shadow-lg">
       <div className="container mx-auto  flex justify-between">
         <div className="border border-white p-2 rounded-md duration-300 hover:scale-125">
-        <div className="my-auto">
-          <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
-            <button className="font-semibold text-white text-xl tracking-tight duration-300 hover:scale-105 ">
-              PoolVilla
-            </button>
-          </Link>
+          <div className="my-auto">
+            <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
+              <button className="font-semibold text-white text-xl tracking-tight duration-300 hover:scale-105 ">
+                PoolVilla
+              </button>
+            </Link>
+          </div>
         </div>
-        </div>
         <div className="my-auto">
-            {user ? (
-              <div >
 
-                <Link
-                  to="/myProfile"
-                  style={{ color: "inherit", textDecoration: "none" }}
-                >
-                  <button className="ml-5 text-white font-semibold text-xl tracking-tight duration-300 hover:scale-125">{user.username}</button>
-                </Link>
-                <button
-                  className="inline-block  text-sm px-4 ml-5 py-2 leading-none border rounded text-white border-white hover:border-transparent duration-500 hover:scale-125  hover:text-indigo-500 hover:bg-white mt-4 lg:mt-0"
-                  onClick={() => handlelogout()}
-                >
-                  logout
+          {user ? (
+            <div >
+              <Menu onClick={onClick} style={{ fontSize: '20px', color: '#ffffff' }} className="bg-transparent  tracking-tight   " mode="horizontal" items={items} />
+            </div>
+          ) : (
+            <div className="">
+              <Link
+                to="/register"
+                style={{ color: "inherit", textDecoration: "none" }}
+              >
+                <button className="inline-block  text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent duration-500 hover:text-indigo-500 hover:scale-125 hover:bg-white mt-4 lg:mt-0">
+                  Register
                 </button>
-              </div>
-            ) : (
-              <div className="">
-                <Link
-                  to="/register"
-                  style={{ color: "inherit", textDecoration: "none" }}
-                >
-                  <button className="inline-block  text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent duration-500 hover:text-indigo-500 hover:scale-125 hover:bg-white mt-4 lg:mt-0">
-                    Register
-                  </button>
-                </Link>
-                <Link
-                  to="/login"
-                  style={{ color: "inherit", textDecoration: "none" }}
-                >
-                  <button className="inline-block  text-sm px-4 ml-5 py-2 leading-none border rounded text-white border-white hover:border-transparent duration-500 hover:scale-125  hover:text-indigo-500 hover:bg-white mt-4 lg:mt-0">
-                    Login
-                  </button>
-                </Link>
-              </div>
-            )}
-          
+              </Link>
+              <Link
+                to="/login"
+                style={{ color: "inherit", textDecoration: "none" }}
+              >
+                <button className="inline-block  text-sm px-4 ml-5 py-2 leading-none border rounded text-white border-white hover:border-transparent duration-500 hover:scale-125  hover:text-indigo-500 hover:bg-white mt-4 lg:mt-0">
+                  Login
+                </button>
+              </Link>
+            </div>
+          )}
+
         </div>
       </div>
 
 
-      
+
     </div>
   );
 };

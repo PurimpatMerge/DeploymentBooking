@@ -89,7 +89,7 @@ const MyCalendar = (props) => {
 
   return (
     <AntCalendar
-   
+   className="border border-gray-300"
     fullscreen={false}
       onChange={(value) => setMonth(value)}
       dateCellRender={dateCellRender}

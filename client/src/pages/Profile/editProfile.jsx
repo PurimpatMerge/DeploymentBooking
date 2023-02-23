@@ -11,6 +11,8 @@ import "../Profile/editProfile.css"
 import { ReactNotifications } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import { Input } from 'antd';
+import Navbar from "../../components/navbar/Navbar";
+import { Divider } from 'antd';
 const EditProfile = () => {
   const { user } = useContext(AuthContext);
   const { data, loading, error } = useFetch(`/users/${user._id}`);
@@ -38,30 +40,20 @@ const EditProfile = () => {
 
 
   return (
-
-
-
-
-    <div className="bgedit bg-cover object-cover h-screen flex-col">
-      <div className="justify-right mx-10 py-10">
-      <Link to='/tracking'>
-        <Button className="bg-blue-500" type="primary">Tracking</Button>
-      </Link>
-      </div>
+    <div className="bgedit bg-cover object-cover min-h-screen flex-col">
+      <Navbar />
       <ReactNotifications />
-      <div className="container mx-auto p-10  sm:w-5/12 bg-white bg-opacity-60  rounded-lg ">
+      <div className="container mt-32  mx-auto p-10  lg:w-5/12  backdrop-blur-sm bg-white/30 border border-gray-400  rounded-lg ">
         <div className="w-full  mx-auto my-12 ">
-          <div className="flex ">
-            <h1 className="text-2xl font-extrabold text-black mx-auto">Edit Profile</h1>
-          </div>
-
-          <form className="flex flex-col mt-4 ">
+          <h1 className="text-4xl flex font-bold text-black justify-center">Edit Profile</h1>
+          <Divider />
+          <form >
             {profile.map((input) => (
-              <div className="">
-                <div><p>{input.label}</p></div>
-
-                <div className="formInput" key={input.id}>
-
+              <div className="grid grid-cols-12">
+                <div className="col-span-4 sm:col-span-2 mt-5">
+                  <span >{input.label}:</span>
+                </div>
+                <div className="formInput col-span-8 sm:col-span-10 mt-5" key={input.id}>
                   <Input
                     className="px-4 py-3 w-full  text-sm"
                     contenteditable="true"
@@ -69,13 +61,13 @@ const EditProfile = () => {
                     onChange={handleChange}
                     type={input.type}
                     placeholder={`${data[input.id]}`}
-
                   />
                 </div>
               </div>
-
             ))}
-            <button className="mt-4  py-3  leading-6 text-base rounded-md border border-transparent  bg-blue-500 text-blue-100 hover:text-white focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer inline-flex items-center w-full justify-center font-medium focus:outline-none" onClick={handleClick}>Send</button>
+            <div className="flex justify-end mt-10">
+              <button className="bg-green-600 text-white font-semibold py-3 px-10 rounded-md  tracking-tight duration-300 hover:scale-105" onClick={handleClick}>Send</button>
+            </div>
           </form>
         </div>
       </div>

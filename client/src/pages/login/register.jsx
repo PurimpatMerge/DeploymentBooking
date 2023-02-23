@@ -6,7 +6,7 @@ import { showAlertFillter,showErrorAlertFillter} from "../../components/alertMes
 import { TextField } from "@material-ui/core";
 import { userInputs } from "../../formSource";
 import "../Profile/editProfile.css"
-
+import { Divider } from 'antd';
 const Register = () => {
   
   const [info, setInfo] = useState({});
@@ -41,11 +41,10 @@ const Register = () => {
   return (
     <div className="bgedit bg-cover object-cover h-screen py-10 sm:py-20">
        <ReactNotifications />
-      <div className="container mx-auto py-4 px-10 sm:w-5/12 bg-white bg-opacity-50  rounded-lg">
+      <div className="container mx-auto py-4 px-10 sm:w-5/12 backdrop-blur-sm bg-white/30 border border-gray-400  rounded-lg">
         <div className="w-full  mx-auto my-12 ">
-          <div className="flex ">
-            <h1 className="text-2xl font-extrabold text-black mx-auto">Register</h1>
-          </div>
+        <h1 className="text-4xl flex font-bold text-black justify-center">Register</h1>
+          <Divider />
           {userInputs.map((input) => (
             <form className="flex flex-col mt-4 ">
               <label>{input.label}</label>
@@ -74,13 +73,15 @@ const Register = () => {
               
             </form>
           ))}
+          <div className="flex justify-center">
           <button
             type="submit"
             onClick={handleClick}
-            className="mt-4  py-3  leading-6 text-base rounded-md border border-transparent  bg-blue-500 text-blue-100 hover:text-white focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer inline-flex items-center w-full justify-center font-medium focus:outline-none"
+            className="duration-500 hover:scale-110 mt-4 px-20 py-3 w-[200px] leading-6 text-base rounded-md border border-transparent   bg-blue-500 text-blue-100 hover:text-white focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer inline-flex items-center  justify-center font-medium focus:outline-none"
           >
             Register
           </button>
+          </div>
           {/* <div className="flex flex-col items-center mt-5">
             <p className="mt-1 text-xs font-light text-gray-500 ">
               Register already?<a class="ml-1 font-medium text-blue-400 hover:text-violet-400 hover:cursor-pointer duration-200 ">Sign in now</a>

@@ -10,7 +10,7 @@ import { profile } from "../../../formSource";
 import { AuthContext } from "../../../context/AuthContext";
 import useFetch from "../../../hooks/useFetch";
 import { Image } from 'antd';
-
+import { Divider } from 'antd';
 
 
 
@@ -112,22 +112,19 @@ const Secondstep = (props) => {
   return (
     <div className="bg-white shadow-lg  p-4 rounded-md">
       <ReactNotifications />
-      <div className="w-full grid justify-items-center ">
-        <div>
-          {poolvillaName}
-          <div>
-            <BookingDatesList />
-            Total: {bookingTotalPrice}
-          </div>
+      <div className="w-full grid gap-5 grid-cols-1 lg:grid-cols-2 justify-items-center ">
+        <div className="bg-white w-full p-5 rounded-lg">
+          <Divider />
+          <p className="text-xl">ข้อมูลส่วนตัว</p>
           {profile.map((input) => (
-            <form className="flex flex-col mt-4 ">
-              <label>{input.label}</label>
+            <form className="grid text-left mt-5 grid-cols-12">
+              <p className="col-span-3 sm:col-span-2">{input.label}:</p>
               <TextField
                 error={inputError[input.id]}
                 helperText={
                   inputError[input.id] ? "This field is required" : null
                 }
-                className="px-4 py-3 w-full"
+                className="px-4 py-3 w-full col-span-9 sm:col-span-10"
                 variant="outlined"
                 InputProps={{
                   className: "bg-white "
@@ -144,14 +141,21 @@ const Secondstep = (props) => {
                   });
                 }}
               />
-
             </form>
           ))}
-
-
-
+          <Divider />
+          <p className="text-xl">ข้อมูลการจอง</p>
+          <div className="text-left">
+            <span className="sm:text-base">location:</span> <span className="text-base">{poolvillaName}</span>
+            <p className="sm:text-base"><BookingDatesList /></p>
+            <p className="sm:text-base"> Total: {bookingTotalPrice}</p>
+          </div>
+        </div>
+        {/* cols2 */}
+        <div className="w-full p-5 pb-[100px] lg:pb-[100px] rounded-lg">
+        <Divider />
+          <p className="text-xl">แนบสลิป</p>
           <div className="flex my-5 justify-center">
-
             <label className="w-64 flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-blue-600">
               <svg className="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                 <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
@@ -159,29 +163,24 @@ const Secondstep = (props) => {
               <span className="mt-2 text-base leading-normal">Select a file</span>
               <input hidden accept="image/*" type="file" onChange={(e) => setFiles(e.target.files)} />
             </label>
-
-
           </div>
           <div className="flex my-1  justify-center">
-
             <Image width={250} className="sm:w-36  h-20 sm:h-36 rounded-lg" src={
               files
                 ? URL.createObjectURL(files[0])
                 : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
             }
               alt="" />
-
-
           </div>
-
-
+          <div className="absolute bottom-[150px] right-[60px]">
           <button
             type="submit"
             onClick={handleClick}
-            className="mt-4  py-3  leading-6 text-base rounded-md border border-transparent  bg-blue-500 text-blue-100 hover:text-white focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer inline-flex items-center w-full justify-center font-medium focus:outline-none"
+            className="mt-4  py-3  leading-6 hover:bg-transparent hover:border-green-700 hover:text-green-700 duration-200 hover:scale-105 text-base rounded-md border border-transparent p-5 bg-purple-800 text-white  cursor-pointer inline-flex items-center w-full justify-center font-medium "
           >
             Confirm Booking
           </button>
+          </div>
         </div>
       </div>
     </div>

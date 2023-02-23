@@ -9,6 +9,7 @@ import { Image } from "antd";
 // import { Button } from 'antd';
 import { showAlertDelete } from "../../components/alertMessage.js";
 import { height } from "@mui/system";
+import SearchIcon from '@mui/icons-material/Search';
 import Button from '@mui/material/Button';
 const Datatable = ({ columns = [] }) => {
   const location = useLocation();
@@ -19,7 +20,7 @@ const Datatable = ({ columns = [] }) => {
   let fetchUrl;
   switch (path) {
     case "users":
-      fetchUrl = `/${path}`; 
+      fetchUrl = `/${path}`;
       break;
     case "hotels":
       fetchUrl = `/${path}/admin`;
@@ -48,7 +49,7 @@ const Datatable = ({ columns = [] }) => {
         await axios.delete(`/${path}/${id}`);
         setList(list.filter((item) => item._id !== id));
         showAlertDelete();
-      } catch (err) {}
+      } catch (err) { }
     }
   };
   const handleReject = async (id) => {
@@ -59,7 +60,7 @@ const Datatable = ({ columns = [] }) => {
       try {
         await axios.put(`/${path}/reject/${id}`);
         showAlertDelete();
-      } catch (err) {}
+      } catch (err) { }
     }
   };
 
@@ -71,7 +72,7 @@ const Datatable = ({ columns = [] }) => {
       try {
         await axios.put(`/${path}/approve/${id}`);
         showAlertDelete();
-      } catch (err) {}
+      } catch (err) { }
     }
   };
 
@@ -172,14 +173,14 @@ const Datatable = ({ columns = [] }) => {
           <div className="cellAction">
             <div className="approveReject">
               <Button type="primary"
-              
+
                 className="approveButton"
                 onClick={() => handleApprove(params.row._id)}
               >
                 Approve
               </Button>
               <Button type="primary"
-              danger
+                danger
                 className="rejectButton"
                 onClick={() => handleReject(params.row._id)}
               >
@@ -204,15 +205,24 @@ const Datatable = ({ columns = [] }) => {
           </div>
           <div>
             {/* search */}
-          <form onSubmit={handleSearch}>
-          <Button variant="outlined">Outlined</Button>
-        <input
+            <form onSubmit={handleSearch}>
+
+              <div class="search">
+                <input type="text" class="searchTerm" value={query}
+                  onChange={(event) => setQuery(event.target.value)} placeholder="Search..." />
+                <button type="submit" class="searchButton">
+                  <SearchIcon className="text-sm" />
+                </button>
+              </div>
+
+              {/* <input
           type="text"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-        />
-        <button type="submit">Search</button>
-      </form>
+        /> 
+              <button type="submit">Search</button>
+              */}
+            </form>
           </div>
           <DataGrid
             className="datagrid"
