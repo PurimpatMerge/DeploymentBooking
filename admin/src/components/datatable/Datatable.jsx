@@ -173,19 +173,19 @@ const Datatable = ({ columns = [] }) => {
           <div className="cellAction">
             <div className="approveReject">
               <Button type="primary"
-
-                className="approveButton"
+                className="viewButton"
                 onClick={() => handleApprove(params.row._id)}
               >
                 Approve
               </Button>
+              
               <Button type="primary"
-                danger
-                className="rejectButton"
+                className="deleteButton "
                 onClick={() => handleReject(params.row._id)}
               >
                 Reject
               </Button>
+              
             </div>
           </div>
         );

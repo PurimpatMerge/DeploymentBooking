@@ -48,6 +48,19 @@ export const bookingColumns = [
   { field: "email", headerName: "Email", width: 150 },
   { field: "phone", headerName: "Phone", width: 100 },
   { field: "lineId", headerName: "Line ID", width: 100 },
-  { field: "statusBooking", headerName: "Status", width: 80 },
+  { 
+    field: "statusBooking",
+    headerName: "Status",
+    width: 80,
+    renderCell: (params) => (
+      <div style={{ color: 
+        params.value === 'Approve' ? '#228B22' : 
+        params.value === 'reject' ? '#FF0000' :
+        '#FFBF00'
+      }}>
+        {params.value}
+      </div>
+    ),
+  },
   { field: "bookingTotalPrice", headerName: "Total Price", width: 100 },
 ];

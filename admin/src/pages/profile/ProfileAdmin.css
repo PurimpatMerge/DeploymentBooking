@@ -1,0 +1,30 @@
+.container{
+    display: flex;
+    
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+.btn{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+.sidebar{
+    width: 275px;
+}
+
+.gap{
+    margin-top: 40px;
+}
+
+.center{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}

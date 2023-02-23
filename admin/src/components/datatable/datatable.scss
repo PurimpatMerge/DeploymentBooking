@@ -68,6 +68,7 @@
     }
     
     .deleteButton {
+      margin-left: 5px;
       padding: 2px 5px;
       border-radius: 5px;
       color: crimson;
@@ -116,4 +117,7 @@
   font-size: 20px;
 }
 
+.space{
+  margin-left: 10px;
+}
 /*Resize the wrap to see the search bar change!*/
