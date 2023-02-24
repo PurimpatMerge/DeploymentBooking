@@ -108,7 +108,6 @@ export const forgetPassword = async (req, res, next) => {
         console.log("Email sent: " + info.response);
       }
     });
-    // console.log(link);
     res.status(200).send(link);
   } catch (err) {
     next(err);
@@ -144,7 +143,6 @@ export const resetPasswordafter = async (req, res, next) => {
     if (!verify) {
       return res.status(403).send("Not verfied");
     }
-    // console.log(req.body.password);
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
     await User.updateOne(

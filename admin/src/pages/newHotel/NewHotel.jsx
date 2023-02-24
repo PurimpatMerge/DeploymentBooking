@@ -28,8 +28,6 @@ const NewHotel = () => {
   }
   };
 
-  console.log(files);
-
   const handleClick = async (e) => {
     e.preventDefault();
     try {

@@ -32,6 +32,8 @@ import 'aos/dist/aos.css';
 import { Button, Modal } from 'antd';
 import Iframe from 'react-iframe'
 import { Divider } from 'antd';
+import { ReactNotifications } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 
 import { faSwimmingPool, faLifeRing, faMicrophoneAlt, faPaw, faLightbulb, faSlidersH, faUtensilSpoon, faChessBoard, faWifi } from '@fortawesome/free-solid-svg-icons';
 const Hotel = () => {
@@ -115,6 +117,7 @@ const Hotel = () => {
   return (
     <div className="bg-gradient-to-b from-gray-600 via-purple-600 to-violet-600 overflow-hidden">
       <Navbar />
+      <ReactNotifications />
       <div className="container mx-auto">
         <div className="mt-10 mb-10">
           <div class="grid grid-rows-2 grid-flow-col gap-5 overflow-x-auto bg-slate-200 bg-center bg-cover   p-5 overflow-y-clip">

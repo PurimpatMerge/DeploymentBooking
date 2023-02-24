@@ -28,7 +28,6 @@ const NewRoom = () => {
     }
   };
 
-  console.log(info)
   return (
     <div className="new">
       <Sidebar />

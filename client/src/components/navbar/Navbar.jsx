@@ -58,14 +58,11 @@ const Navbar = () => {
 
 
   const onClick = (e) => {
-    console.log(e.key)
     if (e.key !== '3') {
       window.location.href = `/${e.key}`;
     } else {
       handlelogout()
     }
-
-
   };
 
   return (

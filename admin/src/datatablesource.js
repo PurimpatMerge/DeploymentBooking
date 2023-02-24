@@ -54,8 +54,8 @@ export const bookingColumns = [
     width: 80,
     renderCell: (params) => (
       <div style={{ color: 
-        params.value === 'Approve' ? '#228B22' : 
-        params.value === 'reject' ? '#FF0000' :
+        params.value === 'Approved' ? '#228B22' : 
+        params.value === 'Rejected' ? '#FF0000' :
         '#FFBF00'
       }}>
         {params.value}

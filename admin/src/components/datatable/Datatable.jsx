@@ -32,8 +32,6 @@ const Datatable = ({ columns = [] }) => {
       fetchUrl = `/`;
   }
   const { data, loading, error } = useFetch(fetchUrl);
-  console.log(data);
-
   useEffect(() => {
     setList(data);
   }, [data]);
@@ -66,7 +64,7 @@ const Datatable = ({ columns = [] }) => {
 
   const handleApprove = async (id) => {
     const confirmDelete = window.confirm(
-      "Are you sure you want to Approve booking this item?"
+      "Are you sure you want to Approved booking this item?"
     );
     if (confirmDelete) {
       try {

@@ -20,7 +20,6 @@ const New = ({ inputs, title }) => {
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
-  console.log(info);
   const handleClick = async (e) => {
     e.preventDefault();
     try {

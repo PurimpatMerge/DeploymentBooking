@@ -65,7 +65,7 @@ export const Reject = async (req, res, next) => {
     const bookingData = await Booking.findByIdAndUpdate(
       req.params.id,
       {
-        $set: { statusBooking: "reject" },
+        $set: { statusBooking: "Rejected" },
       },
       {
         new: true,
@@ -114,7 +114,7 @@ export const Approve = async (req, res, next) => {
     const bookingData = await Booking.findByIdAndUpdate(
       req.params.id,
       {
-        $set: { statusBooking: "Approve" },
+        $set: { statusBooking: "Approved" },
       },
       {
         new: true,
@@ -143,10 +143,6 @@ export const Approve = async (req, res, next) => {
     }
     const savedBookingDataBooked = await dateBook.save();
     // send email
-
-    console.log(bookingData.bookingDates);
-    console.log(bookingData.bookingTotalPrice);
-
     const transporter = nodemailer.createTransport({
       service: "hotmail",
       auth: {
@@ -202,7 +198,6 @@ export const MyBooking = async (req, res, next) => {
     } else {
       bookingData = await Booking.find({ email: req.params.email });
     }
-    console.log(bookingData);
     res.status(200).json(bookingData);
   } catch (err) {
     return res.status(500).json({

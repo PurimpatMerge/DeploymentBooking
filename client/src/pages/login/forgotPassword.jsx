@@ -26,17 +26,14 @@ const Login = () => {
     try {
       const a= await axios.post("/auth/forgetPassword", password);
       if(a.data === "This Email doesn't Exists"){
-        console.log(1);
        return showAlertEmail("Fail");
       }
-      console.log(a.data);
       const res = "pass";
       showAlertEmail(res);
       setTimeout(() => {
         window.location.href = '/';
       }, 3000);
     } catch (err) {
-      console.log(1);
       showAlertEmail("Fail");
     }
   };

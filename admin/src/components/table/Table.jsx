@@ -9,17 +9,6 @@ import Paper from "@mui/material/Paper";
 import useFetch from "../../hooks/useFetch";
 const List = () => {
   const { data, loading, error } = useFetch(`/dashmerge/mostbook`);
-  console.log(data);
-  // const data = [
-  //   {
-  //     id: 1143155,
-  //     poolvillaName: "Acer Nitro 5",
-  //     photo:
-  //       "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
-  //     views: "1 March",
-  //     count: 785,
-  //   },
-  // ];
   return (
     <TableContainer component={Paper} className="table">
       <Table sx={{ minWidth: 650 }} aria-label="simple table">

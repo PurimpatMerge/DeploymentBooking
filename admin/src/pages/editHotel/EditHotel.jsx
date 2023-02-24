@@ -27,7 +27,6 @@ const NewHotel = () => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  console.log(files);
   const handleClick = async (e) => {
     e.preventDefault();
     try {

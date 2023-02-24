@@ -8,16 +8,22 @@ import Secondstep from "./steps/Secondstep";
 import { Button, message, Steps, theme } from "antd";
 
 const Reserve = (props) => {
-  const { startPrice, friPrice, satPrice, sunPrice, poolvilla, setOpen, poolvillaName} =
-    props;
-let totalPrice;
-let datesBook;
+  const {
+    startPrice,
+    friPrice,
+    satPrice,
+    sunPrice,
+    poolvilla,
+    setOpen,
+    poolvillaName,
+  } = props;
+  let totalPrice;
+  let datesBook;
   const [bookingTotalPrice, setBookingTotalPrice] = useState("");
   const [bookingDates, setBookingDates] = useState([]);
-  
+
   const handleClick = async () => {
     try {
-    
       setBookingTotalPrice("");
       setBookingDates([]);
       function getCookie(cname) {
@@ -35,55 +41,54 @@ let datesBook;
         }
         return "";
       }
- 
+
       const userStartDate = getCookie("userStartDate");
       const userEndDate = getCookie("userEndDate");
       const formattedDate = userStartDate.replace(/\//g, "-");
       const formattedDateend = userEndDate.replace(/\//g, "-");
 
-     if(friPrice && satPrice && sunPrice){
-       const getBookData = await axios.get(
-         `/datesBook/bookingPoolvillaDate/${poolvilla}/${formattedDate}/${formattedDateend}/${startPrice}/${friPrice}/${satPrice}/${sunPrice}`
-         );
-         if (getBookData) {
-           totalPrice = getBookData.data.totalPrice;
-           datesBook = getBookData.data.datesBook;
-           
-           setBookingTotalPrice(totalPrice, ":totalPrice");
-           setBookingDates(datesBook.map((date) => `{Day: ${date.day} Price: ${date.price}}`));
-         }
-     }
+      if (friPrice && satPrice && sunPrice) {
+        const getBookData = await axios.get(
+          `/datesBook/bookingPoolvillaDate/${poolvilla}/${formattedDate}/${formattedDateend}/${startPrice}/${friPrice}/${satPrice}/${sunPrice}`
+        );
+        if (getBookData) {
+          totalPrice = getBookData.data.totalPrice;
+          datesBook = getBookData.data.datesBook;
 
+          setBookingTotalPrice(totalPrice, ":totalPrice");
+          setBookingDates(
+            datesBook.map((date) => `{Day: ${date.day} Price: ${date.price}}`)
+          );
+        }
+      }
 
+      if (!friPrice && !satPrice && !sunPrice) {
+        const getBookData = await axios.get(
+          `/datesBook/bookingPoolvillaDate/${poolvilla}/${formattedDate}/${formattedDateend}/${startPrice}`
+        );
+        if (getBookData) {
+          totalPrice = getBookData.data.totalPrice;
+          datesBook = getBookData.data.datesBook;
 
-if(!friPrice && !satPrice && !sunPrice ){
-  const getBookData = await axios.get(
-    `/datesBook/bookingPoolvillaDate/${poolvilla}/${formattedDate}/${formattedDateend}/${startPrice}`
-    );
-    if (getBookData) {
-  
-      console.log(getBookData);
-      totalPrice = getBookData.data.totalPrice;
-      datesBook = getBookData.data.datesBook;
-      
-      setBookingTotalPrice(totalPrice, ":totalPrice");
-      setBookingDates(datesBook.map((date) => `{Day: ${date.day} Price: ${date.price}}`));
-    }
-  }
-  
+          setBookingTotalPrice(totalPrice, ":totalPrice");
+          setBookingDates(
+            datesBook.map((date) => `{Day: ${date.day} Price: ${date.price}}`)
+          );
+        }
+      }
     } catch (err) {
       console.log(err);
     }
-    
   };
 
   useEffect(() => {
-    if(totalPrice && datesBook){
+    if (totalPrice && datesBook) {
       setBookingTotalPrice(totalPrice);
-      setBookingDates(datesBook.map((date) => `Day: ${date.day} Price: ${date.price}`));
+      setBookingDates(
+        datesBook.map((date) => `Day: ${date.day} Price: ${date.price}`)
+      );
     }
   }, [totalPrice, datesBook]);
-
 
   const steps = [
     {
@@ -95,7 +100,7 @@ if(!friPrice && !satPrice && !sunPrice ){
           satPrice={satPrice}
           sunPrice={sunPrice}
           poolvilla={poolvilla}
-         poolvillaName={poolvillaName}
+          poolvillaName={poolvillaName}
         />
       ),
     },
@@ -130,26 +135,24 @@ if(!friPrice && !satPrice && !sunPrice ){
 
   return (
     <div className=" z-20  ">
-      
-          {/* Step */}
-          <>
-            <Steps current={current} items={items} />
-            <div className="text-center ">{steps[current].content}</div>
-            <div style={{ marginTop: 24 }}>
-              {current < steps.length - 1 && (
-                <Button onClick={handleBoth}>Next</Button>
-              )}
-             
-              {current > 0 && (
-                <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
-                  Previous
-                </Button>
-              )}
-            </div>
-          </>
-          {/* Step */}
-       
-      
+    
+      {/* Step */}
+      <>
+        <Steps current={current} items={items} />
+        <div className="text-center ">{steps[current].content}</div>
+        <div style={{ marginTop: 24 }}>
+          {current < steps.length - 1 && (
+            <Button onClick={handleBoth}>Next</Button>
+          )}
+
+          {current > 0 && (
+            <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
+              Previous
+            </Button>
+          )}
+        </div>
+      </>
+      {/* Step */}
     </div>
   );
 };

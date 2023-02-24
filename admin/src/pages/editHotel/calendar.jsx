@@ -41,7 +41,6 @@ const MyCalendar = (props) => {
       [e.target.id]: e.target.value,
     }));
   };
-  console.log(info);
   const handleEditEvent = () => {
     // setInfo({ start: formattedDate, end: formattedDate });
     setIsEditing(true);
@@ -73,7 +72,6 @@ const MyCalendar = (props) => {
     if (!info.title || !info.price || !info.start || !info.end) {
       return alert("Make sure your edit and all fill have change");
     }
-    // console.log(info);
     await axios.put(`/datesBook/update/${poolvilla}`, info);
 
     setIsEditing(false);

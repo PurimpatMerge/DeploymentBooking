@@ -12,7 +12,6 @@ const Tracking = () => {
 
   const { data, loading, error } = useFetch(`/booking/tracking/${user.username}/${user.email}`);
   const [searchText, setSearchText] = useState('');
-  console.log(data);
   const columns = [
     {
       title: 'Poolvilla Name',
@@ -25,7 +24,7 @@ const Tracking = () => {
       key: 'statusBooking',
       render: statusBooking => (
         <>
-          {statusBooking === 'pending' && <Tag color="orange">Pending</Tag>}
+          {statusBooking === 'Pending' && <Tag color="orange">Pending</Tag>}
         </>
       ),
     },

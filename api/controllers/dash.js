@@ -75,11 +75,11 @@ export const dashChart = async (req, res, next) => {
 export const dashCounter = async (req, res, next) => {
   try {
     const poolVilla = await Hotel.countDocuments();
-    const pendingBookings = await Booking.countDocuments({ statusBooking: "pending" });
-    const approveBookings = await Booking.countDocuments({ statusBooking: "Approve" });
+    const pendingBookings = await Booking.countDocuments({ statusBooking: "Pending" });
+    const approveBookings = await Booking.countDocuments({ statusBooking: "Approved" });
     const totalBookingPrice = await Booking.aggregate([
         {
-          $match: { statusBooking: "Approve" }
+          $match: { statusBooking: "Approved" }
         },
         {
           $group: {

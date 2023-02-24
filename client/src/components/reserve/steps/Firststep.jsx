@@ -32,9 +32,6 @@ const Firststep = (props) => {
     document.cookie = `userEndDate=${userEndDate}; expires=${expireTime};`;
   })
 
-  // if(userStartDate && userEndDate){
-  // // console.log(userStartDate,userEndDate)
-  // }
   const [openDate, setOpenDate] = useState(false);
   return (
     <div className="bg-white shadow-lg  p-4 rounded-md grid grid-cols-1 lg:grid-cols-2">

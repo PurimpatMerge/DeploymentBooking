@@ -4,7 +4,7 @@ export function showAlertFillter(res) {
   return [
     Store.addNotification({
       title: res === "pass" ? "success" : "Failed",
-      message: res === "pass" ? "please reload page" : `${res}`,
+      message: res === "pass" ? "Thank for booking, send to email" : `${res}`,
       type: res === "pass" ? "success" : "danger",
       insert: "top",
       container: "top-right",
@@ -20,7 +20,6 @@ export function showAlertFillter(res) {
 export function showErrorAlertFillter(res) {
   const a = res.includes("duplicate");
   let message;
-  console.log(res);
   if (res === "valid phone") {
     message = "invalid phone number.";
   } else if (a) {
@@ -69,6 +68,24 @@ export function showAlertEmail(res) {
       message:
         res === "pass" ? "check your email" : `Wrong email`,
       type: res === "pass" ? "success" : "danger",
+      insert: "top",
+      container: "top-right",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 5000,
+        onScreen: true,
+      },
+    }),
+  ];
+}
+
+export function showAlertImage(res) {
+  return [
+    Store.addNotification({
+      title: "Failed",
+      message: "Insert slip",
+      type: "danger",
       insert: "top",
       container: "top-right",
       animationIn: ["animate__animated", "animate__fadeIn"],

@@ -14,7 +14,7 @@ export const userInputs = [
   {
     id: "lineId",
     label: "line",
-    type: "email",
+    type: "text",
     placeholder: "line-Id",
   },
   {
@@ -46,7 +46,7 @@ export const profile = [
   {
     id: "lineId",
     label: "line",
-    type: "email",
+    type: "text",
     placeholder: "line-Id",
   },
   {
@@ -73,7 +73,7 @@ export const userBooking = [
   {
     id: "lineId",
     label: "line",
-    type: "email",
+    type: "text",
     placeholder: "line-Id",
   },
   {
