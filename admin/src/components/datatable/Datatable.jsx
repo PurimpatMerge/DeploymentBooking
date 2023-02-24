@@ -7,7 +7,7 @@ import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 import { Image } from "antd";
 // import { Button } from 'antd';
-import { showAlertDelete } from "../../components/alertMessage.js";
+import { showAlertDelete,showAlertApproved } from "../../components/alertMessage.js";
 import { height } from "@mui/system";
 import SearchIcon from '@mui/icons-material/Search';
 import Button from '@mui/material/Button';
@@ -51,25 +51,25 @@ const Datatable = ({ columns = [] }) => {
     }
   };
   const handleReject = async (id) => {
-    const confirmDelete = window.confirm(
+    const reject = window.confirm(
       "Are you sure you want to delete this item?"
     );
-    if (confirmDelete) {
+    if (reject) {
       try {
         await axios.put(`/${path}/reject/${id}`);
-        showAlertDelete();
+        showAlertApproved();
       } catch (err) { }
     }
   };
 
   const handleApprove = async (id) => {
-    const confirmDelete = window.confirm(
+    const apporve = window.confirm(
       "Are you sure you want to Approved booking this item?"
     );
-    if (confirmDelete) {
+    if (apporve) {
       try {
         await axios.put(`/${path}/approve/${id}`);
-        showAlertDelete();
+        showAlertApproved();
       } catch (err) { }
     }
   };
@@ -197,9 +197,10 @@ const Datatable = ({ columns = [] }) => {
         <>
           <div className="datatableTitle">
             {path}
-            <Link to={`/${path}/new`} className="link">
+         { path !== "booking" ? <Link to={`/${path}/new`} className="link">
               Add New
             </Link>
+            :null}
           </div>
           <div>
             {/* search */}

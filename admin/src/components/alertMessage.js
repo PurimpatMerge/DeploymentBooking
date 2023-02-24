@@ -18,6 +18,23 @@ export function showAlertDelete() {
     }),
   ];
 }
+export function showAlertApproved() {
+  return [
+    Store.addNotification({
+      title: "success",
+      message:"Status change",
+      type: "success",
+      insert: "top",
+      container: "top-right",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 5000,
+        onScreen: true,
+      },
+    }),
+  ];
+}
 export function showAlertFillter(res) {
   return [
     Store.addNotification({
