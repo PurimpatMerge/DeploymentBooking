@@ -12,7 +12,7 @@ import { AuthContext } from "../../../context/AuthContext";
 import useFetch from "../../../hooks/useFetch";
 import { Image } from "antd";
 import { Divider } from "antd";
-
+import qr from '../../../photo/qrcode.jpg'
 const Secondstep = (props) => {
   const { bookingTotalPrice, bookingDates, id, poolvillaName } = props;
   const [info, setInfo] = useState({});
@@ -66,13 +66,13 @@ const Secondstep = (props) => {
         return;
       }
 
-    if(!user){
-      if ( !info.username || !info.email || !info.lineId) {
-        showErrorAlertFillter("fill");
-        return;
+      if (!user) {
+        if (!info.username || !info.email || !info.lineId) {
+          showErrorAlertFillter("fill");
+          return;
+        }
       }
-    }
-  
+
 
       if (!files) {
         showAlertImage("Insert slip");
@@ -94,30 +94,30 @@ const Secondstep = (props) => {
         })
       );
       let bookingDetail;
-      if(user){
+      if (user) {
         bookingDetail = {
-           poolvillaName: poolvillaName,
-           bookingTotalPrice: bookingTotalPrice,
-           bookingDates: bookingDatesDone,
-           statusBooking: "Pending",
-           email:data.email,
-           lineId:data.lineId,
-           phone:data.phone,
-           username:data.username,
-           slip: list,
-           poolvillaId: id,
-         };
+          poolvillaName: poolvillaName,
+          bookingTotalPrice: bookingTotalPrice,
+          bookingDates: bookingDatesDone,
+          statusBooking: "Pending",
+          email: data.email,
+          lineId: data.lineId,
+          phone: data.phone,
+          username: data.username,
+          slip: list,
+          poolvillaId: id,
+        };
       }
- else{
+      else {
         bookingDetail = {
-           poolvillaName: poolvillaName,
-           bookingTotalPrice: bookingTotalPrice,
-           bookingDates: bookingDatesDone,
-           statusBooking: "Pending",
-           ...info,
-           slip: list,
-           poolvillaId: id,
-         };
+          poolvillaName: poolvillaName,
+          bookingTotalPrice: bookingTotalPrice,
+          bookingDates: bookingDatesDone,
+          statusBooking: "Pending",
+          ...info,
+          slip: list,
+          poolvillaId: id,
+        };
       }
 
       console.log(bookingDetail);
@@ -136,57 +136,63 @@ const Secondstep = (props) => {
   return (
     <div>
       <div className="bg-white shadow-lg  p-4 rounded-md">
-        <div className="w-full grid gap-5 grid-cols-1 lg:grid-cols-2 justify-items-center ">
+        <div className="w-full grid gap-5 grid-cols-1 lg:grid-cols-3 justify-items-center ">
+          {/* cols1 */}
           <div className="bg-white w-full p-5 rounded-lg">
             <Divider />
             <p className="text-xl">ข้อมูลส่วนตัว</p>
             {user
               ? profile.map((input) => (
-                  <form
-                    key={input.id}
-                    className="grid text-left mt-5 grid-cols-12"
-                  >
-                    <p className="col-span-3 sm:col-span-2">{input.label}:</p>
-                    <input
-                      className="px-2 w-full col-span-9 sm:col-span-10 bg-white"
-                      type="text"
-                      value={data[input.id]}
-                      readOnly
-                    />
-                  </form>
-                ))
+                <form
+                  key={input.id}
+                  className="grid text-left mt-5 grid-cols-12"
+                >
+                  <p className="col-span-4 text-xs sm:text-base  ">{input.label}:</p>
+                  {/* <input
+                    className="px-2 w-full col-span-8  sm:col-span-10 bg-white"
+                    type="text"
+                    value={data[input.id]}
+                    readOnly
+                  /> */}
+                  <p
+                    className="px-2 w-full text-xs sm:text-base col-span-8   bg-white"
+                    >
+                    {data[input.id]}
+                  </p>
+                </form>
+              ))
               : profile.map((input) => (
-                  <form
-                    key={input.id}
-                    className="grid text-left mt-5 grid-cols-12"
-                  >
-                    <p className="col-span-3 sm:col-span-2">{input.label}:</p>
-                    <TextField
-                      error={inputError[input.id]}
-                      helperText={
-                        inputError[input.id] ? "This field is required" : null
-                      }
-                      className="px-4 py-3 w-full col-span-9 sm:col-span-10"
-                      variant="outlined"
-                      InputProps={{
-                        className: "bg-white",
-                      }}
-                      size="small"
-                      onChange={handleChange}
-                      type={input.type}
-                      placeholder={input.placeholder}
-                      id={input.id}
-                      onBlur={(event) => {
-                        setInputError({
-                          ...inputError,
-                          [input.id]: event.target.value === "",
-                        });
-                      }}
-                    />
-                  </form>
-                ))}
+                <form
+                  key={input.id}
+                  className="grid text-left mt-5 grid-cols-12"
+                >
+                  <p className="col-span-3 sm:col-span-2">{input.label}:</p>
+                  <TextField
+                    error={inputError[input.id]}
+                    helperText={
+                      inputError[input.id] ? "This field is required" : null
+                    }
+                    className="px-4 py-3 w-full col-span-9 sm:col-span-10"
+                    variant="outlined"
+                    InputProps={{
+                      className: "bg-white",
+                    }}
+                    size="small"
+                    onChange={handleChange}
+                    type={input.type}
+                    placeholder={input.placeholder}
+                    id={input.id}
+                    onBlur={(event) => {
+                      setInputError({
+                        ...inputError,
+                        [input.id]: event.target.value === "",
+                      });
+                    }}
+                  />
+                </form>
+              ))}
 
-            <Divider />
+            <Divider className="mt-[74px]" />
             <p className="text-xl">ข้อมูลการจอง</p>
             <div className="text-left">
               <span className="sm:text-base">location:</span>{" "}
@@ -198,7 +204,25 @@ const Secondstep = (props) => {
             </div>
           </div>
           {/* cols2 */}
+          <div className="bg-white w-full p-5 rounded-lg">
+            <Divider />
+            <p className="text-xl">QR Code</p>
+            <div className="flex justify-center">
+              <img src={qr} alt="qr" className="w-9/12" />
+            </div>
+            <Divider />
+            <p className="text-xl">โอนผ่านธนาคาร</p>
+            <div className="text-left">
+              <p>ธนาคาร กสิกร</p>
+              <p>เลขที่บัญชี 0268372741</p>
+              <p>นาย ปุริมพัฒน์ วรไกรจารุภาคย์</p>
+            </div>
+
+          </div>
+
+          {/* cols3 */}
           <div className="w-full p-5 pb-[100px] lg:pb-[100px] rounded-lg">
+
             <Divider />
             <p className="text-xl">แนบสลิป</p>
             <div className="flex my-5 justify-center">

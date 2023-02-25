@@ -6,6 +6,10 @@ const SearchItem = ({ item }) => {
 
   const handleClick = () => {
     axios.put(`/hotels/view/${item._id}`);
+    
+  };
+  const handleLinkClick = () => {
+    window.scrollTo(0, 0);
   };
   return (
     <div className="container mt-5 sm:mt-0">
@@ -41,7 +45,7 @@ const SearchItem = ({ item }) => {
             <p className="font-medium text-blue-600">{item.city}</p>
           </div>
           <div className="float-right mx-5 my-5">
-            <Link to={`/hotels/${item._id}`}>
+            <Link to={`/hotels/${item._id}`} onClick={handleLinkClick}>
               <button
                 onClick={handleClick}
                 type="button"

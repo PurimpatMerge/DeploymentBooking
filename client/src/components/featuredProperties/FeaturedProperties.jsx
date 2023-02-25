@@ -35,12 +35,9 @@ const FeaturedProperties = () => {
       ) : (
         <>
           <div className="mt-5">
-            <p className="text-4xl font-bold text-[#51d6ca]">Rooms</p>
+            <p className="text-4xl font-bold text-[#51d6ca]">Pool Villa</p>
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit
-              distinctio, pariatur explicabo cum dignissimos obcaecati tenetur
-              necessitatibus accusantium aspernatur quae laboriosam suscipit
-              repellendus nobis aut voluptas similique mollitia nulla quisquam.
+            If you're looking for a vacation pool villa, you've come to the right place. On our website, a plethora of pool villas with sea views are offered. Our villas come in a range of sizes and at prices to fit any spending limit. Booking through our website will be gratefully received.
             </p>
           </div>
           <div className="flex justify-center flex-wrap ">
@@ -76,7 +73,7 @@ const FeaturedProperties = () => {
 
           <div className="flex justify-center pb-5">
             <button
-              className="border hover:border-black hover:text-black hover:bg-white px-[25px] py-[10px] rounded-md hover:scale-105 shadow-xl border-[#51d6ca] bg-[#51d6ca] text-black font-semibold hover:text-xl duration-200 "
+              className="border hover:border-black hover:text-black text-white hover:bg-white px-[25px] py-[10px] rounded-md hover:scale-105 shadow-xl border-[#B56576] bg-[#B56576] font-semibold hover:text-xl duration-200 "
               onClick={handleSearch}
             >
               <p className="">ดูทั้งหมด</p>

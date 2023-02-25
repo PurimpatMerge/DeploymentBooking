@@ -15,12 +15,12 @@
 }
 
 .listSearch {
-  margin-left: 10px;
-  background-color: #51d6ca;
-  padding: 10px;
+  background-color: #9f9dc7;
+  
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  top: 10px;
+  top: 135px;
   height: max-content;
 }
 
@@ -73,7 +73,7 @@
 
 .listSearch > button {
   padding: 10px;
-  background-color: #0071c2;
+  background-color: #B56576;
   color: white;
   border: none;
   width: 100%;

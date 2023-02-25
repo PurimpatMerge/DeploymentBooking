@@ -48,7 +48,7 @@ const Header = ({ type }) => {
       >
         {type !== "list" && (
           <>
-            <div className="lg:flex justify-center p-5   lg:h-[100px] w-fit left-1/2 -translate-x-1/2 bottom-[-120px]  absolute  shadow-2xl  sm:bottom-[-120px] lg:bottom-[-50px] lg:justify-between rounded-md bg-[#51d6ca]  lg:p-1">
+            <div className="lg:flex justify-center p-5   lg:h-[100px] w-fit left-1/2 -translate-x-1/2 bottom-[-120px]  absolute  shadow-2xl  sm:bottom-[-120px] lg:bottom-[-50px] lg:justify-between rounded-md bg-[#9f9dc7] border border-black lg:p-1">
               <div className="flex  ">
                 <div class="relative h-10 w-[300px] mt-2    lg:my-auto lg:ml-5">
                   <select

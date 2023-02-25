@@ -10,6 +10,7 @@ import { TextField } from "@material-ui/core";
 import { userInputs } from "../../formSource";
 import "../Profile/editProfile.css";
 import { Divider } from "antd";
+import Navbar from "../../components/navbar/Navbar.jsx";
 const Register = () => {
   const [info, setInfo] = useState({});
   const [inputError, setInputError] = useState({});
@@ -41,9 +42,10 @@ const Register = () => {
   };
 
   return (
-    <div className="bgedit bg-cover object-cover h-screen py-10 sm:py-20">
+    <div className="bgedit bg-cover object-cover  h-screen  py-[70px] sm:py-[150px]">
+      <Navbar/>
       <ReactNotifications />
-      <div className="container mx-auto py-4 px-10 sm:w-5/12 backdrop-blur-sm bg-white/30 border border-gray-400  rounded-lg">
+      <div className="container mx-auto py-4 px-10  sm:w-5/12 backdrop-blur-sm bg-white/30 border border-gray-400  rounded-lg">
         <div className="w-full  mx-auto my-12 ">
           <h1 className="text-4xl flex font-bold text-black justify-center">
             Register

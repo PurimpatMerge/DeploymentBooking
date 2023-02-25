@@ -9,6 +9,7 @@ import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 import useFetch from "../../hooks/useFetch";
+import profile from './Logo.JPG'
 const Navbar = () => {
   const { data, loading, error } = useFetch(`/dashmerge/count`);
   const { dispatch } = useContext(DarkModeContext);
@@ -33,7 +34,7 @@ const Navbar = () => {
 
             <div className="item">
               <img
-                src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                src={profile}
                 alt=""
                 className="avatar"
               />

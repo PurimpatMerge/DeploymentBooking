@@ -83,7 +83,7 @@ const Reserve = (props) => {
 
   const steps = [
     {
-      title: "First",
+      title: "เลือกวันที่",
       content: (
         <Firststep
           startPrice={startPrice}
@@ -96,7 +96,7 @@ const Reserve = (props) => {
       ),
     },
     {
-      title: "Second",
+      title: "จอง",
       content: (
         <Secondstep
           bookingTotalPrice={bookingTotalPrice}
