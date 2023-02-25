@@ -1,22 +1,13 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import "./reserve.css";
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Firststep from "./steps/Firststep";
 import Secondstep from "./steps/Secondstep";
-import { Button, message, Steps, theme } from "antd";
+import { Button, Steps } from "antd";
 
 const Reserve = (props) => {
-  const {
-    startPrice,
-    friPrice,
-    satPrice,
-    sunPrice,
-    poolvilla,
-    setOpen,
-    poolvillaName,
-  } = props;
+  const { startPrice, friPrice, satPrice, sunPrice, poolvilla, poolvillaName } =
+    props;
   let totalPrice;
   let datesBook;
   const [bookingTotalPrice, setBookingTotalPrice] = useState("");
@@ -32,10 +23,10 @@ const Reserve = (props) => {
         const ca = decodedCookie.split(";");
         for (let i = 0; i < ca.length; i++) {
           let c = ca[i];
-          while (c.charAt(0) == " ") {
+          while (c.charAt(0) === " ") {
             c = c.substring(1);
           }
-          if (c.indexOf(name) == 0) {
+          if (c.indexOf(name) === 0) {
             return c.substring(name.length, c.length);
           }
         }
@@ -116,7 +107,6 @@ const Reserve = (props) => {
       ),
     },
   ];
-  const { token } = theme.useToken();
   const [current, setCurrent] = useState(0);
 
   const next = () => {
@@ -135,7 +125,6 @@ const Reserve = (props) => {
 
   return (
     <div className=" z-20  ">
-    
       {/* Step */}
       <>
         <Steps current={current} items={items} />

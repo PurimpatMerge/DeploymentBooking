@@ -19,7 +19,6 @@ const Home = () => {
           <Widget type="Pool Villa" />
         </div>
         <div className="charts">
-      
           <Chart title="Last 6 Months (Revenue)" aspect={4 / 1} />
         </div>
         <div className="listContainer">

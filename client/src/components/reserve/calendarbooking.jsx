@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Calendar as AntCalendar, Popover } from "antd";
 import moment from "moment";
 import useFetch from "../../hooks/useFetch";
-import './calendar.css'
+import "./calendar.css";
 const EventDetails = ({ event }) => (
   <div>
     <h3>{event.title}</h3>
@@ -89,8 +89,8 @@ const MyCalendar = (props) => {
 
   return (
     <AntCalendar
-   className="border border-gray-300"
-    fullscreen={false}
+      className="border border-gray-300"
+      fullscreen={false}
       onChange={(value) => setMonth(value)}
       dateCellRender={dateCellRender}
       monthCellRender={monthCellRender}

@@ -9,31 +9,29 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-color: white ;
+  background-color: white;
   padding: 50px;
   border-radius: 0.5rem;
   backdrop-filter: blur(64px);
 }
 
-.lInput{
+.lInput {
   height: 30px;
   padding: 10px;
 }
 
 .lButton {
-  
   background-color: #0071c2;
- 
+
   font-weight: bold;
- 
 }
 
-.lButton:disabled{
+.lButton:disabled {
   background-color: #0071c28c;
   cursor: not-allowed;
 }
 
-.bg{
+.bg {
   background-image: url("../login/relaxbg.jpg");
   background-size: cover;
 }

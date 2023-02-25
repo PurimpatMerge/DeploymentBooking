@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Calendar as AntCalendar,
   Popover,
@@ -161,7 +161,7 @@ const MyCalendar = (props) => {
           ? friPrice
           : moment(value.toDate()).format("dddd") === "Saturday" && satPrice
           ? satPrice
-          : moment(value.toDate()).format("dddd") === "Sunday"  && sunPrice
+          : moment(value.toDate()).format("dddd") === "Sunday" && sunPrice
           ? sunPrice
           : startPrice}
         <button onClick={() => handleNewEvent(value.format("MM/DD/YYYY"))}>

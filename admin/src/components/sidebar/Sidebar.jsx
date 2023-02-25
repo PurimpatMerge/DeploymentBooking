@@ -15,22 +15,22 @@ const Sidebar = () => {
   const handlelogout = async () => {
     try {
       logout();
-    } catch (err) { }
+    } catch (err) {}
   };
 
   async function logout() {
     try {
       localStorage.clear();
       sessionStorage.clear();
-      indexedDB.deleteDatabase('firebaseLocalStorageDb');
-      indexedDB.deleteDatabase('firebaseLocalStorageDb-shm');
-      indexedDB.deleteDatabase('firebaseLocalStorageDb-wal');
+      indexedDB.deleteDatabase("firebaseLocalStorageDb");
+      indexedDB.deleteDatabase("firebaseLocalStorageDb-shm");
+      indexedDB.deleteDatabase("firebaseLocalStorageDb-wal");
       caches.keys().then(function (cacheNames) {
         cacheNames.forEach(function (cacheName) {
           caches.delete(cacheName);
         });
       });
-      window.location.href = '/';
+      window.location.href = "/";
     } catch (err) {
       console.log(err);
     }
@@ -71,14 +71,14 @@ const Sidebar = () => {
           </Link>
           <p className="title">USER</p>
           <Link to="/profile" style={{ textDecoration: "none" }}>
-          <li>
-            <AccountCircleOutlinedIcon className="icon" />
-            <span>Profile</span>
-          </li>
+            <li>
+              <AccountCircleOutlinedIcon className="icon" />
+              <span>Profile</span>
+            </li>
           </Link>
           <li>
             <ExitToAppIcon className="icon" />
-            <span    onClick={() => handlelogout()} >Logout</span>
+            <span onClick={() => handlelogout()}>Logout</span>
           </li>
         </ul>
       </div>

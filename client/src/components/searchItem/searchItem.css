@@ -39,22 +39,22 @@
   border-radius: 5px;
 }
 
-.siSubtitle{
+.siSubtitle {
   font-size: 16px;
   font-weight: bold;
 }
 
-.siFeatures{
+.siFeatures {
   font-size: 16px;
 }
 
-.siCancelOp{
+.siCancelOp {
   font-size: 16px;
   color: #002d80;
   font-weight: bold;
 }
 
-.siCancelOpSubtitle{
+.siCancelOpSubtitle {
   font-size: 12px;
   color: #008009;
 }
@@ -63,26 +63,26 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
-.siDetailTexts{
+.siDetailTexts {
   text-align: right;
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.siPrice{
+.siPrice {
   font-size: 24px;
 }
 
-.siTaxOp{
+.siTaxOp {
   font-size: 12px;
   color: gray;
 }
 
-.siCheckButton{
+.siCheckButton {
   background-color: #4b1f4b;
   color: white;
   font-weight: bold;

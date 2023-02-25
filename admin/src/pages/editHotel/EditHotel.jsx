@@ -7,14 +7,15 @@ import { useLocation } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import { hotelInputs } from "../../formSource";
 import axios from "axios";
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { showAlertFillter, showAlertDelete } from "../../components/alertMessage.js";
+import {
+  showAlertFillter,
+  showAlertDelete,
+} from "../../components/alertMessage.js";
 
-import { ReactNotifications } from 'react-notifications-component';
-import 'react-notifications-component/dist/theme.css';
+import { ReactNotifications } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 
-import MyCalendar from './calendar.jsx';
+import MyCalendar from "./calendar.jsx";
 
 const NewHotel = () => {
   const location = useLocation();
@@ -58,7 +59,7 @@ const NewHotel = () => {
     const res = "pass";
     showAlertFillter(res);
     setTimeout(() => {
-      window.location.href = '/';
+      window.location.href = "/";
     }, 3000);
   };
 
@@ -68,10 +69,10 @@ const NewHotel = () => {
   //     //   for (const image of data.photos) {
   //     //     // Extract the public ID from the image URL
   //     //     const publicId = image.split('/').pop().split('.')[0];
- 
+
   //     //     // Delete the image from Cloudinary using the DELETE method
   //     //     await axios.delete(`https://api.cloudinary.com/v1_1/dwwfqdl79/image/upload/${publicId}`);
-          
+
   //     //   }
   //     // }
   //     await axios.delete(`/hotels/photos/${id}`);
@@ -80,14 +81,14 @@ const NewHotel = () => {
   // };
 
   const handleDelete = async (id) => {
-    if(window.confirm("Are you sure you want to delete this photo?")) {
+    if (window.confirm("Are you sure you want to delete this photo?")) {
       try {
         await axios.delete(`/hotels/photos/${id}`);
         showAlertDelete();
       } catch (err) {}
     }
   };
-  
+
   return (
     <div className="new">
       <ReactNotifications />
@@ -222,17 +223,23 @@ const NewHotel = () => {
                 </select>
                 <label>Kitchen Equipment</label>
                 <select id="kitchenEquipment" onChange={handleChange}>
-                  <option value={false} selected={data.kitchenEquipment === false}>
+                  <option
+                    value={false}
+                    selected={data.kitchenEquipment === false}
+                  >
                     No
                   </option>
-                  <option value={true} selected={data.kitchenEquipment === true}>
+                  <option
+                    value={true}
+                    selected={data.kitchenEquipment === true}
+                  >
                     Yes
                   </option>
                 </select>
               </div>
               <div className="formInput">
                 <label>Free wifi</label>
-                <select id="wifi" onChange={handleChange} >
+                <select id="wifi" onChange={handleChange}>
                   <option value={false} selected={data.wifi === false}>
                     No
                   </option>
@@ -247,7 +254,13 @@ const NewHotel = () => {
 
               <button onClick={handleClick}>Send</button>
             </form>
-            <MyCalendar  startPrice={data.cheapestPrice} friPrice={data.friPrice} satPrice={data.satPrice}  sunPrice={data.sunPrice} poolvilla ={id} />
+            <MyCalendar
+              startPrice={data.cheapestPrice}
+              friPrice={data.friPrice}
+              satPrice={data.satPrice}
+              sunPrice={data.sunPrice}
+              poolvilla={id}
+            />
           </div>
         </div>
       </div>

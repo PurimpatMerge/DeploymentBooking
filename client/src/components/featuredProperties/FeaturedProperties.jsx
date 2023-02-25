@@ -3,8 +3,6 @@ import "./featuredProperties.css";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { SearchContext } from "../../context/SearchContext";
-import { AuthContext } from "../../context/AuthContext";
-
 
 const FeaturedProperties = () => {
   const { data, loading, error } = useFetch(
@@ -13,7 +11,6 @@ const FeaturedProperties = () => {
 
   const [destination, setDestination] = useState("");
   const [person, setperson] = useState("");
-  const [openDate, setOpenDate] = useState(false);
   const [dates, setDates] = useState([
     {
       startDate: new Date(),
@@ -23,7 +20,6 @@ const FeaturedProperties = () => {
   ]);
 
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
 
   const { dispatch } = useContext(SearchContext);
 
@@ -40,17 +36,25 @@ const FeaturedProperties = () => {
         <>
           <div className="mt-5">
             <p className="text-4xl font-bold text-[#51d6ca]">Rooms</p>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit distinctio, pariatur explicabo cum dignissimos obcaecati tenetur necessitatibus accusantium aspernatur quae laboriosam suscipit repellendus nobis aut voluptas similique mollitia nulla quisquam.</p>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit
+              distinctio, pariatur explicabo cum dignissimos obcaecati tenetur
+              necessitatibus accusantium aspernatur quae laboriosam suscipit
+              repellendus nobis aut voluptas similique mollitia nulla quisquam.
+            </p>
           </div>
           <div className="flex justify-center flex-wrap ">
-
             {data.map((item) => (
               <div className="p-10">
                 <div
                   className="sm:w-[400px]  bg-white bg-opacity-80 h-[400px] rounded-lg overflow-hidden shadow-lg duration-200  hover:scale-110"
                   key={item._id}
                 >
-                  <img className="w-[100%] h-[200px]" src={item.photos[0]} alt="" />
+                  <img
+                    className="w-[100%] h-[200px]"
+                    src={item.photos[0]}
+                    alt=""
+                  />
                   <div className="px-6 py-4">
                     <div className="font-bold text-xl mb-2">{item.name}</div>
                     <p className="text-gray-700 text-base">{item.city}</p>
@@ -71,15 +75,15 @@ const FeaturedProperties = () => {
           </div>
 
           <div className="flex justify-center pb-5">
-            <button className="border hover:border-black hover:text-black hover:bg-white px-[25px] py-[10px] rounded-md hover:scale-105 shadow-xl border-[#51d6ca] bg-[#51d6ca] text-black font-semibold hover:text-xl duration-200 " onClick={handleSearch}>
+            <button
+              className="border hover:border-black hover:text-black hover:bg-white px-[25px] py-[10px] rounded-md hover:scale-105 shadow-xl border-[#51d6ca] bg-[#51d6ca] text-black font-semibold hover:text-xl duration-200 "
+              onClick={handleSearch}
+            >
               <p className="">ดูทั้งหมด</p>
             </button>
           </div>
-
         </>
-
       )}
-
     </div>
   );
 };

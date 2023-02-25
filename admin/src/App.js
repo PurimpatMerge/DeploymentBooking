@@ -90,7 +90,7 @@ function App() {
                 path="new"
                 element={
                   <ProtectedRoute>
-                    <NewHotel  />
+                    <NewHotel />
                   </ProtectedRoute>
                 }
               />
@@ -98,7 +98,7 @@ function App() {
                 path="edit/:id"
                 element={
                   <ProtectedRoute>
-                    <EditHotel  />
+                    <EditHotel />
                   </ProtectedRoute>
                 }
               />
@@ -124,7 +124,7 @@ function App() {
                 path="new"
                 element={
                   <ProtectedRoute>
-                    <NewRoom  />
+                    <NewRoom />
                   </ProtectedRoute>
                 }
               />
@@ -134,7 +134,7 @@ function App() {
                 index
                 element={
                   <ProtectedRoute>
-                    <ProfileAdmin/>
+                    <ProfileAdmin />
                   </ProtectedRoute>
                 }
               />

@@ -1,48 +1,48 @@
 import "./hotel.css";
 import Navbar from "../../components/navbar/Navbar";
-import Header from "../../components/header/Header";
 // import Footer from "../../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleArrowLeft,
-  faCircleArrowRight,
-  faCircleXmark,
-  faLocationDot,
-} from "@fortawesome/free-solid-svg-icons";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import { useLocation, useNavigate } from "react-router-dom";
 // import { SearchContext } from "../../context/SearchContext";
 import { AuthContext } from "../../context/AuthContext";
 import Reserve from "../../components/reserve/Reserve";
-import MyCalendar from './calendar.jsx'
-import { useEffect } from 'react';
-import { Space, Spin } from 'antd';
-import axios from "axios";
-import { Image } from 'antd';
-import snooker from '../../photo/snooker.jpg'
-import pool from '../../photo/pool.jpg'
-import park from '../../photo/park.jpg'
-import checkin from '../../photo/checkin.jpg'
-import bed from '../../photo/bed.jpg'
-import pet from '../../photo/pet.jpg'
-import other from '../../photo/other.jpg'
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { Button, Modal } from 'antd';
-import Iframe from 'react-iframe'
-import { Divider } from 'antd';
+import MyCalendar from "./calendar.jsx";
+import { Image } from "antd";
+import snooker from "../../photo/snooker.jpg";
+import pool from "../../photo/pool.jpg";
+import park from "../../photo/park.jpg";
+import checkin from "../../photo/checkin.jpg";
+import bed from "../../photo/bed.jpg";
+import pet from "../../photo/pet.jpg";
+import other from "../../photo/other.jpg";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { Button, Modal } from "antd";
+import Iframe from "react-iframe";
+import { Divider } from "antd";
 import { ReactNotifications } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 
-import { faSwimmingPool, faLifeRing, faMicrophoneAlt, faPaw, faLightbulb, faSlidersH, faUtensilSpoon, faChessBoard, faWifi } from '@fortawesome/free-solid-svg-icons';
+import {
+  faSwimmingPool,
+  faLifeRing,
+  faMicrophoneAlt,
+  faPaw,
+  faLightbulb,
+  faSlidersH,
+  faUtensilSpoon,
+  faChessBoard,
+  faWifi,
+} from "@fortawesome/free-solid-svg-icons";
 const Hotel = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-
 
   const { data, loading, error } = useFetch(`/hotels/find/${id}`);
   const { user } = useContext(AuthContext);
@@ -53,26 +53,22 @@ const Hotel = () => {
   const infoElse = data.elseDes?.split(",");
   const toKM = data.distanceSea * 0.0001;
 
-
   // map
   const MapFrame = () => {
     const srcMatch = data.location?.match(/<iframe[^>]+src="([^"]+)"/i);
     const srcm = srcMatch && srcMatch[1];
     return [
-      <div data-aos="fade-left" >
+      <div data-aos="fade-left">
         <Iframe
           src={srcm}
-          className=' bg-white bg-opacity-50 grid text-center justify-center content-center border-y border-l border-black rounded-l-md shadow-md w-full h-full'
+          className=" bg-white bg-opacity-50 grid text-center justify-center content-center border-y border-l border-black rounded-l-md shadow-md w-full h-full"
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />
-      </div>
+      </div>,
     ];
   };
-
-
-
 
   // img
   const handleOpen = (i) => {
@@ -109,7 +105,6 @@ const Hotel = () => {
     setIsModalOpen(false);
   };
 
-
   // image
   const [visible, setVisible] = useState(false);
 
@@ -121,7 +116,9 @@ const Hotel = () => {
       <div className="container mx-auto">
         <div className="mt-10 mb-10">
           <div class="grid grid-rows-2 grid-flow-col gap-5 overflow-x-auto bg-slate-200 bg-center bg-cover   p-5 overflow-y-clip">
-            <Image.PreviewGroup preview={{ visible, onVisibleChange: (vis) => setVisible(vis) }}>
+            <Image.PreviewGroup
+              preview={{ visible, onVisibleChange: (vis) => setVisible(vis) }}
+            >
               {data.photos?.map((photo, i) => (
                 <div class="" key={i}>
                   <Image
@@ -138,16 +135,16 @@ const Hotel = () => {
           </div>
         </div>
 
-
-
-
-
         <div data-aos-duration="1500" className="w-full bg-white p-5 h-fit">
           <div className="grid grid-cols-1 gap-y-16 md:grid-cols-2">
             {/* col-1 */}
             <div className="p-5 rounded-md shadow-md mx-5 ">
               <div className="flex justify-center ">
-                <div ><h1 className="text-violet-800 text-3xl font-bold">{data.name}</h1></div>
+                <div>
+                  <h1 className="text-violet-800 text-3xl font-bold">
+                    {data.name}
+                  </h1>
+                </div>
               </div>
               <Divider />
               {/* <div className="flex">
@@ -155,8 +152,11 @@ const Hotel = () => {
                   <div>หัวข้อ</div>
                 </div> */}
               <div className="flex">
-                <FontAwesomeIcon icon={faLocationDot} className="text-red-600 mr-2" />
-                <label className="text-red-600 " >{data.city}</label>
+                <FontAwesomeIcon
+                  icon={faLocationDot}
+                  className="text-red-600 mr-2"
+                />
+                <label className="text-red-600 ">{data.city}</label>
               </div>
               <div className="flex justify-between">
                 <div>ห่างจากทะเล</div>
@@ -168,32 +168,46 @@ const Hotel = () => {
               </div>
               <div className="flex justify-between">
                 <div>พักได้</div>
-                <div>{data.persons} คน สูงสุด{" "}{data.maxpersons} คน</div>
+                <div>
+                  {data.persons} คน สูงสุด {data.maxpersons} คน
+                </div>
               </div>
               <div className="flex justify-between">
                 <div>เงินประกันความเสียหาย</div>
                 <div>{data.insurance}฿</div>
               </div>
-              <div className="flex justify-center">
-                เวลาเข้าพัก
-              </div>
+              <div className="flex justify-center">เวลาเข้าพัก</div>
               <div className="flex justify-center">
                 Check-in : {data.checkIn} - Check-out : {data.checkOut}
               </div>
               <div>
                 <Divider />
-                <a onClick={showModal} className="bookNow  flex  overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-1 hover:ring-purple-500">
+                <a
+                  onClick={showModal}
+                  className="bookNow  flex  overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-1 hover:ring-purple-500"
+                >
                   <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-700"></span>
                   <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
-                  <span className="relative hidden sm:flex text-white">Reserve or </span>
+                  <span className="relative hidden sm:flex text-white">
+                    Reserve or{" "}
+                  </span>
                   <span className="relative text-white sm:ml-1"> Book </span>
-                  <span className="relative hidden sm:flex text-white ml-1"> Now!</span>
+                  <span className="relative hidden sm:flex text-white ml-1">
+                    {" "}
+                    Now!
+                  </span>
                 </a>
               </div>
             </div>
             {/* col-2 */}
             <div className=" border border-gray-200">
-              <MyCalendar startPrice={data.cheapestPrice} friPrice={data.friPrice} satPrice={data.satPrice} sunPrice={data.sunPrice} poolvilla={id} />
+              <MyCalendar
+                startPrice={data.cheapestPrice}
+                friPrice={data.friPrice}
+                satPrice={data.satPrice}
+                sunPrice={data.sunPrice}
+                poolvilla={id}
+              />
             </div>
           </div>
         </div>
@@ -209,7 +223,10 @@ const Hotel = () => {
           <div data-aos="fade-right">
             <img src={snooker} alt="snooker" className="w-full h-full" />
           </div>
-          <div data-aos="fade-right" className=" bg-white bg-opacity-90 grid text-center  border-y border-r border-black rounded-r-md shadow-md   p-5">
+          <div
+            data-aos="fade-right"
+            className=" bg-white bg-opacity-90 grid text-center  border-y border-r border-black rounded-r-md shadow-md   p-5"
+          >
             {/* <div className="grid grid-cols-3">
                 <div>{data.swimmingPool === true && <p><FontAwesomeIcon icon={faSwimmingPool} /> Swimming Pool</p>}</div>
                 <div>{data.slider === true && <p><FontAwesomeIcon icon={faSlidersH} /> Slider</p>}</div>
@@ -228,7 +245,9 @@ const Hotel = () => {
                 {data.swimmingPool === true && (
                   <div class="flex flex-col items-center justify-center bg-white shadow-md shadow-purple-500/50 p-4 rounded-lg">
                     <FontAwesomeIcon icon={faSwimmingPool} size="3x" />
-                    <p class="mt-2 text-purple-800 text-center">Swimming Pool</p>
+                    <p class="mt-2 text-purple-800 text-center">
+                      Swimming Pool
+                    </p>
                   </div>
                 )}
                 {data.slider === true && (
@@ -252,7 +271,9 @@ const Hotel = () => {
                 {data.animal === true && (
                   <div class="flex flex-col items-center justify-center bg-white shadow-md shadow-purple-500/50 p-4 rounded-lg">
                     <FontAwesomeIcon icon={faPaw} size="3x" />
-                    <p class="mt-2 text-purple-800 text-center">Allowed Animal</p>
+                    <p class="mt-2 text-purple-800 text-center">
+                      Allowed Animal
+                    </p>
                   </div>
                 )}
                 {data.snooker === true && (
@@ -270,7 +291,9 @@ const Hotel = () => {
                 {data.kitchenEquipment === true && (
                   <div class="flex flex-col items-center justify-center bg-white shadow-md shadow-purple-500/50 p-4 rounded-lg">
                     <FontAwesomeIcon icon={faUtensilSpoon} size="3x" />
-                    <p class="mt-2 text-purple-800 text-center">Kitchen Equipment</p>
+                    <p class="mt-2 text-purple-800 text-center">
+                      Kitchen Equipment
+                    </p>
                   </div>
                 )}
                 {data.wifi === true && (
@@ -280,12 +303,14 @@ const Hotel = () => {
                   </div>
                 )}
               </div>
-
             </div>
           </div>
 
           {/* 3 */}
-          <div data-aos="fade-left" className=" bg-white  grid text-center content-center border-y border-l border-black rounded-l-md shadow-md  p-5">
+          <div
+            data-aos="fade-left"
+            className=" bg-white  grid text-center content-center border-y border-l border-black rounded-l-md shadow-md  p-5"
+          >
             <h1 className="text-4xl ">ขนาดสระว่ายน้ำ</h1>
             <div>
               {infoSwimmingPoole?.map((item) => (
@@ -301,32 +326,41 @@ const Hotel = () => {
           <div data-aos="fade-right">
             <img src={park} alt="snooker" className="w-full" />
           </div>
-          <div data-aos="fade-right" className=" bg-white bg-opacity-90 grid text-center content-center border-y border-r border-black rounded-r-md shadow-md  p-5">
+          <div
+            data-aos="fade-right"
+            className=" bg-white bg-opacity-90 grid text-center content-center border-y border-r border-black rounded-r-md shadow-md  p-5"
+          >
             <h1 className="text-4xl  ">ที่จอดรถ</h1>
             <div className="text-xl">จอดได้ {data.parkinglot} คัน</div>
           </div>
 
           {/* 5 */}
-          <div data-aos="fade-left" className=" bg-white  grid text-center content-center border-y border-l border-black rounded-l-md shadow-md   p-5">
+          <div
+            data-aos="fade-left"
+            className=" bg-white  grid text-center content-center border-y border-l border-black rounded-l-md shadow-md   p-5"
+          >
             <h1 className=" text-4xl ">เตียง</h1>
             <div className="flex text-left justify-center">
-              <div >
+              <div>
                 {infoBed?.map((item) => (
                   <p className="text-xl">{item}</p>
                 ))}
               </div>
-            </div >
+            </div>
             <h1 className=" text-2xl ">เตียงเสริม {data.addonBed}฿</h1>
           </div>
-          <div data-aos="fade-left" >
+          <div data-aos="fade-left">
             <img src={bed} alt="snooker" className="w-full" />
-          </div >
+          </div>
 
           {/* 6 */}
           <div data-aos="fade-right">
             <img src={pet} alt="snooker" className="w-full" />
           </div>
-          <div data-aos="fade-right" className=" bg-white bg-opacity-90 grid text-center content-center border-y border-r border-black rounded-r-md shadow-md  p-5">
+          <div
+            data-aos="fade-right"
+            className=" bg-white bg-opacity-90 grid text-center content-center border-y border-r border-black rounded-r-md shadow-md  p-5"
+          >
             <h1 className="text-4xl divide-y">สัตว์เลี้ยง</h1>
             <div>
               {infoAnimal?.map((item) => (
@@ -336,7 +370,10 @@ const Hotel = () => {
           </div>
 
           {/* 7 */}
-          <div data-aos="fade-left" className=" bg-white  grid text-center content-center border-y border-l border-black rounded-l-md shadow-md  p-5">
+          <div
+            data-aos="fade-left"
+            className=" bg-white  grid text-center content-center border-y border-l border-black rounded-l-md shadow-md  p-5"
+          >
             <h1 className=" text-4xl ">เพิ่มเติม</h1>
             <div>
               {infoElse?.map((item) => (
@@ -344,16 +381,34 @@ const Hotel = () => {
               ))}
             </div>
           </div>
-          <div data-aos="fade-left" >
+          <div data-aos="fade-left">
             <img src={other} alt="snooker" className="w-full" />
           </div>
         </div>
       </div>
 
-      <Modal title="Booking" open={isModalOpen} width={1300} onCancel={handleCancel} footer={[<Button key="back" onClick={handleCancel}>Cancel</Button>]}>
-        {<Reserve startPrice={data.cheapestPrice} friPrice={data.friPrice} satPrice={data.satPrice} sunPrice={data.sunPrice} poolvilla={id} poolvillaName={data.name} />}
+      <Modal
+        title="Booking"
+        open={isModalOpen}
+        width={1300}
+        onCancel={handleCancel}
+        footer={[
+          <Button key="back" onClick={handleCancel}>
+            Cancel
+          </Button>,
+        ]}
+      >
+        {
+          <Reserve
+            startPrice={data.cheapestPrice}
+            friPrice={data.friPrice}
+            satPrice={data.satPrice}
+            sunPrice={data.sunPrice}
+            poolvilla={id}
+            poolvillaName={data.name}
+          />
+        }
       </Modal>
-
     </div>
   );
 };

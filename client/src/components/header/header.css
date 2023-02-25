@@ -70,7 +70,6 @@
   display: flex;
   align-items: center;
   gap: 10px;
-
 }
 
 .headerSearchInput {
@@ -128,13 +127,11 @@
   cursor: not-allowed;
 }
 
-
-@media screen and (max-width: 820px){
+@media screen and (max-width: 820px) {
   .date {
     position: absolute !important;
     top: 165px !important;
     right: 5px !important;
     z-index: 2 !important;
   }
-
 }

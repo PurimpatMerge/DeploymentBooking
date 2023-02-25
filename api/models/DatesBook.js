@@ -20,17 +20,15 @@ const EventSchema = new mongoose.Schema({
   color: {
     type: String,
     required: true,
-  }
+  },
 });
 
-const calendarSchema = new mongoose.Schema(
-  {
-    pvid: {
-      type: String,
-      required: true,
-    },
-    events: [EventSchema],
+const calendarSchema = new mongoose.Schema({
+  pvid: {
+    type: String,
+    required: true,
   },
-);
+  events: [EventSchema],
+});
 
 export default mongoose.model("DatesBook", calendarSchema);

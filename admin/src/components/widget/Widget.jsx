@@ -18,7 +18,7 @@ const Widget = ({ type }) => {
       dataMock = {
         title: "USERS",
         isMoney: false,
-        count:data?.countNonAdmin || 0,
+        count: data?.countNonAdmin || 0,
         link: "See all users",
         icon: (
           <PersonOutlinedIcon
@@ -35,7 +35,7 @@ const Widget = ({ type }) => {
       dataMock = {
         title: "BOOKING ",
         isMoney: false,
-        count:data?.approve || 0,
+        count: data?.approve || 0,
         link: "View all booking",
         icon: (
           <ShoppingCartOutlinedIcon
@@ -52,7 +52,7 @@ const Widget = ({ type }) => {
       dataMock = {
         title: "EARNINGS",
         isMoney: true,
-        count:data?.totalBookingPrice || 0,
+        count: data?.totalBookingPrice || 0,
         link: "View net earnings",
         icon: (
           <MonetizationOnOutlinedIcon
@@ -66,7 +66,7 @@ const Widget = ({ type }) => {
       dataMock = {
         title: "POOL VILLA",
         isMoney: false,
-        count:data?.poolVilla || 0,
+        count: data?.poolVilla || 0,
         link: "See details",
         icon: (
           <AccountBalanceWalletOutlinedIcon

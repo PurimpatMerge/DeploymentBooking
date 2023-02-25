@@ -3,65 +3,62 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
-import { MenuProps } from 'antd';
-import { Menu } from 'antd';
-import React, { useState } from 'react';
+import { MenuProps } from "antd";
+import { Menu } from "antd";
+import React, { useState } from "react";
 const Navbar = () => {
   const { user } = useContext(AuthContext);
 
   const handlelogout = async () => {
     try {
       logout();
-    } catch (err) { }
+    } catch (err) {}
   };
 
   async function logout() {
     try {
       localStorage.clear();
       sessionStorage.clear();
-      indexedDB.deleteDatabase('firebaseLocalStorageDb');
-      indexedDB.deleteDatabase('firebaseLocalStorageDb-shm');
-      indexedDB.deleteDatabase('firebaseLocalStorageDb-wal');
+      indexedDB.deleteDatabase("firebaseLocalStorageDb");
+      indexedDB.deleteDatabase("firebaseLocalStorageDb-shm");
+      indexedDB.deleteDatabase("firebaseLocalStorageDb-wal");
       caches.keys().then(function (cacheNames) {
         cacheNames.forEach(function (cacheName) {
           caches.delete(cacheName);
         });
       });
-      window.location.href = '/';
+      window.location.href = "/";
     } catch (err) {
       console.log(err);
     }
   }
 
-
   const items = [
     {
       label: `${user?.username}`,
-      key: 'SubMenu',
+      key: "SubMenu",
       children: [
         {
-          label: 'Profile',
-          key: 'myProfile',
+          label: "Profile",
+          key: "myProfile",
         },
         {
-          label: 'Tracking',
-          key: 'tracking',
+          label: "Tracking",
+          key: "tracking",
         },
         {
-          label: 'Logout',
-          key: '3',
+          label: "Logout",
+          key: "3",
         },
       ],
     },
   ];
 
-
-
   const onClick = (e) => {
-    if (e.key !== '3') {
+    if (e.key !== "3") {
       window.location.href = `/${e.key}`;
     } else {
-      handlelogout()
+      handlelogout();
     }
   };
 
@@ -78,10 +75,15 @@ const Navbar = () => {
           </div>
         </div>
         <div className="my-auto">
-
           {user ? (
-            <div >
-              <Menu onClick={onClick} style={{ fontSize: '20px', color: '#ffffff' }} className="bg-transparent  tracking-tight   " mode="horizontal" items={items} />
+            <div>
+              <Menu
+                onClick={onClick}
+                style={{ fontSize: "20px", color: "#ffffff" }}
+                className="bg-transparent  tracking-tight   "
+                mode="horizontal"
+                items={items}
+              />
             </div>
           ) : (
             <div className="">
@@ -103,12 +105,8 @@ const Navbar = () => {
               </Link>
             </div>
           )}
-
         </div>
       </div>
-
-
-
     </div>
   );
 };

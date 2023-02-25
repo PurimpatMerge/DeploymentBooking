@@ -2,7 +2,7 @@ import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import { createError } from "../utils/error.js";
 import jwt from "jsonwebtoken";
-import * as nodemailer from 'nodemailer';
+import * as nodemailer from "nodemailer";
 import express from "express";
 
 const app = express();
@@ -90,8 +90,8 @@ export const forgetPassword = async (req, res, next) => {
         pass: "qgsfqivlbbsovqhu",
       },
       tls: {
-        rejectUnauthorized: false
-      }
+        rejectUnauthorized: false,
+      },
     });
 
     var mailOptions = {

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 .div1 {
   display: flex;
   width: 100vw;
@@ -11,7 +11,7 @@
 .div2 {
   color: #fff;
   font-size: 96px;
-  font-family: 'Bebas Neue', cursive;
+  font-family: "Bebas Neue", cursive;
   letter-spacing: -7px;
   animation: glitch 1s linear infinite;
 }
@@ -86,27 +86,21 @@
   color: #122;
 }
 
-@media screen and (max-width: 1000px){
-    .div2 {
-        
-        color: #fff;
-        font-size: 40px;
-        font-family: "Fira Mono", monospace;
-        letter-spacing: -7px;
-        animation: glitch 1s linear infinite;
-
-      }
-
+@media screen and (max-width: 1000px) {
+  .div2 {
+    color: #fff;
+    font-size: 40px;
+    font-family: "Fira Mono", monospace;
+    letter-spacing: -7px;
+    animation: glitch 1s linear infinite;
+  }
 }
-@media screen and (max-width: 500px){
-    .div2 {
-        
-        color: #fff;
-        font-size: 30px;
-        font-family: "Fira Mono", monospace;
-        letter-spacing: -7px;
-        animation: glitch 1s linear infinite;
-
-      }
-
+@media screen and (max-width: 500px) {
+  .div2 {
+    color: #fff;
+    font-size: 30px;
+    font-family: "Fira Mono", monospace;
+    letter-spacing: -7px;
+    animation: glitch 1s linear infinite;
+  }
 }

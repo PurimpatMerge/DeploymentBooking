@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   dd {
-    font-family: 'Bebas Neue', cursive;
+    font-family: "Bebas Neue", cursive;
   }
 }
 

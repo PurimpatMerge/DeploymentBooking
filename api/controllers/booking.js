@@ -2,10 +2,10 @@ import Booking from "../models/Booking.js";
 import DatesBook from "../models/DatesBook.js";
 import * as nodemailer from "nodemailer";
 
-
 export const bookingUser = async (req, res) => {
   try {
     const bookingData = new Booking(req.body);
+
     let dateBook = await DatesBook.findOne({ pvid: req.body.poolvillaId });
     if (!dateBook) {
       dateBook = new DatesBook({ pvid: req.body.poolvillaId, events: [] });
@@ -27,8 +27,11 @@ export const bookingUser = async (req, res) => {
         dateBook.events = events;
       }
     }
+
     const savedBookingDataBooked = await dateBook.save();
+
     const savedBookingData = await bookingData.save();
+
     res.status(200).json({
       success: true,
       data: savedBookingData,
@@ -160,18 +163,19 @@ export const Approve = async (req, res, next) => {
       subject: "Booking with Merge Poolvilla ",
       text: `ยืนยันการจอง ${bookingData.poolvillaName} ในวันที่:
     
-    ${bookingData.bookingDates.map((event) => `${event.day} : ฿${event.price}`).join("\n")}
+    ${bookingData.bookingDates
+      .map((event) => `${event.day} : ฿${event.price}`)
+      .join("\n")}
     
     รวมทั้งหมด: ฿${bookingData.bookingTotalPrice}
     
     ขอบคุณที่ทำการจองกับ Merge Poolvilla`,
     };
-    
 
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         console.log(error);
-      } 
+      }
     });
     res.status(200).json({
       success: true,

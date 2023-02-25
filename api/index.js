@@ -12,8 +12,8 @@ import cors from "cors";
 
 const app = express();
 dotenv.config();
-app.set("View engine","ejs");
-app.use(express.urlencoded({extended:false}));
+app.set("View engine", "ejs");
+app.use(express.urlencoded({ extended: false }));
 const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGO);
@@ -28,8 +28,8 @@ mongoose.connection.on("disconnected", () => {
 });
 
 //middlewares
-app.use(cors())
-app.use(cookieParser())
+app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
 
 app.use("/api/auth", authRoute);
@@ -38,7 +38,6 @@ app.use("/api/hotels", hotelsRoute);
 app.use("/api/datesBook", calendarRoute);
 app.use("/api/booking", bookingRoute);
 app.use("/api/dashmerge", dashRoute);
-
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
@@ -55,4 +54,3 @@ app.listen(8000, () => {
   connect();
   console.log("Connected to backend.");
 });
-

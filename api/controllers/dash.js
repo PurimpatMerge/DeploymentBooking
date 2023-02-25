@@ -2,9 +2,7 @@ import Booking from "../models/Booking.js";
 import User from "../models/User.js";
 import Hotel from "../models/Hotel.js";
 
-
 export const mostBook = async (req, res, next) => {
- 
   try {
     const bookingData = await Booking.aggregate([
       {
@@ -16,10 +14,13 @@ export const mostBook = async (req, res, next) => {
       },
     ]);
     const poolvillaIds = bookingData.map((data) => data._id);
-    const poolvillas = await Hotel.find({ _id: { $in: poolvillaIds } }, "views photos");
+    const poolvillas = await Hotel.find(
+      { _id: { $in: poolvillaIds } },
+      "views photos"
+    );
     const poolvillasMap = {};
     const poolvillasPhotos = {};
-    
+
     poolvillas.forEach((poolvilla) => {
       poolvillasMap[poolvilla._id] = poolvilla.views;
       poolvillasPhotos[poolvilla._id] = poolvilla.photos;
@@ -28,12 +29,10 @@ export const mostBook = async (req, res, next) => {
     const bookingDataWithViews = bookingData.map((data) => ({
       ...data,
       views: poolvillasMap[data._id] || 0,
-      photo:poolvillasPhotos[data._id][0]
+      photo: poolvillasPhotos[data._id][0],
     }));
 
-    res.status(200).json(
- bookingDataWithViews
-    );
+    res.status(200).json(bookingDataWithViews);
   } catch (err) {
     return res.status(500).json({
       success: false,
@@ -43,7 +42,20 @@ export const mostBook = async (req, res, next) => {
 };
 
 export const dashChart = async (req, res, next) => {
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   try {
     const allBooking = await Booking.find();
     let bookingCounts = Array(12).fill(0);
@@ -71,23 +83,26 @@ export const dashChart = async (req, res, next) => {
   }
 };
 
-
 export const dashCounter = async (req, res, next) => {
   try {
     const poolVilla = await Hotel.countDocuments();
-    const pendingBookings = await Booking.countDocuments({ statusBooking: "Pending" });
-    const approveBookings = await Booking.countDocuments({ statusBooking: "Approved" });
+    const pendingBookings = await Booking.countDocuments({
+      statusBooking: "Pending",
+    });
+    const approveBookings = await Booking.countDocuments({
+      statusBooking: "Approved",
+    });
     const totalBookingPrice = await Booking.aggregate([
-        {
-          $match: { statusBooking: "Approved" }
+      {
+        $match: { statusBooking: "Approved" },
+      },
+      {
+        $group: {
+          _id: null,
+          total: { $sum: "$bookingTotalPrice" },
         },
-        {
-          $group: {
-            _id: null,
-            total: { $sum: "$bookingTotalPrice" }
-          }
-        }
-      ]);
+      },
+    ]);
 
     const userData = await User.find();
     if (!userData) {
@@ -106,12 +121,12 @@ export const dashCounter = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      poolVilla:poolVilla,
-        pending: pendingBookings,
-        approve: approveBookings,
-    
+      poolVilla: poolVilla,
+      pending: pendingBookings,
+      approve: approveBookings,
+
       totalBookingPrice: totalBookingPrice[0].total,
-      countNonAdmin: countNonAdmin
+      countNonAdmin: countNonAdmin,
     });
   } catch (err) {
     return res.status(500).json({

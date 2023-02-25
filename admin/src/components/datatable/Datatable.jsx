@@ -1,16 +1,18 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 // import { userColumns, userRows } from "../../datatablesource";
-import { Link, Navigate, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 import { Image } from "antd";
 // import { Button } from 'antd';
-import { showAlertDelete,showAlertApproved } from "../../components/alertMessage.js";
-import { height } from "@mui/system";
-import SearchIcon from '@mui/icons-material/Search';
-import Button from '@mui/material/Button';
+import {
+  showAlertDelete,
+  showAlertApproved,
+} from "../../components/alertMessage.js";
+import SearchIcon from "@mui/icons-material/Search";
+import Button from "@mui/material/Button";
 const Datatable = ({ columns = [] }) => {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
@@ -47,18 +49,16 @@ const Datatable = ({ columns = [] }) => {
         await axios.delete(`/${path}/${id}`);
         setList(list.filter((item) => item._id !== id));
         showAlertDelete();
-      } catch (err) { }
+      } catch (err) {}
     }
   };
   const handleReject = async (id) => {
-    const reject = window.confirm(
-      "Are you sure you want to delete this item?"
-    );
+    const reject = window.confirm("Are you sure you want to delete this item?");
     if (reject) {
       try {
         await axios.put(`/${path}/reject/${id}`);
         showAlertApproved();
-      } catch (err) { }
+      } catch (err) {}
     }
   };
 
@@ -70,17 +70,14 @@ const Datatable = ({ columns = [] }) => {
       try {
         await axios.put(`/${path}/approve/${id}`);
         showAlertApproved();
-      } catch (err) { }
+      } catch (err) {}
     }
   };
 
   const handleSearch = (event) => {
     event.preventDefault();
     const filteredData = data.filter((item) =>
-      Object.values(item)
-        .join("")
-        .toLowerCase()
-        .includes(query.toLowerCase())
+      Object.values(item).join("").toLowerCase().includes(query.toLowerCase())
     );
     setList(filteredData);
   };
@@ -170,20 +167,21 @@ const Datatable = ({ columns = [] }) => {
         return (
           <div className="cellAction">
             <div className="approveReject">
-              <Button type="primary"
+              <Button
+                type="primary"
                 className="viewButton"
                 onClick={() => handleApprove(params.row._id)}
               >
                 Approve
               </Button>
-              
-              <Button type="primary"
+
+              <Button
+                type="primary"
                 className="deleteButton "
                 onClick={() => handleReject(params.row._id)}
               >
                 Reject
               </Button>
-              
             </div>
           </div>
         );
@@ -197,18 +195,23 @@ const Datatable = ({ columns = [] }) => {
         <>
           <div className="datatableTitle">
             {path}
-         { path !== "booking" ? <Link to={`/${path}/new`} className="link">
-              Add New
-            </Link>
-            :null}
+            {path !== "booking" ? (
+              <Link to={`/${path}/new`} className="link">
+                Add New
+              </Link>
+            ) : null}
           </div>
           <div>
             {/* search */}
             <form onSubmit={handleSearch}>
-
               <div class="search">
-                <input type="text" class="searchTerm" value={query}
-                  onChange={(event) => setQuery(event.target.value)} placeholder="Search..." />
+                <input
+                  type="text"
+                  class="searchTerm"
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  placeholder="Search..."
+                />
                 <button type="submit" class="searchButton">
                   <SearchIcon className="text-sm" />
                 </button>
@@ -251,4 +254,3 @@ Datatable.defaultProps = {
 };
 
 export default Datatable;
-

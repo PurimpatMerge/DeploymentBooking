@@ -65,8 +65,7 @@ export function showAlertEmail(res) {
   return [
     Store.addNotification({
       title: res === "pass" ? "Success form sent" : "Failed",
-      message:
-        res === "pass" ? "check your email" : `Wrong email`,
+      message: res === "pass" ? "check your email" : `Wrong email`,
       type: res === "pass" ? "success" : "danger",
       insert: "top",
       container: "top-right",

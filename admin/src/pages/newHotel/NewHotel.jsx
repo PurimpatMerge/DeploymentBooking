@@ -10,7 +10,7 @@ import { showAlertFillter } from "../../components/alertMessage.js";
 
 import { ReactNotifications } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
-import { Image } from 'antd';
+import { Image } from "antd";
 
 const NewHotel = () => {
   const [files, setFiles] = useState("");
@@ -21,11 +21,11 @@ const NewHotel = () => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
     if (e.type === "number") {
       if (isNaN(parseFloat(e.target.value))) {
-          setInputError({ ...inputError, [e.id + "_number"]: true });
+        setInputError({ ...inputError, [e.id + "_number"]: true });
       } else {
-          setInputError({ ...inputError, [e.id + "_number"]: false });
+        setInputError({ ...inputError, [e.id + "_number"]: false });
       }
-  }
+    }
   };
 
   const handleClick = async (e) => {
@@ -55,7 +55,7 @@ const NewHotel = () => {
       const res = "pass";
       showAlertFillter(res);
       setTimeout(() => {
-        window.location.href = '/';
+        window.location.href = "/";
       }, 3000);
     } catch (err) {
       console.log(err);
@@ -119,11 +119,13 @@ const NewHotel = () => {
                     placeholder={input.placeholder}
                     onBlur={(event) => {
                       setInputError({
-                          ...inputError,
-                          [event.target.id]: event.target.value === "",
-                          [event.target.id + "_number"]: input.type === "number" && isNaN(parseFloat(event.target.value)),
+                        ...inputError,
+                        [event.target.id]: event.target.value === "",
+                        [event.target.id + "_number"]:
+                          input.type === "number" &&
+                          isNaN(parseFloat(event.target.value)),
                       });
-                  }}
+                    }}
                     onChange={handleChange}
                   />
                 </div>

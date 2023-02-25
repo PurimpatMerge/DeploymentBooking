@@ -33,5 +33,4 @@ router.get("/:id", getUser);
 //GET ALL
 router.get("/", verifyAdmin, getUsers);
 
-
 export default router;

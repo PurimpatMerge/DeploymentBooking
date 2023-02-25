@@ -1,11 +1,11 @@
 import { Store } from "react-notifications-component";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 export function showAlertDelete() {
   return [
     Store.addNotification({
       title: "success",
-      message:" Deleted",
+      message: " Deleted",
       type: "success",
       insert: "top",
       container: "top-right",
@@ -22,7 +22,7 @@ export function showAlertApproved() {
   return [
     Store.addNotification({
       title: "success",
-      message:"Status change",
+      message: "Status change",
       type: "success",
       insert: "top",
       container: "top-right",

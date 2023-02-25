@@ -94,7 +94,7 @@ const HotelSchema = new mongoose.Schema({
   rubberRing: {
     type: Boolean,
   },
-  snooker : {
+  snooker: {
     type: Boolean,
   },
   discoLight: {

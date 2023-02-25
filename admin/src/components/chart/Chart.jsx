@@ -9,7 +9,6 @@ import {
 } from "recharts";
 import useFetch from "../../hooks/useFetch";
 
-
 const Chart = ({ aspect, title }) => {
   const { data, loading, error } = useFetch(`/dashmerge/chart`);
   return (

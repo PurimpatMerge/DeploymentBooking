@@ -1,16 +1,16 @@
-.navbar{
+.navbar {
   height: 50px;
   background-color: #2f132f;
   display: flex;
   justify-content: center;
 }
-.aqwr{
-  background-image:url("../../photo/BGFBcover.png");
+.aqwr {
+  background-image: url("../../photo/BGFBcover.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
-.navContainer{
+.navContainer {
   width: 100%;
   max-width: 1024px;
   color: white;
@@ -19,11 +19,11 @@
   justify-content: space-between;
 }
 
-.logo{
+.logo {
   font-weight: 500;
 }
 
-.navButton{
+.navButton {
   margin-left: 20px;
   border: none;
   padding: 5px 10px;

@@ -7,7 +7,7 @@ export const counterView = async (req, res, next) => {
     if (!hotel) {
       return res.status(404).json({
         success: false,
-        message: "Hotel not found."
+        message: "Hotel not found.",
       });
     }
     if (!hotel.views) {
@@ -19,13 +19,12 @@ export const counterView = async (req, res, next) => {
     res.status(200).json({
       success: true,
       message: `Successfully added a view for hotel with id: ${req.params.id}`,
-      views: hotel.views
+      views: hotel.views,
     });
   } catch (err) {
     next(err);
   }
 };
-
 
 export const createHotel = async (req, res, next) => {
   const newHotel = new Hotel(req.body);
@@ -62,8 +61,8 @@ export const deleteHotelphoto = async (req, res, next) => {
   try {
     await Hotel.findByIdAndUpdate(req.params.id, {
       $set: {
-        photos: []
-      }
+        photos: [],
+      },
     });
     res.status(200).json("Hotel photos have been deleted.");
   } catch (err) {
@@ -88,12 +87,11 @@ export const getAllHotel = async (req, res, next) => {
   }
 };
 
-
 export const getHotels = async (req, res, next) => {
   try {
-    const min = req.query?.min || 1 ;
-    const max = req.query?.max || 99999 ;
-    const city = req.query?.city ||"a";
+    const min = req.query?.min || 1;
+    const max = req.query?.max || 99999;
+    const city = req.query?.city || "a";
     const maxpersons = req.query?.maxpersons || 1;
     const toM = req.query?.sea / 0.0001 || 90;
     const hotels = await Hotel.find({
@@ -101,8 +99,8 @@ export const getHotels = async (req, res, next) => {
         { city: { $regex: `${city}`, $options: "i" } },
         { name: { $regex: `${city}`, $options: "i" } },
       ],
-      cheapestPrice: { $gte: min, $lte: max }, 
-      maxpersons: { $gte: maxpersons }, 
+      cheapestPrice: { $gte: min, $lte: max },
+      maxpersons: { $gte: maxpersons },
       distanceSea: { $lte: toM },
     }).limit(req.query?.limit);
     res.status(200).json(hotels);
@@ -110,7 +108,6 @@ export const getHotels = async (req, res, next) => {
     next(err);
   }
 };
-
 
 export const countByCity = async (req, res, next) => {
   const cities = req.query.cities.split(",");

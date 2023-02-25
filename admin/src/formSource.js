@@ -28,7 +28,6 @@ export const userInputs = [
     label: "Password",
     type: "password",
   },
-
 ];
 export const profile = [
   {
@@ -180,7 +179,7 @@ export const hotelInputs = [
     label: "Distance from the sea",
     type: "number",
     placeholder: "500 m (number only)",
-  },  
+  },
   {
     id: "parkinglot",
     label: "Parking lot",
@@ -210,9 +209,7 @@ export const hotelInputs = [
     label: "Add Description",
     type: "text",
     placeholder: "description",
-  }
-
-
+  },
 ];
 
 export const roomInputs = [

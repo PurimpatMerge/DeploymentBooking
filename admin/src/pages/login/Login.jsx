@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 // import { AuthContext } from "../../context/AuthContext";
 import "./login.scss";
-import { Input } from 'antd';
-import { Button, Space } from 'antd';
+import { Input } from "antd";
+import { Button, Space } from "antd";
 const Login = () => {
   const [credentials, setCredentials] = useState({
     username: undefined,

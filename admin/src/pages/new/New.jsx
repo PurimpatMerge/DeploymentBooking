@@ -36,7 +36,7 @@ const New = ({ inputs, title }) => {
       const res = "pass";
       showAlertFillter(res);
       setTimeout(() => {
-        window.location.href = '/';
+        window.location.href = "/";
       }, 3000);
     } catch (err) {
       showAlertUserDuplicate(err.message);
