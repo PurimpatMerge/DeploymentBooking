@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.7aa75c0e.css",
+    "main.js": "/static/js/main.ce3d15f1.js",
+    "static/media/pet.jpg": "/static/media/pet.671b1c11073c6227978b.jpg",
+    "static/media/pool.jpg": "/static/media/pool.f9882047078b3386bbd7.jpg",
+    "static/media/bed.jpg": "/static/media/bed.d8a70925445700a7d089.jpg",
+    "static/media/park.jpg": "/static/media/park.8e834a4cc9a1a9d76934.jpg",
+    "static/media/beautibg.jpg": "/static/media/beautibg.3625e5ce2257bfb278f9.jpg",
+    "static/media/other.jpg": "/static/media/other.0acd495f0084ee8ba185.jpg",
+    "static/media/snooker.jpg": "/static/media/snooker.7540afc881024c097673.jpg",
+    "static/media/relaxbg.jpg": "/static/media/relaxbg.e22ee817e4ae3dc823d8.jpg",
+    "static/media/bsbg": "/static/media/bsbg.6c17d4a5d327b9afbabe",
+    "static/media/checkin.jpg": "/static/media/checkin.efe4cca6c10d77d9248d.jpg",
+    "static/media/bg5.png": "/static/media/bg5.33dc6bc46eb829ef2367.png",
+    "static/media/pattayaimg": "/static/media/pattayaimg.3a5b39b2df1523d902bc",
+    "static/media/cmbg": "/static/media/cmbg.ccb4b7b17722c279f60c",
+    "static/media/qrcode.jpg": "/static/media/qrcode.2d0ef23157bb1e0bcd6e.jpg",
+    "static/media/team.png": "/static/media/team.44602f8f8ed727da7691.png",
+    "static/media/call-center.png": "/static/media/call-center.c6eec83fbf00ffde453c.png",
+    "static/media/rating.png": "/static/media/rating.328f4279e66b6f216f33.png",
+    "static/media/poolicon.png": "/static/media/poolicon.84982cf0b0c571af949d.png",
+    "index.html": "/index.html",
+    "main.7aa75c0e.css.map": "/static/css/main.7aa75c0e.css.map",
+    "main.ce3d15f1.js.map": "/static/js/main.ce3d15f1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7aa75c0e.css",
+    "static/js/main.ce3d15f1.js"
+  ]
+}
