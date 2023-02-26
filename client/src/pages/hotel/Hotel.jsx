@@ -60,7 +60,7 @@ const Hotel = () => {
     const srcMatch = data.location?.match(/<iframe[^>]+src="([^"]+)"/i);
     const srcm = srcMatch && srcMatch[1];
     return [
-      <div data-aos="flip-up">
+      <div data-aos="zoom-out-right">
         <Iframe
           src={srcm}
           className=" bg-white bg-opacity-50 grid text-center justify-center content-center  shadow-md w-full h-[400px]"
@@ -93,13 +93,6 @@ const Hotel = () => {
   const [visible, setVisible] = useState(false);
 
 
-  const [loadingscreen, setLoadingscreen] = useState(false);
-  useEffect(() => {
-    setLoadingscreen(true);
-    setTimeout(() => {
-      setLoadingscreen(false);
-    }, 1000);
-  }, []);
 
   // scroll
   const [visible2, setVisible2] = useState(false);
@@ -125,7 +118,7 @@ const Hotel = () => {
   return (
 
     <>
-      {loadingscreen ? (
+      {loading ? (
         <>
 
           <div className="bg-[#C7BCA1] min-h-screen brightness-50">
@@ -135,7 +128,7 @@ const Hotel = () => {
                 <Spin
                   size="large"
                   color={"#fd912c"}
-                  loadingscreen={loadingscreen}
+                  loading={loading}
                 />
               </Space>
             </div>
@@ -185,7 +178,7 @@ const Hotel = () => {
                     <div className="flex">
                       <FontAwesomeIcon
                         icon={faLocationDot}
-                        className="text-red-600 mr-2"
+                        className="text-red-600 mr-2 "
                       />
                       <label className="text-red-600 ">{data.city}</label>
                     </div>
@@ -246,16 +239,16 @@ const Hotel = () => {
               <div className="grid sm:gap-y-10  grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-10 ">
                 {/* 1 */}
 
-                <div data-aos="flip-up" >
+                <div data-aos="zoom-out-right" >
                   <img src={checkin} alt="snooker" className="w-full h-[400px]" />
                 </div>
                 <MapFrame />
                 {/* 2 */}
-                <div data-aos="flip-up" className="lg:ml-10 sm:mt-0 mt-10">
+                <div data-aos="zoom-out-left" className="lg:ml-10 sm:mt-0 mt-10">
                   <img src={snooker} alt="snooker" className="w-full h-[400px] " />
                 </div>
                 <div
-                  data-aos="flip-up"
+                  data-aos="zoom-out-left"
                   className="bg-white bg-opacity-90 grid text-center    shadow-md h-[400px]   p-5"
                 >
 
@@ -329,11 +322,11 @@ const Hotel = () => {
 
                 {/* 3 */}
                 
-                <div data-aos="flip-up">
+                <div data-aos="zoom-out-right">
                   <img src={pool} alt="snooker" className="w-full h-[400px] sm:mt-0 mt-10" />
                 </div>
                 <div
-                  data-aos="flip-up"
+                  data-aos="zoom-out-right"
                   className=" bg-white  grid text-center content-center  shadow-md  p-5"
                 >
                   <h1 className="text-4xl ">ขนาดสระว่ายน้ำ</h1>
@@ -344,11 +337,11 @@ const Hotel = () => {
                   </div>
                 </div>
                 {/* 4 */}
-                <div data-aos="flip-up" className="lg:ml-10">
+                <div data-aos="zoom-out-left" className="lg:ml-10">
                   <img src={park} alt="snooker" className="w-full h-[400px] sm:mt-0 mt-10" />
                 </div>
                 <div
-                  data-aos="flip-up"
+                  data-aos="zoom-out-left"
                   className=" bg-white bg-opacity-90 grid text-center content-center  shadow-md  p-5"
                 >
                   <h1 className="text-4xl  ">ที่จอดรถ</h1>
@@ -357,11 +350,11 @@ const Hotel = () => {
 
                 {/* 5 */}
                 
-                <div data-aos="flip-up">
+                <div data-aos="zoom-out-right">
                   <img src={bed} alt="snooker" className="w-full h-[400px] sm:mt-0 mt-10" />
                 </div>
                 <div
-                  data-aos="flip-up"
+                  data-aos="zoom-out-right"
                   className=" bg-white bg-opacity-90 grid text-center content-center  shadow-md   p-5"
                 >
                   <h1 className=" text-4xl ">เตียง</h1>
@@ -375,11 +368,11 @@ const Hotel = () => {
                   <h1 className=" text-2xl ">เตียงเสริม {data.addonBed}฿</h1>
                 </div>
                 {/* 6 */}
-                <div data-aos="flip-up" className="lg:ml-10">
+                <div data-aos="zoom-out-left" className="lg:ml-10">
                   <img src={pet} alt="snooker" className="w-full h-[400px] sm:mt-0 mt-10" />
                 </div>
                 <div
-                  data-aos="flip-up"
+                  data-aos="zoom-out-left"
                   className=" bg-white bg-opacity-90 grid text-center content-center  shadow-md  p-5"
                 >
                   <h1 className="text-4xl divide-y">สัตว์เลี้ยง</h1>
@@ -392,11 +385,11 @@ const Hotel = () => {
 
                 {/* 7 */}
                 
-                <div data-aos="flip-up">
+                <div data-aos="zoom-out-right">
                   <img src={other} alt="snooker" className="w-full h-[400px] sm:mt-0 mt-10" />
                 </div>
                 <div
-                  data-aos="flip-up"
+                  data-aos="zoom-out-right"
                   className=" bg-white  grid text-center content-center  shadow-md  p-5"
                 >
                   <h1 className=" text-4xl ">เพิ่มเติม</h1>

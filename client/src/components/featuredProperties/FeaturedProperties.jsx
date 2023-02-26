@@ -3,6 +3,7 @@ import "./featuredProperties.css";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { SearchContext } from "../../context/SearchContext";
+import { Link } from "react-router-dom";
 
 const FeaturedProperties = () => {
   const { data, loading, error } = useFetch(
@@ -28,6 +29,9 @@ const FeaturedProperties = () => {
     navigate("/hotels", { state: { destination, dates, person } });
   };
 
+  const handleLinkClick = () => {
+    window.scrollTo(0, 0);
+  };
   return (
     <div className="container mx-auto ">
       {loading ? (
@@ -42,6 +46,7 @@ const FeaturedProperties = () => {
           </div>
           <div className="flex justify-center flex-wrap ">
             {data.map((item) => (
+                <Link to={`/hotels/${item._id}`} onClick={handleLinkClick}>
               <div className="p-10">
                 <div
                   className="sm:w-[400px]  bg-white bg-opacity-80 h-[400px] rounded-lg overflow-hidden shadow-lg duration-200  hover:scale-110"
@@ -68,6 +73,7 @@ const FeaturedProperties = () => {
                   </div>
                 </div>
               </div>
+              </Link>
             ))}
           </div>
 

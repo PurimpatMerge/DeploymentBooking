@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
-import { MenuProps } from "antd";
 import { Menu } from "antd";
 import React, { useState } from "react";
 const Navbar = () => {

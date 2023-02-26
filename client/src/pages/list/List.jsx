@@ -123,7 +123,7 @@ const List = () => {
             <div className="listContainer  justify-center">
               <div className="gap-[30px] lg:flex">
                 {/* when hidden i want some button to show this component again */}
-                <div className="listSearch  border border-black shadow-lg block 2xl:fixed left-20">
+                <div className="listSearch  border border-black shadow-lg block 2xl:fixed left-10">
                   <h1 className="lsTitle">Search</h1>
                   <div className="lsItem">
                     <label>Destination</label>
