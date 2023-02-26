@@ -5,8 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "babel src -d lib",
-    "test": "node index.js"
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
