@@ -206,7 +206,7 @@ const Hotel = () => {
                     </div>
                     <div>
                       <Divider />
-                      <a
+                      <button
                         onClick={showModal}
                         className="bookNow  flex  overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group hover:ring-1 hover:ring-purple-500"
                       >
@@ -220,7 +220,7 @@ const Hotel = () => {
                           {" "}
                           Now!
                         </span>
-                      </a>
+                      </button>
                     </div>
                   </div>
                   {/* col-2 */}
@@ -236,16 +236,16 @@ const Hotel = () => {
                 </div>
               </div>
 
-              <div className="grid sm:gap-y-10  grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-10 ">
+              <div className="grid sm:gap-y-10  grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 mt-10 ">
                 {/* 1 */}
 
                 <div data-aos="zoom-out-right" >
-                  <img src={checkin} alt="snooker" className="w-full h-[400px]" />
+                  <img src={checkin} alt="snooker" className="w-full h-[400px] object-cover" />
                 </div>
                 <MapFrame />
                 {/* 2 */}
-                <div data-aos="zoom-out-left" className="lg:ml-10 sm:mt-0 mt-10">
-                  <img src={snooker} alt="snooker" className="w-full h-[400px] " />
+                <div data-aos="zoom-out-left" className="xl:ml-10 sm:mt-0 mt-10">
+                  <img src={snooker} alt="snooker" className="w-full h-[400px] object-cover " />
                 </div>
                 <div
                   data-aos="zoom-out-left"
@@ -254,10 +254,10 @@ const Hotel = () => {
 
                   <h1 className="text-xl ">ฟังก์ชั่น</h1>
                   <Divider />
-                  <div className="text-left text-small flex justify-center">
+                  <div className="text-left text-xs flex justify-center">
                     <div class="grid grid-cols-3 gap-4">
                       {data.swimmingPool === true && (
-                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[80px] lg:w-[120px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
+                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
                           <FontAwesomeIcon icon={faSwimmingPool} size="small" />
                           <p class="mt-2 text-purple-800  text-center">
                             Swimming Pool
@@ -265,25 +265,25 @@ const Hotel = () => {
                         </div>
                       )}
                       {data.slider === true && (
-                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[80px] lg:w-[120px] shadow-md shadow-purple-500/50 p-4 rounded-lg">
+                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
                           <FontAwesomeIcon icon={faSlidersH} size="small" />
                           <p class="mt-2 text-purple-800 text-center">Slider</p>
                         </div>
                       )}
                       {data.rubberRing === true && (
-                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[80px] lg:w-[120px] shadow-md shadow-purple-500/50 p-4 rounded-lg">
+                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
                           <FontAwesomeIcon icon={faLifeRing} size="small" />
                           <p class="mt-2 text-purple-800 text-center">Rubber Ring</p>
                         </div>
                       )}
                       {data.karaoke === true && (
-                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[80px] lg:w-[120px] shadow-md shadow-purple-500/50 p-4 rounded-lg">
+                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
                           <FontAwesomeIcon icon={faMicrophoneAlt} size="small" />
                           <p class="mt-2 text-purple-800 text-center">Karaoke</p>
                         </div>
                       )}
                       {data.animal === true && (
-                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[80px] lg:w-[120px] shadow-md shadow-purple-500/50 p-4 rounded-lg">
+                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
                           <FontAwesomeIcon icon={faPaw} size="small" />
                           <p class="mt-2 text-purple-800 text-center">
                             Allowed Animal
@@ -291,19 +291,19 @@ const Hotel = () => {
                         </div>
                       )}
                       {data.snooker === true && (
-                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[80px] lg:w-[120px] shadow-md shadow-purple-500/50 p-4 rounded-lg">
+                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
                           <FontAwesomeIcon icon={faChessBoard} size="small" />
                           <p class="mt-2 text-purple-800 text-center">Snooker</p>
                         </div>
                       )}
                       {data.discoLight === true && (
-                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[80px] lg:w-[120px] shadow-md shadow-purple-500/50 p-4 rounded-lg">
+                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
                           <FontAwesomeIcon icon={faLightbulb} size="small" />
                           <p class="mt-2 text-purple-800 text-center">Disco Light</p>
                         </div>
                       )}
                       {data.kitchenEquipment === true && (
-                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[80px] lg:w-[120px] shadow-md shadow-purple-500/50 p-4 rounded-lg">
+                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
                           <FontAwesomeIcon icon={faUtensilSpoon} size="small" />
                           <p class="mt-2 text-purple-800 text-center">
                             Kitchen Equipment
@@ -311,7 +311,7 @@ const Hotel = () => {
                         </div>
                       )}
                       {data.wifi === true && (
-                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[80px] lg:w-[120px] shadow-md shadow-purple-500/50 p-4 rounded-lg">
+                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
                           <FontAwesomeIcon icon={faWifi} size="small" />
                           <p class="mt-2 text-purple-800 text-center">Free wifi</p>
                         </div>
@@ -322,8 +322,8 @@ const Hotel = () => {
 
                 {/* 3 */}
                 
-                <div data-aos="zoom-out-right">
-                  <img src={pool} alt="snooker" className="w-full h-[400px] sm:mt-0 mt-10" />
+                <div data-aos="zoom-out-right"> 
+                  <img src={pool} alt="snooker" className="w-full h-[400px] sm:mt-0 mt-10 object-cover" />
                 </div>
                 <div
                   data-aos="zoom-out-right"
@@ -337,8 +337,8 @@ const Hotel = () => {
                   </div>
                 </div>
                 {/* 4 */}
-                <div data-aos="zoom-out-left" className="lg:ml-10">
-                  <img src={park} alt="snooker" className="w-full h-[400px] sm:mt-0 mt-10" />
+                <div data-aos="zoom-out-left" className="xl:ml-10">
+                  <img src={park} alt="snooker" className="w-full h-[400px] sm:mt-0 mt-10 object-cover" />
                 </div>
                 <div
                   data-aos="zoom-out-left"
@@ -351,7 +351,7 @@ const Hotel = () => {
                 {/* 5 */}
                 
                 <div data-aos="zoom-out-right">
-                  <img src={bed} alt="snooker" className="w-full h-[400px] sm:mt-0 mt-10" />
+                  <img src={bed} alt="snooker" className="w-full h-[400px] sm:mt-0 mt-10 object-cover" />
                 </div>
                 <div
                   data-aos="zoom-out-right"
@@ -368,8 +368,8 @@ const Hotel = () => {
                   <h1 className=" text-2xl ">เตียงเสริม {data.addonBed}฿</h1>
                 </div>
                 {/* 6 */}
-                <div data-aos="zoom-out-left" className="lg:ml-10">
-                  <img src={pet} alt="snooker" className="w-full h-[400px] sm:mt-0 mt-10" />
+                <div data-aos="zoom-out-left" className="xl:ml-10">
+                  <img src={pet} alt="snooker" className="w-full h-[400px] sm:mt-0 mt-10 object-cover" />
                 </div>
                 <div
                   data-aos="zoom-out-left"
@@ -386,7 +386,7 @@ const Hotel = () => {
                 {/* 7 */}
                 
                 <div data-aos="zoom-out-right">
-                  <img src={other} alt="snooker" className="w-full h-[400px] sm:mt-0 mt-10" />
+                  <img src={other} alt="snooker" className="w-full h-[400px] sm:mt-0 mt-10 object-cover" />
                 </div>
                 <div
                   data-aos="zoom-out-right"
