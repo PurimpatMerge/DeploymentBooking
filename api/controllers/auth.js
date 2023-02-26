@@ -82,7 +82,7 @@ export const forgetPassword = async (req, res, next) => {
       secret,
       { expiresIn: "5m" }
     );
-    const link = `http://localhost:8000/api/auth/reset-Password/${emailCheck._id}/${token}`;
+    const link = `https://poolvilla-production-test.up.railway.app/api/auth/reset-Password/${emailCheck._id}/${token}`;
     var transporter = nodemailer.createTransport({
       service: "hotmail",
       auth: {
