@@ -30,13 +30,15 @@ const Profile = (props) => {
 };
 const EditProfile = () => {
   const { user } = useContext(AuthContext);
-  const { data, loading, error } = useFetch(`https://api-pool-villa.onrender.com/api/users/${user._id}`);
+  const { data, loading, error } = useFetch(`/users/${user._id}`);
 
   return (
     <div className="bgedit bg-cover object-cover h-screen flex-col">
       <Navbar />
-
       <ReactNotifications />
+      {loading ? (
+          "Loading please wait"
+        ) : (
       <div className="container mx-auto p-10 mt-32  sm:w-5/12 backdrop-blur-sm bg-white/30 border border-gray-400  rounded-lg ">
         <div className="w-full  mx-auto my-12 ">
           <div className="flex "></div>
@@ -59,6 +61,7 @@ const EditProfile = () => {
           </Link>
         </div>
       </div>
+ )}
     </div>
   );
 };
