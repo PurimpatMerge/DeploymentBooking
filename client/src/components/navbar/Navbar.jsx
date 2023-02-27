@@ -76,6 +76,14 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="">
+        <a
+                href="https://www.facebook.com/profile.php?id=100087940958692"
+                target="_blank"
+                rel="noreferrer"
+                className="ml-5 text-white font-semibold text-xs tracking-tight duration-300 hover:scale-125 mr-10"
+              >
+                ติดต่อเรา
+              </a>
               <Link
                 to="/register"
                 style={{ color: "inherit", textDecoration: "none" }}
