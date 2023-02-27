@@ -31,7 +31,7 @@ const Profile = (props) => {
 };
 const EditProfile = () => {
   const { user } = useContext(AuthContext);
-  const { data, loading, error } = useFetch(`https://api-pool-villa.onrender.com/api/users/${user._id}`);
+  const { data, loading, error } = useFetch(`/${user._id}`);
 
   return (
     <div className="bgedit bg-cover object-cover h-screen flex-col">
