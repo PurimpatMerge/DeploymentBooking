@@ -49,15 +49,15 @@ const Hotel = () => {
   const { data, loading, error } = useFetch(`/hotels/find/${id}`);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const infoBed = data.bed?.split(",");
-  const infoSwimmingPoole = data.swimmingPoolDes?.split(",");
-  const infoAnimal = data.animalDes?.split(",");
-  const infoElse = data.elseDes?.split(",");
-  const toKM = data.distanceSea * 0.0001;
+  const infoBed = data?.bed.split(",");
+  const infoSwimmingPoole = data?.swimmingPoolDes.split(",");
+  const infoAnimal = data?.animalDes?.split(",");
+  const infoElse = data?.elseDes?.split(",");
+  const toKM = data?.distanceSea * 0.0001;
 
   // map
   const MapFrame = () => {
-    const srcMatch = data.location?.match(/<iframe[^>]+src="([^"]+)"/i);
+    const srcMatch = data?.location?.match(/<iframe[^>]+src="([^"]+)"/i);
     const srcm = srcMatch && srcMatch[1];
     return [
       <div data-aos="zoom-out-right">

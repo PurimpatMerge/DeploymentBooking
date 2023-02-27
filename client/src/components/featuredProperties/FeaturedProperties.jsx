@@ -45,7 +45,7 @@ const FeaturedProperties = () => {
             </p>
           </div>
           <div className="flex justify-center flex-wrap ">
-            {data.map((item) => (
+            {data?.map((item) => (
                 <Link to={`/hotels/${item._id}`} onClick={handleLinkClick}>
               <div className="p-10">
                 <div
