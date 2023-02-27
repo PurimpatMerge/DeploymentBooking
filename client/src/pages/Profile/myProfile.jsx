@@ -44,10 +44,10 @@ const EditProfile = () => {
           <div className="flex "></div>
 
           <Profile
-            username={data.username}
-            email={data.email}
-            phone={data.phone}
-            lineId={data.lineId}
+            username={data?.username}
+            email={data?.email}
+            phone={data?.phone}
+            lineId={data?.lineId}
           />
         </div>
         <div className="flex justify-end">
