@@ -48,8 +48,8 @@ const List = () => {
   const classes = useStyles();
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(8);
-  const totalPages = Math.ceil(data.length / perPage);
-  const paginatedData = data.slice((page - 1) * perPage, page * perPage);
+  const totalPages = Math.ceil(data?.length / perPage);
+  const paginatedData = data?.slice((page - 1) * perPage, page * perPage);
 
   function handlePageChange(event, value) {
     setPage(value);
