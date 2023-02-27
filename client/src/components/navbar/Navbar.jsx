@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Menu } from "antd";
@@ -50,10 +50,10 @@ const Navbar = () => {
       ],
     },
   ];
-
+ const history = useHistory();
   const onClick = (e) => {
     if (e.key !== "3") {
-      window.location.href = `/${e.key}`;
+       history.push(`/${e.key}`);
     } else {
       handlelogout();
     }
