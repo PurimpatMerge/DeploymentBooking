@@ -1,11 +1,12 @@
-import { Link,useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Menu } from "antd";
 import React, { useState } from "react";
+import { useHistory } from 'react-router';
 const Navbar = () => {
   const { user } = useContext(AuthContext);
-
+  const history = useHistory();
   const handlelogout = async () => {
     try {
       logout();
@@ -50,7 +51,7 @@ const Navbar = () => {
       ],
     },
   ];
- const history = useHistory();
+
   const onClick = (e) => {
     if (e.key !== "3") {
        history.push(`/${e.key}`);
