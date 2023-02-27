@@ -90,17 +90,6 @@ const List = () => {
         <>
          <Navbar />
           <div className="bg-[#edede9] brightness-50">
-            <>
-            <div className="fixed h-screen z-20 top-1/2  left-1/2 -translate-x-6 -translate-y-6">
-            <Space size="middle">
-              <Spin
-                size="large"
-                color={"#fd912c"}
-                loadingscreen={loadingscreen}
-              />
-            </Space>
-          </div>
-            </>
           </div>
           <div className="fixed h-screen z-20 top-1/2  left-1/2 -translate-x-6 -translate-y-6">
             <Space size="middle">
@@ -115,7 +104,7 @@ const List = () => {
       ) : (
         <>
         <Navbar />
-          <div className="min-w-max min-h-screen bg-[#edede9] sm:mt-20 mt-24 ">
+          <div className="min-w-max min-h-screen bg-[#edede9] pt-5 ">
             
             {/* <button onClick={handleToggle}><TbListSearch className="lg:hidden text-3xl fixed text-yellow-400  "/></button> */}
 
