@@ -41,7 +41,7 @@ import {
 import { ArrowUpOutlined } from '@ant-design/icons';
 const Hotel = () => {
   const location = useLocation();
-  const id = location.pathname.split("/")[2];
+  const id = location?.pathname.split("/")[2];
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -49,10 +49,10 @@ const Hotel = () => {
   const { data, loading, error } = useFetch(`/hotels/find/${id}`);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const infoBed = data?.bed.split(",");
-  const infoSwimmingPoole = data?.swimmingPoolDes.split(",");
-  const infoAnimal = data?.animalDes?.split(",");
-  const infoElse = data?.elseDes?.split(",");
+  const infoBed = data.bed?.split(",");
+  const infoSwimmingPoole = data.swimmingPoolDes?.split(",");
+  const infoAnimal = data.animalDes?.split(",");
+  const infoElse = data.elseDes?.split(",");
   const toKM = data?.distanceSea * 0.0001;
 
   // map
@@ -142,12 +142,12 @@ const Hotel = () => {
             <ReactNotifications />
 
             <div className="mt-10 mb-10">
-              <div class="h-[360px] md:h-[500px] grid sm:grid-cols-2  lg:grid-cols-4 gap-5 overflow-y-auto bg-[#000000] bg-opacity-70 bg-center bg-cover p-5">
+              <div className="h-[360px] md:h-[500px] grid sm:grid-cols-2  lg:grid-cols-4 gap-5 overflow-y-auto bg-[#000000] bg-opacity-70 bg-center bg-cover p-5">
                 <Image.PreviewGroup
                   preview={{ visible, onVisibleChange: (vis) => setVisible(vis) }}
                 >
                   {data.photos?.map((photo, i) => (
-                    <div class="" key={i}>
+                    <div className="" key={i}>
                       <Image
                         onClick={() => handleOpen(i)}
                         src={photo}
@@ -255,65 +255,65 @@ const Hotel = () => {
                   <h1 className="text-xl ">ฟังก์ชั่น</h1>
                   <Divider />
                   <div className="text-left text-xs flex justify-center">
-                    <div class="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-3 gap-4">
                       {data.swimmingPool === true && (
-                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
+                        <div className="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
                           <FontAwesomeIcon icon={faSwimmingPool} size="small" />
-                          <p class="mt-2 text-purple-800  text-center">
+                          <p className="mt-2 text-purple-800  text-center">
                             Swimming Pool
                           </p>
                         </div>
                       )}
                       {data.slider === true && (
-                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
+                        <div className="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
                           <FontAwesomeIcon icon={faSlidersH} size="small" />
-                          <p class="mt-2 text-purple-800 text-center">Slider</p>
+                          <p className="mt-2 text-purple-800 text-center">Slider</p>
                         </div>
                       )}
                       {data.rubberRing === true && (
-                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
+                        <div className="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
                           <FontAwesomeIcon icon={faLifeRing} size="small" />
-                          <p class="mt-2 text-purple-800 text-center">Rubber Ring</p>
+                          <p className="mt-2 text-purple-800 text-center">Rubber Ring</p>
                         </div>
                       )}
                       {data.karaoke === true && (
-                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
+                        <div className="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
                           <FontAwesomeIcon icon={faMicrophoneAlt} size="small" />
-                          <p class="mt-2 text-purple-800 text-center">Karaoke</p>
+                          <p className="mt-2 text-purple-800 text-center">Karaoke</p>
                         </div>
                       )}
                       {data.animal === true && (
-                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
+                        <div className="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
                           <FontAwesomeIcon icon={faPaw} size="small" />
-                          <p class="mt-2 text-purple-800 text-center">
+                          <p className="mt-2 text-purple-800 text-center">
                             Allowed Animal
                           </p>
                         </div>
                       )}
                       {data.snooker === true && (
-                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
+                        <div className="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
                           <FontAwesomeIcon icon={faChessBoard} size="small" />
-                          <p class="mt-2 text-purple-800 text-center">Snooker</p>
+                          <p className="mt-2 text-purple-800 text-center">Snooker</p>
                         </div>
                       )}
                       {data.discoLight === true && (
-                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
+                        <div className="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
                           <FontAwesomeIcon icon={faLightbulb} size="small" />
-                          <p class="mt-2 text-purple-800 text-center">Disco Light</p>
+                          <p className="mt-2 text-purple-800 text-center">Disco Light</p>
                         </div>
                       )}
                       {data.kitchenEquipment === true && (
-                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
+                        <div className="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
                           <FontAwesomeIcon icon={faUtensilSpoon} size="small" />
-                          <p class="mt-2 text-purple-800 text-center">
+                          <p className="mt-2 text-purple-800 text-center">
                             Kitchen Equipment
                           </p>
                         </div>
                       )}
                       {data.wifi === true && (
-                        <div class="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
+                        <div className="flex flex-col items-center justify-center bg-white h-[80px] lg:h-[60px] lg:w-[80px] shadow-md shadow-purple-500/50 p-2 rounded-lg">
                           <FontAwesomeIcon icon={faWifi} size="small" />
-                          <p class="mt-2 text-purple-800 text-center">Free wifi</p>
+                          <p className="mt-2 text-purple-800 text-center">Free wifi</p>
                         </div>
                       )}
                     </div>
