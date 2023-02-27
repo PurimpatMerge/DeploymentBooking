@@ -70,6 +70,11 @@ const Navbar = () => {
               </button>
             </Link>
           </div>
+     <Link to="/myProfile" style={{ color: "inherit", textDecoration: "none" }}>
+              <button className="font-semibold text-white text-xl tracking-tight duration-300 hover:scale-105 ">
+                profile
+              </button>
+            </Link>
         </div>
         <div className="my-auto">
           {user ? (
