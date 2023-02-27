@@ -24,7 +24,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const a = await axios.post("/auth/forgetPassword", password);
+      const a = await axios.post("https://api-pool-villa.onrender.com/api/auth/forgetPassword", password);
       if (a.data === "This Email doesn't Exists") {
         return showAlertEmail("Fail");
       }

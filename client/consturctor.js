@@ -1,0 +1,1 @@
+export const pathDeploy = "https://api-pool-villa.onrender.com/api";

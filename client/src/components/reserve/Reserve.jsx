@@ -40,7 +40,7 @@ const Reserve = (props) => {
 
       if (friPrice && satPrice && sunPrice) {
         const getBookData = await axios.get(
-          `/datesBook/bookingPoolvillaDate/${poolvilla}/${formattedDate}/${formattedDateend}/${startPrice}/${friPrice}/${satPrice}/${sunPrice}`
+          `https://api-pool-villa.onrender.com/api/datesBook/bookingPoolvillaDate/${poolvilla}/${formattedDate}/${formattedDateend}/${startPrice}/${friPrice}/${satPrice}/${sunPrice}`
         );
         if (getBookData) {
           totalPrice = getBookData.data.totalPrice;
@@ -55,7 +55,7 @@ const Reserve = (props) => {
 
       if (!friPrice && !satPrice && !sunPrice) {
         const getBookData = await axios.get(
-          `/datesBook/bookingPoolvillaDate/${poolvilla}/${formattedDate}/${formattedDateend}/${startPrice}`
+          `https://api-pool-villa.onrender.com/api/datesBook/bookingPoolvillaDate/${poolvilla}/${formattedDate}/${formattedDateend}/${startPrice}`
         );
         if (getBookData) {
           totalPrice = getBookData.data.totalPrice;

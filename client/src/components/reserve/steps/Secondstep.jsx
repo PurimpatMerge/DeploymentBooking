@@ -122,7 +122,7 @@ const Secondstep = (props) => {
 
       console.log(bookingDetail);
 
-      await axios.post("/booking/confirm", bookingDetail);
+      await axios.post("https://api-pool-villa.onrender.com/api/booking/confirm", bookingDetail);
       const res = "pass";
       showAlertFillter(res);
       setTimeout(() => {

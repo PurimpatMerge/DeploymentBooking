@@ -5,7 +5,7 @@ const SearchItem = ({ item }) => {
   const toKM = item?.distanceSea * 0.0001;
 
   const handleClick = () => {
-    axios.put(`/hotels/view/${item._id}`);
+    axios.put(`https://api-pool-villa.onrender.com/api/hotels/view/${item._id}`);
     
   };
   const handleLinkClick = () => {

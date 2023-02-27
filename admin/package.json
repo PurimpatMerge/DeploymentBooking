@@ -51,7 +51,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://api-pool-villa.onrender.com//api",
+  "proxy": "https://api-pool-villa.onrender.com/api",
   "devDependencies": {
     "tailwindcss": "^3.2.4"
   }

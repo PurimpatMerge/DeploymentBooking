@@ -30,7 +30,7 @@ const Register = () => {
         ...info,
       };
 
-      await axios.post("/auth/register", newUser);
+      await axios.post("https://api-pool-villa.onrender.com/api/auth/register", newUser);
       const res = "pass";
       showAlertFillter(res);
       setTimeout(() => {

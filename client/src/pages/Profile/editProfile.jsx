@@ -28,7 +28,7 @@ const EditProfile = () => {
         ...info,
       };
 
-      await axios.put(`/users/${user._id}`, updatehotel);
+      await axios.put(`https://api-pool-villa.onrender.com/api/users/${user._id}`, updatehotel);
       const res = "pass";
       showAlertFillter(res);
     } catch (err) {
