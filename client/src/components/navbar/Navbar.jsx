@@ -29,7 +29,7 @@ const Navbar = () => {
     }
   }
   return (
-    <div className="bg-[#000000] bg-opacity-90 py-5">
+    <div className="bg-[#000000] bg-opacity-90 py-5 ">
       <div className="container mx-auto  flex justify-between">
         <div className="my-auto">
           <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>

@@ -49,7 +49,7 @@ const FeaturedProperties = () => {
                 <Link to={`/hotels/${item._id}`} onClick={handleLinkClick}>
               <div className="p-10">
                 <div
-                  className="sm:w-[400px]  bg-white bg-opacity-80 h-[400px] rounded-lg overflow-hidden shadow-lg duration-200  hover:scale-110"
+                  className="sm:w-[400px] w-[370px] bg-white bg-opacity-80 h-[400px] rounded-lg overflow-hidden shadow-lg duration-200  hover:scale-110"
                   key={item._id}
                 >
                   <img

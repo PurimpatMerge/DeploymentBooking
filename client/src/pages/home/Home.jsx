@@ -69,8 +69,11 @@ const Home = () => {
           </div>
         </>
       ) : (
-        <div className="bg-[#edede9] overflow-hidden">
+        <>
+        <div className="fixed w-screen z-20">
           <Navbar />
+        </div>
+        <div className="bg-[#edede9] overflow-hidden">
           <Footer />
           <Header />
           <Introtext />
@@ -82,18 +85,19 @@ const Home = () => {
           </div>
           {visible && (
             <Button
-              type="primary"
-              shape="circle"
-              icon={<ArrowUpOutlined className="text-xl top-[2px] absolute left-[9px]" />}
-              size="large"
-              className="scroll-top-button bg-purple-600 duration-150"
-              onClick={handleScrollTop}
+            type="primary"
+            shape="circle"
+            icon={<ArrowUpOutlined className="text-xl top-[2px] absolute left-[9px]" />}
+            size="large"
+            className="scroll-top-button bg-purple-600 duration-150"
+            onClick={handleScrollTop}
             />
-          )}
+            )}
 
           <BotFooter/>
       
         </div>
+            </>
       )}
     </>
   );

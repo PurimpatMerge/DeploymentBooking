@@ -104,7 +104,9 @@ const List = () => {
         </>
       ) : (
         <>
-        <Navbar />
+            <div className="fixed w-screen z-20">
+          <Navbar />
+        </div>
           <div className="min-w-max min-h-screen bg-[#edede9] pt-5 relative pb-20 overflow-hidden">
             
             {/* <button onClick={handleToggle}><TbListSearch className="lg:hidden text-3xl fixed text-yellow-400  "/></button> */}
