@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { Space, Spin } from "antd";
 import { Button } from 'antd';
 import { ArrowUpOutlined } from '@ant-design/icons';
+import BotFooter from "../../components/footer/FooterText";
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
@@ -214,6 +215,10 @@ const List = () => {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="mt-10">
+
+            <BotFooter/>
             </div>
           </div>
           {visible && (

@@ -39,6 +39,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { ArrowUpOutlined } from '@ant-design/icons';
+import BotFooter from "../../components/footer/FooterText";
 const Hotel = () => {
   const location = useLocation();
   const id = location?.pathname.split("/")[2];
@@ -412,7 +413,7 @@ const Hotel = () => {
                   Cancel
                 </Button>,
               ]}
-            >
+              >
               {
                 <Reserve
                   startPrice={data.cheapestPrice}
@@ -421,10 +422,11 @@ const Hotel = () => {
                   sunPrice={data.sunPrice}
                   poolvilla={id}
                   poolvillaName={data.name}
-                />
-              }
+                  />
+                }
             </Modal>
           </div>
+          <BotFooter/>
         </div>
       )}
       {visible2 && (

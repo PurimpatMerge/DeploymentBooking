@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ReactNotifications } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 import {
-  showAlertFillter,
+  showAlertRegister,
   showErrorAlertFillter,
 } from "../../components/alertMessage.js";
 import { TextField } from "@material-ui/core";
@@ -32,7 +32,7 @@ const Register = () => {
 
       await axios.post("https://api-pool-villa.onrender.com/api/auth/register", newUser);
       const res = "pass";
-      showAlertFillter(res);
+      showAlertRegister(res);
       setTimeout(() => {
         window.location.href = "/";
       }, 3000);
@@ -42,8 +42,9 @@ const Register = () => {
   };
 
   return (
-    <div className="bgedit bg-cover object-cover  h-screen  py-[70px] sm:py-[150px]">
+    <>
       <Navbar/>
+    <div className="bgedit bg-cover object-cover  h-screen  py-[70px] sm:py-[150px]">
       <ReactNotifications />
       <div className="container mx-auto py-4 px-10  sm:w-5/12 backdrop-blur-sm bg-white/30 border border-gray-400  rounded-lg">
         <div className="w-full  mx-auto my-12 ">
@@ -75,7 +76,7 @@ const Register = () => {
                     [input.id]: event.target.value === "",
                   });
                 }}
-              />
+                />
             </form>
           ))}
           <div className="flex justify-center">
@@ -83,18 +84,19 @@ const Register = () => {
               type="submit"
               onClick={handleClick}
               className="duration-500 hover:scale-110 mt-4 px-20 py-3 w-[200px] leading-6 text-base rounded-md border border-transparent   bg-blue-500 text-blue-100 hover:text-white focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer inline-flex items-center  justify-center font-medium focus:outline-none"
-            >
+              >
               Register
             </button>
           </div>
           {/* <div className="flex flex-col items-center mt-5">
             <p className="mt-1 text-xs font-light text-gray-500 ">
-              Register already?<a class="ml-1 font-medium text-blue-400 hover:text-violet-400 hover:cursor-pointer duration-200 ">Sign in now</a>
+            Register already?<a class="ml-1 font-medium text-blue-400 hover:text-violet-400 hover:cursor-pointer duration-200 ">Sign in now</a>
             </p>
           </div> */}
         </div>
       </div>
     </div>
+          </>
   );
 };
 

@@ -1,6 +1,7 @@
 import Featured from "../../components/featured/Featured";
 import FeaturedProperties from "../../components/featuredProperties/FeaturedProperties";
 import Footer from "../../components/footer/Footer";
+import BotFooter from "../../components/footer/FooterText";
 import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
 import Introtext from "../../components/featured/Introtext";
@@ -68,7 +69,7 @@ const Home = () => {
           </div>
         </>
       ) : (
-        <div className="bg-[#edede9] ">
+        <div className="bg-[#edede9] overflow-hidden">
           <Navbar />
           <Footer />
           <Header />
@@ -89,6 +90,9 @@ const Home = () => {
               onClick={handleScrollTop}
             />
           )}
+
+          <BotFooter/>
+      
         </div>
       )}
     </>

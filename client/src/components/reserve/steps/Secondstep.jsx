@@ -15,6 +15,7 @@ import { Divider } from "antd";
 import qr from '../../../photo/qrcode.jpg'
 const Secondstep = (props) => {
   const { bookingTotalPrice, bookingDates, id, poolvillaName } = props;
+  const totalBook = bookingTotalPrice * 0.6
   const [info, setInfo] = useState({});
   const [inputError, setInputError] = useState({});
   const { user } = useContext(AuthContext);
@@ -166,13 +167,13 @@ const Secondstep = (props) => {
                   key={input.id}
                   className="grid text-left mt-5 grid-cols-12"
                 >
-                  <p className="col-span-3 sm:col-span-2">{input.label}:</p>
+                  <p className="col-span-3 sm:col-span-3">{input.label}:</p>
                   <TextField
                     error={inputError[input.id]}
                     helperText={
                       inputError[input.id] ? "This field is required" : null
                     }
-                    className="px-4 py-3 w-full col-span-9 sm:col-span-10"
+                    className="px-4 py-3 w-full col-span-9 sm:col-span-9"
                     variant="outlined"
                     InputProps={{
                       className: "bg-white",
@@ -200,7 +201,7 @@ const Secondstep = (props) => {
               <p className="sm:text-base">
                 <BookingDatesList />
               </p>
-              <p className="sm:text-base"> Total: {bookingTotalPrice}</p>
+              <p className="sm:text-base text-blue-600">จากยอด {bookingTotalPrice} ราคาจ่ายมัดจำ Total: {totalBook} </p>
             </div>
           </div>
           {/* cols2 */}

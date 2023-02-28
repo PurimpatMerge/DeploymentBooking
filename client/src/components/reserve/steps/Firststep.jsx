@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
-
+import { Divider } from "antd";
 const Firststep = (props) => {
   const { startPrice, friPrice, satPrice, sunPrice, poolvilla } = props;
   // const [info, setInfo] = useState({});
@@ -34,6 +34,8 @@ const Firststep = (props) => {
   return (
     <div className="bg-white shadow-lg  p-4 rounded-md grid grid-cols-1 lg:grid-cols-2">
       <div className="h-[450px]">
+        เลือกวันที่เข้าพัก
+        <Divider/>
         <p className="text-red-500">*เลือกวันที่</p>
         <div className="relative h-10 w-[260px] mt-2    lg:my-auto mx-auto">
           <div className="absolute top-2/4 right-3 grid h-5 w-5 -translate-y-2/4 place-items-center text-blue-gray-500">
@@ -62,6 +64,12 @@ const Firststep = (props) => {
               minDate={new Date()}
             />
           )}
+        </div>
+        <Divider/>
+        <div>
+          <p className="text-green-900">
+        วิธีเลือกวันที่เข้าพัก: เดือน/วัน/ปี ถ้าพัก1วันในวันที่ 02/16/2023 ในช่อง"เลือกวันที่" ให้เลือก 02/16/2023-02/16/2023
+          </p>
         </div>
       </div>
       {/* col2 */}

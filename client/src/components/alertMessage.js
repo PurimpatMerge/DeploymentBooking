@@ -17,6 +17,23 @@ export function showAlertFillter(res) {
     }),
   ];
 }
+export function showAlertRegister(res) {
+  return [
+    Store.addNotification({
+      title: res === "pass" ? "success" : "Failed",
+      message: res === "pass" ? "Register successed reloading page" : `${res}`,
+      type: res === "pass" ? "success" : "danger",
+      insert: "top",
+      container: "top-right",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
+      dismiss: {
+        duration: 5000,
+        onScreen: true,
+      },
+    }),
+  ];
+}
 export function showErrorAlertFillter(res) {
   const a = res.includes("duplicate");
   let message;
