@@ -105,12 +105,12 @@ const List = () => {
       ) : (
         <>
         <Navbar />
-          <div className="min-w-max min-h-screen bg-[#edede9] pt-5 ">
+          <div className="min-w-max min-h-screen bg-[#edede9] pt-5 relative pb-20 overflow-hidden">
             
             {/* <button onClick={handleToggle}><TbListSearch className="lg:hidden text-3xl fixed text-yellow-400  "/></button> */}
 
             <Header type="list" />
-            <div className="listContainer  justify-center">
+            <div className="listContainer  justify-center ">
               <div className="gap-[30px] lg:flex">
                 {/* when hidden i want some button to show this component again */}
                 <div className="listSearch  border border-black shadow-lg block 2xl:fixed left-10">
@@ -216,7 +216,7 @@ const List = () => {
                 </div>
               </div>
             </div>
-            <div className="mt-10">
+            <div className="mt-10 absolute bottom-0">
 
             <BotFooter/>
             </div>
