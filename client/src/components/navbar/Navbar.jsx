@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
