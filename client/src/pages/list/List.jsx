@@ -104,15 +104,15 @@ const List = () => {
         </>
       ) : (
         <>
-            <div className="fixed w-screen z-20">
+            <div className="fixed w-screen z-20 ">
           <Navbar />
         </div>
-          <div className="min-w-max min-h-screen bg-[#edede9] pt-5 relative pb-20 overflow-hidden">
+          <div className="min-w-max min-h-screen bg-[#edede9]  relative pb-20 overflow-hidden">
             
             {/* <button onClick={handleToggle}><TbListSearch className="lg:hidden text-3xl fixed text-yellow-400  "/></button> */}
 
             <Header type="list" />
-            <div className="listContainer  justify-center ">
+            <div className="listContainer  justify-center pt-20 ">
               <div className="gap-[30px] lg:flex">
                 {/* when hidden i want some button to show this component again */}
                 <div className="listSearch  border border-black shadow-lg block 2xl:fixed left-10">
@@ -197,7 +197,7 @@ const List = () => {
                     </Space>
                     ) : (
                       <>
-                        <div className="2xl:ml-[150px] grid gap-10   2xl:grid-cols-2">
+                        <div className="2xl:ml-[150px] grid gap-10  pt-20 2xl:grid-cols-2">
                           {paginatedData.map((item) => (
                             <SearchItem item={item} key={item._id} />
                           ))}
