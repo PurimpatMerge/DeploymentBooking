@@ -44,7 +44,7 @@ const Login = () => {
       <div className="container justify-items-center mx-auto p-4 sm:w-5/12 backdrop-blur-sm bg-white/30 border border-gray-400  rounded-lg">
         <div className="w-full  mx-auto my-12">
           <h1 className="text-4xl flex font-bold text-black justify-center">
-            Forget Password
+            Reset password. We will send to your email.
           </h1>
           <Divider />
           <div className="flex flex-col mx-10">

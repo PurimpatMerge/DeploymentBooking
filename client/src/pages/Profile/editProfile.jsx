@@ -11,6 +11,7 @@ import "react-notifications-component/dist/theme.css";
 import { Input } from "antd";
 import Navbar from "../../components/navbar/Navbar";
 import { Divider } from "antd";
+import { Link } from "react-router-dom";
 const EditProfile = () => {
   const { user } = useContext(AuthContext);
   const { data, loading, error } = useFetch(`/users/${user._id}`);
@@ -28,7 +29,10 @@ const EditProfile = () => {
         ...info,
       };
 
-      await axios.put(`https://api-pool-villa.onrender.com/api/users/${user._id}`, updatehotel);
+      await axios.put(
+        `https://api-pool-villa.onrender.com/api/users/${user._id}`,
+        updatehotel
+      );
       const res = "pass";
       showAlertFillter(res);
     } catch (err) {
@@ -67,9 +71,15 @@ const EditProfile = () => {
                 </div>
               </div>
             ))}
-            <div className="flex justify-end mt-10">
+            <div className="flex justify-between items-center py-10">
+              <Link
+                to="/forgotPassword"
+                className="text-purple-500 hover:text-indigo-500"
+              >
+                Change password
+              </Link>
               <button
-                className="bg-green-600 text-white font-semibold py-3 px-10 rounded-md  tracking-tight duration-300 hover:scale-105"
+                className="bg-green-600 text-white font-semibold py-3 px-10 rounded-md tracking-tight duration-300 hover:scale-105"
                 onClick={handleClick}
               >
                 Send

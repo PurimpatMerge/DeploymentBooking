@@ -36,12 +36,18 @@ export function showAlertRegister(res) {
 }
 export function showErrorAlertFillter(res) {
   const a = res.includes("duplicate");
+  const passWordMatch = res.includes("noMatch");
+  const email = res.includes("email");
   let message;
   if (res === "valid phone") {
     message = "invalid phone number.";
   } else if (a) {
     message = "username or email been used";
-  } else {
+  }else if (passWordMatch) {
+    message = "confirm password not correct";
+  } else if (email) {
+    message = "email not correct format";
+  }else {
     message = "Fill all input";
   }
   return [

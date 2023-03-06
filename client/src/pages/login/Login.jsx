@@ -44,19 +44,21 @@ const Login = () => {
             </h1>
             <Divider />
             <div className="flex flex-col mx-10">
+            <label>Username</label>
               <Input
                 type="text"
                 placeholder="username"
                 id="username"
                 onChange={handleChange}
-                className="my-10 px-4 py-3 w-full rounded-md bg-white   focus:ring-0 text-sm"
+                className=" px-4 py-3 w-full rounded-md bg-white   focus:ring-0 text-sm"
               />
+               <label className="mt-10">Password</label>
               <Input
                 type="password"
                 placeholder="password"
                 id="password"
                 onChange={handleChange}
-                className="px-4 py-3 w-full rounded-md bg-white   focus:ring-0 text-sm"
+                className=" px-4 py-3 w-full rounded-md bg-white   focus:ring-0 text-sm"
               />
               <div className="mt-10 flex flex-col mx-auto">
                 <button
@@ -78,8 +80,9 @@ const Login = () => {
                 </div>
               </div>
             </div>
-
-            {error && <span>{error.message}</span>}
+<div className="decoration-red-200 text-center w-full">
+          {error && <p>{error.message}</p>}
+</div>
           </div>
         </div>
       </div>
