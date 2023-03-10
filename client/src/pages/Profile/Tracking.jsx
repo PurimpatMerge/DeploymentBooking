@@ -24,7 +24,11 @@ const Tracking = () => {
       dataIndex: "statusBooking",
       key: "statusBooking",
       render: (statusBooking) => (
-        <>{statusBooking === "Pending" && <Tag color="orange">Pending</Tag>}</>
+        <>
+        {statusBooking === "Pending" && <Tag color="orange">Pending</Tag>}
+        {statusBooking === "Approved" && <Tag color="green">Approved</Tag>}
+        {statusBooking !== "Pending" && statusBooking !== "Approved" && <Tag color="red">Rejected</Tag>}
+      </>
       ),
     },
     {
