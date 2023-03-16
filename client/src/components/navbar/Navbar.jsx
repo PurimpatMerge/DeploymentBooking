@@ -34,7 +34,7 @@ const Navbar = () => {
         <div className="my-auto">
           <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
             <button className="font-semibold text-white text-xl tracking-tight duration-300 hover:scale-125 ">
-              PoolVilla
+              Merge Poolvilla
             </button>
           </Link>
         </div>
