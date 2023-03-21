@@ -25,8 +25,9 @@ export const userInputs = [
   },
   {
     id: "password",
-    label: "Password 6 more than letter.One capital letter",
+    label: "Password",
     type: "password",
+    placeholder: "Password 6 more than letter.One capital letter",
   },
 ];
 
