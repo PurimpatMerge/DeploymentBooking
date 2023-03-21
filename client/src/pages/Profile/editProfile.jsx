@@ -4,7 +4,7 @@ import { profile } from "../../formSource";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { showAlertFillter } from "../../components/alertMessage.js";
+import { showAlertUserDuplicate } from "../../components/alertMessage.js";
 import "../Profile/editProfile.css";
 import { ReactNotifications } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
@@ -34,7 +34,7 @@ const EditProfile = () => {
         updatehotel
       );
       const res = "pass";
-      showAlertFillter(res);
+      showAlertUserDuplicate(res);
     } catch (err) {
       console.log(err);
     }

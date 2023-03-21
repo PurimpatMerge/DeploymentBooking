@@ -38,6 +38,7 @@ export function showErrorAlertFillter(res) {
   const a = res.includes("duplicate");
   const passWordMatch = res.includes("noMatch");
   const email = res.includes("email");
+  const PasswordSet = res.includes("PasswordSet");
   let message;
   if (res === "valid phone") {
     message = "invalid phone number.";
@@ -47,6 +48,8 @@ export function showErrorAlertFillter(res) {
     message = "confirm password not correct";
   } else if (email) {
     message = "email not correct format";
+  }else if (PasswordSet) {
+    message = "6 characters and one capital letter";
   }else {
     message = "Fill all input";
   }

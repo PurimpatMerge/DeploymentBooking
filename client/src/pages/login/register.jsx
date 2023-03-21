@@ -30,7 +30,12 @@ const Register = () => {
       const newUser = {
         ...info,
       };
-
+      
+      const passwordRegex = /^(?=.*[A-Z]).{6,}$/;
+      if (!passwordRegex.test(info.password)) {
+        showErrorAlertFillter("PasswordSet");
+        return;
+      }
       if (info.password !== confirmPassword) {
         showErrorAlertFillter("noMatch");
         return;
